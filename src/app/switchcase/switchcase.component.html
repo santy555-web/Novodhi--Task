@@ -1,0 +1,26 @@
+<div>&nbsp;</div>
+
+
+<div class='container'>
+  <div>&nbsp;</div>
+  <div align="center">
+    <h4>Example of Switch Case</h4>
+    <select [(ngModel)]="selectedValue" >
+    <option *ngFor="let item of items;" [value]="item.val" aria-placeholder="choose">&nbsp;&nbsp;{{item.val}}&nbsp;&nbsp;</option></select><br>
+        <div align='center' [ngSwitch]="selectedValue">
+          <div *ngSwitchCase="'1'"> January is Selected</div>
+          <div *ngSwitchCase="'2'">Ferbruary is Selected</div>
+          <div *ngSwitchCase="'3'">March is Selected</div>
+          <div *ngSwitchCase="'4'">April is Selected</div>
+          <div *ngSwitchCase="'5'">May is Selected</div>
+          <div *ngSwitchCase="'6'">June is Selected</div>
+          <div *ngSwitchCase="'7'">July is Selected</div>
+          <div *ngSwitchCase="'8'">August is Selected</div>
+          <div *ngSwitchCase="'9'">September is Selected</div>
+          <div *ngSwitchCase="'10'">Octomber is Selected</div>
+          <div *ngSwitchCase="'11'">November is Selected</div>
+          <div *ngSwitchCase="'12'"> December is Selected</div>
+          <div *ngSwitchDefault>---Choose option---</div>
+      </div>
+  </div>
+</div>

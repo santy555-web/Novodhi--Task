@@ -1,0 +1,96 @@
+<!--Task Table-->
+<div classss="container-fluid"><div>&nbsp;</div>
+  <div class="row" style="background-color:#bbb;" >
+      <h3 align="center">Todo Component</h3>
+          <div>&nbsp;&nbsp;</div>
+          <div>&nbsp;&nbsp;</div>
+          <div align="center">
+            <button (click)="onClickShowTable()"class="btn btn primary">Todo</button>&nbsp;&nbsp;
+            <button (click)="onClickShowTable1()"class="btn btn primary">Employee</button>
+          </div>
+<!--Task Table-->
+   <div *ngIf="flag">
+    <h3 align="center">Task Table</h3>
+      <table class="table" style="width:500px;" align="center" >
+        <tr>
+          <th >Id</th>
+          <th >Title</th>
+          <th >Status</th>
+          <th >Actions</th>
+      </tr>
+        <tbody>
+          <tr *ngFor="let item of arrTodos">
+            <td>{{item.id}}</td>
+            <td>{{item.title}}</td>
+            <td><span [ngClass]="{done : item.status=='done', pending: item.status=='pending'}">{{item.status}}</span></td>
+            <td><button (click)="onDelete(item)" class="btn btn-danger">Delete</button>&nbsp;&nbsp;
+                <button (click)="onEdit(item)"class="btn btn-info">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+          <div align="center">
+          <button (click)="onCancelClick()"class="btn btn primary">cancel</button>&nbsp;&nbsp;
+          </div>
+   </div>
+
+
+<!--Employee Table-->
+  <div *ngIf="flag1">
+    <h3 align="center">Employee Table</h3><div>&nbsp;</div>
+    <table class="table table-bordered" align="center" style="width: 630px;">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Status</th>
+            <th scope="col" >Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of arremployee">
+            <td>{{item.eid}}</td>
+            <td>{{item.ename}}</td>
+            <td>{{item.eage}}</td>
+            <td><span [ngClass]="{manager : item.estatus=='software developer','software developer': item.estatus=='manager'}">{{item.estatus}}</span></td>
+            <td><button (click)="onDeleteEmployee(item)" class="btn btn-danger">Delete</button>&nbsp;&nbsp;
+              <button (click)="onEditEmployeeStatus(item)"class="btn btn-success">Edit Status</button>&nbsp;&nbsp;
+              <button (click)="onEditEmployeeAge(item)"class="btn btn-info">Edit Age</button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+        <div align="center">
+          <button (click)="onCancelClick1()"class="btn btn primary">cancel</button>&nbsp;&nbsp;
+        </div>
+  </div>
+</div>
+
+ <div align="center">
+   <div classss="container"><div>&nbsp;</div>
+      <div class="row" style="background-color:#bbb;"><div>&nbsp;</div>
+        <h3 align="center">Table Creation</h3>
+       <input type="number " [(ngModel)]="id" placeholder="Enter Number ">&nbsp;&nbsp;
+          <button class="btn btn-primary"(click)="onsubmit()" (click)="onClickShowTable2()">submit</button><div>&nbsp;</div>
+        <div *ngIf="flag2">
+          <div align="center" style="box-sizing: border-box; width: 25%; border: 2px double indigo; float:center;">
+            <h5>{{id}} * 1 = {{tab1}}</h5>
+            <h5>{{id}} * 2 = {{tab2}}</h5>
+            <h5>{{id}} * 3 = {{tab3}}</h5>
+            <h5>{{id}} * 4 = {{tab4}}</h5>
+            <h5>{{id}} * 5 = {{tab5}}</h5>
+            <h5>{{id}} * 6 = {{tab6}}</h5>
+            <h5>{{id}} * 7 = {{tab7}}</h5>
+            <h5>{{id}} * 8 = {{tab8}}</h5>
+            <h5>{{id}} * 9 = {{tab9}}</h5>
+            <h5>{{id}} * 10 = {{tab10}}</h5>
+          </div><br>
+            <div align="center">
+              <button (click)="onCancelClick2()"class="btn btn primary">cancel</button>&nbsp;&nbsp;
+            </div>
+        </div>
+      </div>
+   </div>
+  </div>
+</div>

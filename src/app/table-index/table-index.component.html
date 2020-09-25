@@ -1,0 +1,42 @@
+<div>&nbsp;</div>
+<div class='container'>
+
+         <div align="center">
+         <button class="btn btn-success" (click)="onclick()">Show Table</button>&nbsp;
+         <button class="btn btn-success" (click)="onclick()">Show Table</button>
+         </div>
+
+    <div *ngIf="flag;else elseblock"><div>&nbsp;</div>
+      <table border = "1" width = "50%" align="center">
+      <tr>
+        <!--<th>#</th>-->
+        <th>Id</th>
+        <th>Name</th>
+        <th>gender</th>
+        <th>gmail</th>
+
+      </tr>
+      <!--<tr *ngFor="let item of arrEmployee; let l = index; ">-->
+        <!--<tr *ngFor="let item of arrEmployee.reverse()">-->
+        <!--<tr *ngFor="let item of arrEmployee.reverse(); let f=first; let l=last;">
+        <tr *ngFor="let item of arrEmployee.reverse(); let f=even; let l=odd;">-->
+        <tr *ngFor="let item of arrEmployee; let f=even; let l=odd;" [ngClass]="{ odd : l, even : f }">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.gender}}</td>
+        <td>{{item.gmail}}</td>
+        <!--<td>{{l}}</td>
+        <td> {{f}}</td>-->
+      </tr>
+      </table>
+    </div>
+        <ng-template #elseblock><div>&nbsp;</div>
+        <div align="center">
+
+          <th appHighlighter >This is Directive Block</th><br><br>
+
+          <input appCreditcard appHighlighter placeholder="Enter Credit number" > &nbsp; &nbsp;
+          <button class="button" class="btn btn-success btn-sm" (click)="onclickbutton()" >Submit</button>
+        </div>
+        </ng-template>
+</div>

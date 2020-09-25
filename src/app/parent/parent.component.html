@@ -1,0 +1,96 @@
+<!-- <h1>Hello from Parent Component</h1>
+<app-child></app-child>
+<div>&nbsp;</div> -->
+
+
+
+<div class="container">
+
+  <button class="btn btn-success" (click)="onclick()"> Product Manu</button>&nbsp;
+  <button class="btn btn-success"(click)="onclick1()"> Cart Manu</button>&nbsp;
+  <button class="btn btn-success" Onclick="reloadPage();">Refresh</button>&nbsp;
+  <button class="btn btn-success"(click)="onclick2()"> Add Product</button>&nbsp;
+  <div *ngIf="flag;else elseblock"></div>
+  <div *ngIf="flag1;else elseblock1"></div>
+  <div *ngIf="flag2;else elseblock2"></div>
+  <!--This is for Product Manu-->
+  <ng-template #elseblock>
+   <app-child [categoryName]="selectedCategory" (myEvent)="onMyEvent($event)"></app-child><div>&nbsp;</div>
+    <div class="row">
+    <app-addtocart [products]="prooductsarr" (myevent1)="onMyEventClick($event)" ></app-addtocart>
+      <div *ngFor="let item of prooductsarr let l = index;">
+        <div class="thumbnail"><div>&nbsp;</div>
+          <img src="./assets/images/s5.jpg" alt="sprite" class="col-sm-4 col-md-3" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="caption" >
+            <h3>{{item.pname}}</h3>
+            <p align="center">{{item.pprice | currency:'INR' : 'symbol' :'2.1' }}</p>
+            <p><button  class="btn btn-success">Buy</button>
+            <button (click)="onMyEventClick(item)"  class="btn btn-success">Add to Cart</button></p>
+          </div>
+       </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+      <div>&nbsp;</div><div>&nbsp;</div>
+
+      <!--<product-list (productAdded)="addProductToCart($event)" [products]="productList"></product-list>
+      <shopping-cart [products]="cartProductList" (productRemoved)="removeProduct($event)"></shopping-cart>
+      -->
+    <!-- <div class="row">
+      <app-addtocart></app-addtocart>
+        <div *ngFor="let item of productsarr">
+        <div>{{item.pname}}</div>
+        <div>{{item.price}}</div>
+        <button (click)="addProductToCart(productsarr)">+</button>-->
+        <!-- <h3>{{Product}}</h3>
+        <p> <button (click)="onclickCart(Product)" class="btn btn-success">Add to Cart</button></p>
+      -->
+       <!--</div>
+        </div>-->
+
+
+          <div align="center">
+            <button (click)="onCancelClick()"class="btn btn primary">cancel</button>&nbsp;&nbsp;
+          </div>
+    </div>
+</ng-template>
+
+
+
+
+ <!--This is for Cart Manu -->
+<ng-template #elseblock1>
+<div class="row">
+      <div *ngFor="let item of Productarr1">
+        <div class="thumbnail">
+          <div>&nbsp;</div>
+          <img src="./assets/images/s5.jpg" alt="sprite" class="col-sm-6 col-md-3" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="caption" >
+            <h3>{{item.pname}}</h3>
+            <p >{{item.pprice | currency:'INR' : 'symbol' :'3.1' }}</p>
+            <p> <button class="btn btn-success">buy</button>&nbsp;</p>
+          </div>
+      </div>
+      </div>
+
+    <div align="center">
+      <button (click)="onCancelClick1()"class="btn btn primary">cancel</button>&nbsp;&nbsp;
+    </div>
+</div>
+</ng-template>
+
+
+<!--This is for add Product Manu -->
+<ng-template #elseblock2>
+<div align="center" class="column" ><div>&nbsp;&nbsp;</div>
+  <div align="center" style="box-sizing: border-box; height:200px; width: 50%; border: 2px double indigo; float:center;" >
+     <h3>Enter Product Details</h3><div>&nbsp;</div>
+        <input type="text" size="14px" [(ngModel)]="pname"  placeholder=" Name ">&nbsp;&nbsp;
+        <input type="text" size="7px" [(ngModel)]="pprice"  placeholder="Price ">&nbsp;&nbsp;
+         <button type="submit" required class="btn btn-primary"(click)="onAddclick()">Add Product</button>
+ </div>
+      </div>
+      <div align="center"><button (click)="onCancelClick2()"class="btn btn primary">cancel</button>&nbsp;&nbsp;
+      </div>
+</ng-template>
+</div>
+
+

@@ -1,0 +1,54 @@
+<div>&nbsp;</div>
+
+<div class='container'>
+      <div align="center">
+        <h5>This is Two- way binding </h5>
+        <input type="number" [(ngModel)]= "a" placeholder="Enter First number">&nbsp;
+        <input type="number" [(ngModel)]="b" placeholder="Enter Second number">&nbsp;
+        <button class="button" style=background-color:lightsalmon (click)="onClickAdd()" >Add</button>
+        <h4>Answer is {{sum}}</h4>
+      </div>
+        <hr>
+        <div align="center">
+          <h5>This is Template Binding </h5>
+          <input type="number" #input1 placeholder="Enter First number">&nbsp;
+          <input type="number" #input2 placeholder="Enter Second number">&nbsp;
+          <button class="button" style=background-color:lightsalmon (click)="onClickAdd1(input1.value, input2.value)" >Add</button>
+          <h4>Answer is {{ans}}</h4>
+        </div>
+<hr>
+<br>   <div align="center">
+        <h5>This is Two- way Binding </h5>
+        <input type="text" [(ngModel)]="str">
+        <h4>Answer is: {{str}}</h4>
+        </div>
+        <hr>
+<br>
+        <div align="center">
+        <h5>This is Template Binding </h5>
+        <input type="text" #str1  (keyup)="0">
+        <h4>Answer is: {{str1.value}}</h4>
+        </div>
+<hr>
+      <div align="center">
+      <h5>This is Titlecase, Lowercase, Uppercase Pipe </h5>
+      <h3>{{ str2 | titlecase }}</h3>
+      <h3>{{ str2 | lowercase }}</h3>
+      <h3>{{ str2 | uppercase }}</h3>
+      </div>
+<br>
+<hr>
+      <div align="center">
+      <h5>This is Currency Pipe</h5>
+      <h3>{{ price | currency : 'INR' : 'symbol' :'3.0' }}</h3>
+      <h3>{{ price | currency }}</h3>
+      </div>
+<br>
+<hr>
+      <div align="center">
+      <h5>Todays Time and Date is: {{today | date:'long' }}</h5>
+      <h5>Todays Time and Date is: {{today | date:'short' }}</h5>
+
+      </div>
+<br>
+</div>
