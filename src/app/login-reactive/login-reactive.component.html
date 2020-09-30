@@ -1,0 +1,67 @@
+<div class="container">
+  <h3 style="text-align: center;">Sign up form</h3>
+<form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+  <div class="form-group">
+     <label>User Name<span class="lblError"></span>*</label>
+       <div class="controls">
+        <input formControlName="user_name" required placeholder="Enter Name" type='text'class="form-control" >
+        <p class="lblError" *ngIf="signupForm.get('user_name').hasError('required') && !signupForm.get('user_name').pristine"> Name is Required </p>
+        <p class="iblError" *ngIf="signupForm.get('user_name').hasError('minlength') && !signupForm.get('user_name').pristine">
+        Minimum 5 Charector Required!..
+        </p>
+        <p class="lblError"
+          *ngIf="signupForm.get('user_name').hasError('invalidName') && !signupForm.get('user_name').pristine ">
+          Invalid Names
+        </p>
+        </div>
+   </div>
+   <div class="form-group">
+    <label>User Email<span class="lblError"></span>*</label>
+       <div class="controls">
+        <input formControlName="user_email" placeholder="Enter Email" type='email'class="form-control" >
+        <p class="iblError" *ngIf="signupForm.get('user_email').hasError('minlength') && !signupForm.get('user_email').pristine">Minimum 5 Charector Required!..</p>
+        <p class="lblError" *ngIf="signupForm.get('user_email').hasError('email') && !signupForm.get('user_email').pristine">Invalied Email!...</p>
+        <p class="lblError" *ngIf="signupForm.get('user_email').hasError('required') && !signupForm.get('user_email').pristine"> Email is Required!... </p>
+
+      </div>
+  </div>
+
+  <div formGroupName="password_group" class="form-row">
+    <div class="from-group">
+      <label>Password:<span class="lblError">*</span></label>
+      <div class="controls">
+        <input formControlName="password" placeholder="Enter Password" type="password" class="form-control">
+        <p class="lblError"
+          *ngIf="signupForm.get('password_group').get('password').hasError('required') && !signupForm.get('password_group').get('password').pristine ">
+          password is
+          required</p>
+      </div>
+    </div>
+
+
+
+    <div class="from-group">
+      <label>Confirm Password:<span class="lblError">*</span></label>
+      <div class="controls">
+        <input formControlName="confirm_password" placeholder="Enter Confirm Password" type="password"
+          class="form-control">
+        <p class="lblError"
+          *ngIf="signupForm.get('password_group').get('confirm_password').hasError('required') && !signupForm.get('password_group').get('confirm_password').pristine ">
+          confirm password is
+          required</p>
+      </div>
+    </div>
+    <p class="lblError"
+      *ngIf="signupForm.get('password_group').hasError('passwordMatchError') && !signupForm.get('password_group').pristine ">
+      password doesn't match
+    </p>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit" style="width: 15%">
+      Sign Up
+    </button>
+    <!-- [disabled]="signupForm.invalid" -->
+  </div>
+</form>
+</div>

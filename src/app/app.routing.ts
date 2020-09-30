@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from "@angular/router";
 import { BindingexampleComponent } from "./bindingexample/bindingexample.component";
-
+import { LoginformComponent } from "./loginform/loginform.component"
 import { DemoComponent } from "./demo/demo.component";
 import { DragdropComponent } from "./dragdrop/dragdrop.component";
 import { DragdropboxComponent } from "./dragdropbox/dragdropbox.component";
@@ -15,6 +15,7 @@ import { PagenotfoundComponent } from "./pagenotfound/pagenotfound.component";
 import { HeaderComponent } from './header/header.component';
 import { IndexpageComponent } from './indexpage/indexpage.component';
 import { AddtocartComponent } from "./addtocart/addtocart.component";
+import { LoginReactiveComponent } from "./login-reactive/login-reactive.component";
 import { Component } from '@angular/core';
 const arr : Routes=[
 
@@ -24,12 +25,14 @@ const arr : Routes=[
 {path:'demo',component: DemoComponent },
 {path:'dragdrop',component:DragdropComponent },
 {path:'dragdropbox',component: DragdropboxComponent },
-{path:'',component:LoginComponent },
+{path:'',component:LoginformComponent },
+{path:'login',component:LoginComponent },
 {path:'parent',component:ParentComponent },
 {path:'register',component:RegisterComponent },
 {path:'switchcase',component: SwitchcaseComponent},
 {path:'table-index',component:TableIndexComponent },
 {path:'todos',component:TodosComponent },
+{path:'loginreactive',component:LoginReactiveComponent},
 {path:'tomo',component: TomoComponent},
 {path :'pagenotfound',component: PagenotfoundComponent},
 {path:'**',redirectTo: 'pagenotfound' },

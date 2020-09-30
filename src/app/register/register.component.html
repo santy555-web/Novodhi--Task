@@ -102,13 +102,20 @@
 	font-size: 7px;
 	position: absolute;
 }
+.inf-content{
+  border:1px solid #DDDDDD;
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+  box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+}
 
 </style>
 
 <body>
 	<div class="container-fluid">
 		<div class="signup-form">
-			<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+			<form >
 
 				<h2 class="text-center">Create Account</h2>
 
@@ -143,7 +150,11 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
 						 <input type="email" class="form-control" name="email"
-						 placeholder="Email Address" required="required">
+             placeholder="Email Address" ngModel required="required" #email="ngModel">
+             <label *ngIf="email.hasError('required') && !email.pristine " class="alert alert-danger">Email is
+              required.</label>
+            <label *ngIf="email.hasError('emp_pass') && !email.pristine " class="alert alert-danger">invalid Email
+              </label>
 					</div>
 				</div>
 
@@ -152,9 +163,11 @@
 						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 						<input type="password" class="form-control" name="pass"
               placeholder="Password" id="myInput" required="required"
-              ngModel #pass="ngModel"
-              >
-
+              ngModel #pass="ngModel">
+              <label *ngIf="pass.hasError('required') && !pass.pristine " class="alert alert-danger">emp password is
+                required.</label>
+              <label *ngIf="pass.hasError('pass') && !pass.pristine " class="alert alert-danger">invalid password
+                </label>
 						<span class="input-group-addon"><i class="fa fa-eye" onclick="myFunction()"></i></span>
 					</div>
 				</div>
@@ -172,9 +185,7 @@
 				</div>
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-block btn-lg">Submit
-
-          </button>
+					<button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
 				</div>
 
 				<p class="small text-center">
@@ -188,6 +199,105 @@
       </div>
 
 		</div>
-	</div>
+  </div>
 </body>
+
+
+<div class="container bootstrap snippets bootdey">
+  <div *ngFor="let item of Register">
+  <div class="panel-body inf-content">
+      <div class="row">
+          <div class="col-md-4">
+              <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="https://bootdey.com/img/Content/avatar/avatar7.png" data-original-title="Usuario">
+              <ul title="Ratings" class="list-inline ratings text-center">
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+              </ul>
+          </div>
+          <div class="col-md-6">
+              <strong>Information</strong><br>
+              <div class="table-responsive">
+              <table class="table table-user-information">
+                  <tbody>
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-user  text-primary"></span>
+                                  Name
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                             {{item.firstname}}
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-cloud text-primary"></span>
+                                  Lastname
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                              {{item.surname}}
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                Mobile Number
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{item.mobile}}
+                        </td>
+                    </tr>
+
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                  Email
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                              {{item.email}}
+                          </td>
+                      </tr>
+
+
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                  Password
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                              {{item.pass}}
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                  Date of Registration
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                            {{today | date:'short' }}
+                          </td>
+                      </tr>
+              </table>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
+
 

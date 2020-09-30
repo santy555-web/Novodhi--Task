@@ -8,12 +8,21 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 
 })
-export class AddtocartComponent implements OnInit {
 
-  constructor() { }
+export class AddtocartComponent implements OnInit {
+  @Input() cart : any []=[];
+  @Input() ClickCounter:number=0;
+  @Input() Tprice:number;
+
+  today: number = Date.now();
+  constructor() {
+}
 
   ngOnInit(): void {
   }
+
+
+
   // @Input() products: any[];
   // @Output() myevent1 = new EventEmitter();
 

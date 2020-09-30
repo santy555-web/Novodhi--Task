@@ -127,24 +127,25 @@ body {
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 								 <input type="password" class="form-control" name="emp_pass"
-                 placeholder="Password" id="myInput" required="required"
+                 placeholder="Password" id="myInput"
                  ngModel required pass #emp_pass="ngModel">
                   <label *ngIf="emp_pass.hasError('required') && !emp_pass.pristine " class="alert alert-danger">emp password is
         required.</label>
-      <label *ngIf="emp_pass.hasError('pass') && !emp_email.pristine " class="alert alert-danger">invalid password
+      <label *ngIf="emp_pass.hasError('emp_pass') && !emp_pass.pristine " class="alert alert-danger">invalid password
         </label>
 							<span class="input-group-addon"><i class="fa fa-eye" onclick="myFunction()"></i></span>
 						</div>
 					</div>
 		 				<div class="form-group">
-				<label class="pull-left checkbox-inline">
+				<!-- <label class="pull-left checkbox-inline">
 				 <input type="checkbox" name="remember" value="yes"> Remember me
+        </label> <br /> <br /> -->
+        	<label class="pull-left checkbox-inline">
+				 <input type="checkbox" ngModel name="tmc" #tmc="ngModel" required value="yes"> Terms and Conditions
 				</label> <br /> <br />
-				<!--<div class="alert alert-danger"></div>-->
-
-        <a routerLink="/parent"><button type="submit" class="btn btn-danger btn-block">Submit
-
-        </button></a>
+        <label *ngIf="tmc.hasError('required') && !tmc.pristine " class="alert alert-danger">It is required!...
+        </label>
+        <a routerLink="/parent"><button type="submit" class="btn btn-danger btn-block">Submit</button></a>
 			</div>
 			<div class="clearfix">
 				<!-- <label class="pull-left checkbox-inline"> <input type="checkbox" name="remember" value="yes"> Remember me </label> -->

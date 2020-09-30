@@ -5,31 +5,100 @@
 
 
 <div class="container">
-
-  <button class="btn btn-success" (click)="onclick()"> Product Manu</button>&nbsp;
-  <button class="btn btn-success"(click)="onclick1()"> Cart Manu</button>&nbsp;
+  <div><app-child [categoryName]="selectedCategory" (myEvent)="onMyEvent($event)"></app-child></div>
+  <div align="right">
+  <button class="btn btn-success" (click)="onclick()" (click)="onCancelClick2()" (click)="onCancelClick1()"> Product Manu</button>&nbsp;
+  <button class="btn btn-success"(click)="onclick1()" (click)="onCancelClick()" (click)="onCancelClick2()"> Cart Manu <span class="badge">{{ClickCounter}}</span></button>&nbsp;
   <button class="btn btn-success" Onclick="reloadPage();">Refresh</button>&nbsp;
-  <button class="btn btn-success"(click)="onclick2()"> Add Product</button>&nbsp;
+  <button class="btn btn-success"(click)="onclick2()" (click)="onCancelClick()" (click)="onCancelClick1()"> Add Product</button>&nbsp;
+</div>
   <div *ngIf="flag;else elseblock"></div>
   <div *ngIf="flag1;else elseblock1"></div>
   <div *ngIf="flag2;else elseblock2"></div>
   <!--This is for Product Manu-->
   <ng-template #elseblock>
-   <app-child [categoryName]="selectedCategory" (myEvent)="onMyEvent($event)"></app-child><div>&nbsp;</div>
-    <div class="row">
-    <app-addtocart [products]="prooductsarr" (myevent1)="onMyEventClick($event)" ></app-addtocart>
-      <div *ngFor="let item of prooductsarr let l = index;">
-        <div class="thumbnail"><div>&nbsp;</div>
-          <img src="./assets/images/s5.jpg" alt="sprite" class="col-sm-4 col-md-3" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div class="caption" >
-            <h3>{{item.pname}}</h3>
-            <p align="center">{{item.pprice | currency:'INR' : 'symbol' :'2.1' }}</p>
-            <p><button  class="btn btn-success">Buy</button>
-            <button (click)="onMyEventClick(item)"  class="btn btn-success">Add to Cart</button></p>
+
+   <div>&nbsp;</div>
+      <div class="container">
+
+          <div class="col-md-12">
+
+            <h2>Trending <b>Products</b></h2>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+
+            </ol>
+            <!-- Wrapper for carousel items -->
+
+            <div class="carousel-inner">
+              <div class="item active">
+                <div class="row">
+                  <div *ngFor="let item of prooductsarr let l = index;">
+                  <div class="col-sm-3">
+                    <div class="thumb-wrapper">
+                    <div class="row">
+
+
+
+                      <div class="thumb-content">
+
+                          <div class="img-box"><img [src]= 'item.images' alt="images"  /></div>
+                          <h4>{{item.name}}</h4>
+                        <p class="item-price"><s>{{item.mrp | currency:'INR' : 'symbol' :'2.1'}}</s>&nbsp;&nbsp;
+                          <span>{{item.price | currency:'INR' : 'symbol' :'3.1' }}</span></p>
+                        <div class="star-rating">
+                          <ul class="list-inline">
+                            <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                          </ul>
+                        </div>
+                        <button (click)="onMyEventClick(item)" class="btn btn-success">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-       </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </div>
-      <div>&nbsp;</div><div>&nbsp;</div>
+            <!-- Carousel controls -->
+
+
+          </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <!--<product-list (productAdded)="addProductToCart($event)" [products]="productList"></product-list>
       <shopping-cart [products]="cartProductList" (productRemoved)="removeProduct($event)"></shopping-cart>
@@ -46,11 +115,6 @@
        <!--</div>
         </div>-->
 
-
-          <div align="center">
-            <button (click)="onCancelClick()"class="btn btn primary">cancel</button>&nbsp;&nbsp;
-          </div>
-    </div>
 </ng-template>
 
 
@@ -58,39 +122,133 @@
 
  <!--This is for Cart Manu -->
 <ng-template #elseblock1>
-<div class="row">
+<!-- <div class="row">
       <div *ngFor="let item of Productarr1">
-        <div class="thumbnail">
+        <div class="thu">
           <div>&nbsp;</div>
-          <img src="./assets/images/s5.jpg" alt="sprite" class="col-sm-6 col-md-3" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div class="caption" >
-            <h3>{{item.pname}}</h3>
-            <p >{{item.pprice | currency:'INR' : 'symbol' :'3.1' }}</p>
+          <img src="./assets/images/s5.jpg" alt="sprite" height="130px" width="130px" class="rounded-corners"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="caption" align="center" >
+            <h3>&nbsp;&nbsp;{{item.name}}</h3>
+            <p>Color:&nbsp;&nbsp;{{item.color}}</p>
+            <p>Warranty:&nbsp;&nbsp; {{item.warranty}}</p>
+            <p>Brand:&nbsp;&nbsp;{{item.brand}}</p>
+            <p>Price: &nbsp;&nbsp;{{item.price | currency:'INR' : 'symbol' :'3.1' }}</p>
+            <p>MRP:&nbsp;&nbsp; {{item.mrp | currency:'INR' : 'symbol' :'2.1'}}</p>
+            <p>Discount:&nbsp;&nbsp;{{item.discount}}</p>
+            <p>Quantity:&nbsp;&nbsp;{{item.quantity}}</p>
+            <p>Status:&nbsp;&nbsp;{{item.status}}</p>
             <p> <button class="btn btn-success">buy</button>&nbsp;</p>
           </div>
       </div>
       </div>
+      <div align="center">
+        <button (click)="onCancelClick1()"class="btn btn primary">cancel</button>&nbsp;&nbsp;
+      </div>
+ </div>-->
+ <app-addtocart [cart]="Productarr1" [ClickCounter]="ClickCounter" [Tprice]="tprice" ></app-addtocart>
 
-    <div align="center">
-      <button (click)="onCancelClick1()"class="btn btn primary">cancel</button>&nbsp;&nbsp;
-    </div>
-</div>
 </ng-template>
 
 
 <!--This is for add Product Manu -->
 <ng-template #elseblock2>
-<div align="center" class="column" ><div>&nbsp;&nbsp;</div>
-  <div align="center" style="box-sizing: border-box; height:200px; width: 50%; border: 2px double indigo; float:center;" >
-     <h3>Enter Product Details</h3><div>&nbsp;</div>
-        <input type="text" size="14px" [(ngModel)]="pname"  placeholder=" Name ">&nbsp;&nbsp;
-        <input type="text" size="7px" [(ngModel)]="pprice"  placeholder="Price ">&nbsp;&nbsp;
-         <button type="submit" required class="btn btn-primary"(click)="onAddclick()">Add Product</button>
- </div>
-      </div>
-      <div align="center"><button (click)="onCancelClick2()"class="btn btn primary">cancel</button>&nbsp;&nbsp;
-      </div>
-</ng-template>
+
+
+<div class="container contact">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="contact-info">
+				<i class="fa fa-shopping-cart" style="font-size:60px;color:black"></i>
+				<h2>Add Product Details </h2>
+				<h4>Add Every Field of Product !</h4>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="contact-form">
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="fname">Product Name:</label>
+				  <div class="col-sm-10">
+					<input type="text" [(ngModel)]="name" class="form-control" id="fname" placeholder="Enter Product Name" name="fname">
+				  </div>
+        </div>
+        <div class="form-group">
+				  <label class="control-label col-sm-2" for="fname">Color:</label>
+				  <div class="col-sm-10">
+					<input type="text" [(ngModel)]="color"class="form-control" id="fname" placeholder="Enter Product Color" name="fname">
+				  </div>
+				</div>
+
+        <div class="form-group">
+				  <label class="control-label col-sm-2" for="fname">Warranty:</label>
+				  <div class="col-sm-10">
+					<input type="text" [(ngModel)]="warranty" class="form-control" id="fname" placeholder="Enter Product Warranty" name="fname">
+				  </div>
+				</div>
+
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="lname">Brand:</label>
+				  <div class="col-sm-10">
+					<input type="text" [(ngModel)]="brand" class="form-control" id="lname" placeholder="Enter Product brand" name="lname">
+				  </div>
+        </div>
+
+        <div class="form-group">
+				  <label class="control-label col-sm-2" for="lname">Price:</label>
+				  <div class="col-sm-10">
+					<input type="text" [(ngModel)]="price" class="form-control" id="lname" placeholder="Enter Product Price" name="lname">
+				  </div>
+        </div>
+
+        <div class="form-group">
+				  <label class="control-label col-sm-2" for="lname">MRP:</label>
+				  <div class="col-sm-10">
+					<input type="text" class="form-control" [(ngModel)]="mrp" id="mrp" placeholder="Enter Product MRP" name="lname">
+				  </div>
+        </div>
+
+        <div class="form-group">
+				  <label class="control-label col-sm-2" for="lname">Discount:</label>
+				  <div class="col-sm-10">
+					<input type="text" [(ngModel)]="discount" class="form-control" id="discount" placeholder="Discount in %" name="lname">
+				  </div>
+				</div>
+
+        <div class="form-group">
+				  <label class="control-label col-sm-2" for="lname">Quantity:</label>
+				  <div class="col-sm-10">
+					<input type="text" [(ngModel)]="quantity" class="form-control" id="quantity" placeholder="Enter Available Quantity" name="lname">
+				  </div>
+        </div>
+
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="discription">Discription:</label>
+				  <div class="col-sm-10">
+					<textarea class="form-control" [(ngModel)]="discription" rows="5" id="discription"></textarea>
+				  </div>
+        </div>
+
+        <div class="form-group">
+				  <label class="control-label col-sm-2" for="status">Upload Img:</label>
+				  <div class="col-sm-10">
+          <input type="file" class="form-control"[(ngModel)]="images" id="img" name="img" (change)="onFileSelected($event)" >
+
+				  </div>
+				</div>
+
+
+				<div class="form-group">
+				  <div class="col-sm-offset-2 col-sm-10">
+					<button type="submit"(click)="onAddProduct()" class="btn btn-default">Submit</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+</ng-template>
 
 
+
+
+
+</div>
