@@ -1,0 +1,70 @@
+
+<div class="container">
+  <form [formGroup]="signupForm" (ngSubmit)="onRegister()" >
+    <h3 align="center">Bank Details </h3>
+
+    <div class="form-row">
+      <div class="col-md-4">
+        <label>Bank Name<span class="lblError">*</span></label>
+        <input type="text" class="form-control" style="text-transform: capitalize;" formControlName="bank_name" placeholder="Enter Bank Name">
+        <p class="lblError" *ngIf="signupForm.get('bank_name').hasError('required') && !signupForm.get('bank_name').pristine">Bank name is Required!...</p>
+      </div>
+      <div class="col-md-4">
+        <label for="validationTooltip01">Account Type</label>
+        <input type="text" class="form-control" formControlName="account_type" placeholder="Account Type">
+      </div>
+
+      <div class="col-md-4">
+        <label>Account Number<span class="lblError">*</span></label>
+        <input type="text" appNumbersOnly class="form-control" formControlName="account_number" placeholder="Enter Acc. Number">
+        <p class="lblError" *ngIf="signupForm.get('account_number').hasError('required') && !signupForm.get('account_number').pristine">Acc. number is Required!...</p>
+      </div>
+<div>&nbsp;</div>
+
+      </div>
+
+      <div class="form-row">
+      <div class="col-md-12">
+        <label>Branch Details </label>
+        <input type="text" class="form-control" formControlName="branch_detail" placeholder="Enter Branch Details">
+      </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="form-row">
+      <div class="col-md-12">
+        <label>Reimbursement Bank Name</label>
+        <input type="text" class="form-control" style="text-transform: capitalize;" formControlName="reimbursement_name" placeholder="Reimbursement Bank Name">
+      </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="form-row">
+      <div class="col-md-4">
+        <label>Payment Type<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="peyment_type" placeholder="Peyment Type">
+        <p class="lblError" *ngIf="signupForm.get('peyment_type').hasError('required') && !signupForm.get('peyment_type').pristine">Payment type is Required!...</p>
+      </div>
+
+      <div class="col-md-4">
+        <label>IFSC Code<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="ifsc" placeholder="First IFSC Code">
+        <p class="lblError" *ngIf="signupForm.get('ifsc').hasError('required') && !signupForm.get('ifsc').pristine">IFSC Code is Required!...</p>
+      </div>
+
+      <div class="col-md-4">
+        <label>Reimbursement Acc. Number</label>
+        <input type="text" class="form-control" formControlName="reimbursement_number" placeholder="Reimbursement Acc. No">
+      </div>
+    </div>
+    <div>&nbsp;</div>
+
+  <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
+  <div class="form-group col-md-12">
+    <button class="btn btn-primary" routerLink="/personaldetail" >Previous</button>&nbsp;&nbsp;
+    <button type="submit"  class="btn btn-primary" [disabled]="signupForm.invalid" >Save</button>&nbsp;&nbsp;
+    <button class="btn btn-primary" routerLink="/qualification" [disabled]="OnNextClick()" >next</button>
+  </div>
+</form>
+
+
+</div>
+

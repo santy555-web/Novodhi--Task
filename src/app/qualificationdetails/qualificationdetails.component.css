@@ -1,0 +1,9 @@
+.error{
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+p {
+  font-family: Lato;
+}

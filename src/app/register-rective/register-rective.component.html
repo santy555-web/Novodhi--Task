@@ -1,0 +1,38 @@
+<div class="container" >
+<h2 style=text-align:center>Register</h2>
+<div class="row" align="center">
+<form [formGroup]="signupForm" (ngSubmit)="onRegister()">
+      <div class="col sm-6">
+      <label>User Name<span class="lblError">*</span></label>
+      <input type="text" formControlName="name" placeholder="Enter Name">
+      <p class="lblError" *ngIf="signupForm.get('name').hasError('required')&& !signupForm.get('name').pristine">Name is Required!...</p>
+      </div><br/>
+      <div class="col sm-6">
+      <label>User Email<span class="lblError">*</span></label>
+      <input type="email" formControlName="email" placeholder="Enter Email"><br>
+      <p class="lblError" *ngIf="signupForm.get('email').hasError('required')&& !signupForm.get('email').pristine">Email is Required!...</p>
+      <p class="lblError" *ngIf="signupForm.get('email').hasError('email')&& !signupForm.get('email').pristine">Invalid Email!...</p>
+    </div><br/>
+
+    <div  formGroupName="passGroup" >
+
+    <div class="col sm-6">
+      <label>User Password<span class="lblError">*</span></label>
+      <input type="password" formControlName="pass" placeholder="Enter Password"><br>
+      <p class="lblError" *ngIf="signupForm.get('pass').hasError('required')&& !signupForm.get('pass').pristine">Password is Required!...</p>
+      </div><br/>
+
+      <div class="col sm-6">
+        <label>Confirm Password<span class="lblError">*</span></label>
+        <input type="password" formControlName="cpass" placeholder="Enter Password"><br>
+        <p class="lblError" *ngIf="signupForm.get('cpass').hasError('required')&& !signupForm.get('cpass').pristine">confirm password is Required!...</p>
+      </div><br/>
+      <p class="lblError" *ngIf="signupForm.get('passGroup').hasError('passNotMatchError') && !signupForm.get('passGroup').pristine">password is not Matched!...</p>
+    </div>
+    <div class="row">
+      <button type="submit"  class="btn btn-success">submit</button>
+    </div>
+
+</form>
+</div>
+</div>

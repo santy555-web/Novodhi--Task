@@ -1,0 +1,173 @@
+<!--<div *ngIf="flag;else elseblock"></div>-->
+
+<body>
+	<!-- Main Content -->
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info">
+				<span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
+				<h4 class="company_title"><img src="./assets/images/logo_1.png" alt="image" width="100" height="60"class="img-fluid"></h4>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+						<h3>Register Page</h3>
+					</div>
+					<div class="row">
+						<form [formGroup]="signupForm" (ngSubmit)="onRegister()" >
+              <div class="row">
+
+                <input type="text" formControlName="name"class="form__input" placeholder="Enter Name">
+                <p class="lblError" *ngIf="signupForm.get('name').hasError('required') && !signupForm.get('name').pristine"> Name is Required!... </p>
+                <p class="lblError" *ngIf="signupForm.get('name').hasError('minlength') && !signupForm.get('name').pristine">Minimum 5 Charector Required!...</p>
+                <p class="lblError" *ngIf="signupForm.get('name').hasError('invalidName') && !signupForm.get('name').pristine">Invalid Names!...</p>
+
+            </div>
+
+              <div class="row">
+
+								<input type="text" formControlName="email"  class="form__input" placeholder="Enter Email">
+                <p class="lblError" *ngIf="signupForm.get('email').hasError('email') && !signupForm.get('email').pristine">Invalid Email!...</p>
+                <p class="lblError" *ngIf="signupForm.get('email').hasError('required') && !signupForm.get('email').pristine"> Email is Required!... </p>
+
+              </div>
+
+              <div class="row" >
+
+								<input type="text" formControlName="mobile"  class="form__input" placeholder="Enter Mobile">
+                <p class="lblError" *ngIf="signupForm.get('mobile').hasError('required') && !signupForm.get('mobile').pristine">Mobile Number is Required!... </p>
+                <p class="lblError" *ngIf="signupForm.get('mobile').hasError('maxLength') && !signupForm.get('mobile').pristine">Enter Valid mobile number!...</p>
+                <p class="lblError" *ngIf="signupForm.get('mobile').hasError('pattern') && !signupForm.get('mobile').pristine">Enter Valid mobile number!...</p>
+
+              </div>
+
+
+              <div formGroupName="password_group" >
+
+              <div class="row">
+								<input type="password" formControlName="pass" class="form__input" placeholder="Enter Password">
+                <p class="lblError"*ngIf="signupForm.get('password_group').get('pass').hasError('required') && !signupForm.get('password_group').get('pass').pristine ">
+                  password is required!...</p>
+              </div>
+              <div class="row">
+
+								<input type="password" formControlName="cpass" class="form__input" placeholder="Enter Confirm Password">
+                <p class="lblError" *ngIf="signupForm.get('password_group').get('cpass').hasError('required') && !signupForm.get('password_group').get('cpass').pristine ">
+                  confirm password is required!...</p>
+
+              </div>
+              <p class="lblError" *ngIf="signupForm.get('password_group').hasError('passwordMatchError') && !signupForm.get('password_group').pristine">
+              Password doesn't match!...</p>
+              </div>
+
+
+							<div class="row">
+								<input type="checkbox" name="remember_me" id="remember_me" class="">
+								<label for="remember_me">Remember Me!</label>
+							</div>
+							<div class="row">
+                <button  type="submit" value="Submit"  class="btn" [disabled]="signupForm.invalid" >Register</button>
+
+							</div>
+						</form>
+					</div>
+					<div class="row" >
+						<p>Already have an account? <a routerLink="">Login Here</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer -->
+	<div class="container-fluid text-center footer">
+	</div>
+</body>
+
+<!--
+
+<ng-template #elseblock>
+<div class="container bootstrap snippets bootdey">
+  <div *ngFor="let item of Register">
+  <div class="panel-body inf-content">
+      <div class="row">
+          <div class="col-md-4">
+              <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="https://bootdey.com/img/Content/avatar/avatar7.png" data-original-title="Usuario">
+              <ul title="Ratings" class="list-inline ratings text-center">
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+              </ul>
+          </div>
+          <div class="col-md-6">
+              <strong>Information</strong><br>
+              <div class="table-responsive">
+              <table class="table table-user-information">
+                  <tbody>
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-user  text-primary"></span>
+                                  Name
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                             {{item.name}}
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                  Email
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                              {{item.email}}
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                Mobile Number
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{item.mobile}}
+                        </td>
+                    </tr>
+
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                  Password
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                              {{item.pass}}
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                  Date of Registration
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                            {{today | date:'short' }}
+                          </td>
+                      </tr>
+              </table>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
+</ng-template>
+-->

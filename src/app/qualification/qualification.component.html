@@ -1,0 +1,139 @@
+<div class="row"><div>&nbsp;</div>
+<div class="container">
+
+
+<h3 align="center">Qualification</h3>
+
+
+<form [formGroup]="signupForm" (ngSubmit)="onAddDetail()" >
+
+ &nbsp;<button type="button" class="btn btn-success"  (click)="addqualification()" >Add +</button><div><br></div>
+      <div formArrayName="qualification_details" ><div><br></div>
+        <div *ngFor="let item of qualiArray.controls; let i=index;" [formGroupName]="i" >
+              <div class="row">
+                  <div class="col-xs-6 col-md-2"  >
+                    <label>Qualifictaion<span class="lblError">*</span></label><br>
+                    <input type="text"class="form-control" formControlName="qualification" placeholder="Enter Qualification">
+                    <p class="lblError"*ngIf="item.get('qualification').hasError('required') && !item.get('qualification').pristine">Qualification is required!...</p>
+                    <p class="lblError" *ngIf="Duplicate(item.get('qualification').value, i) && i > 0">Repetition not Allowed!...</p>
+                  </div>
+
+                  <div class="col-xs-6 col-md-3 ">
+                      <label>Institute<span class="lblError">*</span></label>
+                      <input type="text" class="form-control" formControlName="institute" placeholder="Institute name">
+                      <p class="lblError"*ngIf="item.get('institute').hasError('required') && !item.get('institute').pristine ">Institute is required!...</p>
+                  </div>
+                  <div class="col-xs-6 col-md-2">
+                    <label>Passing Year<span class="lblError">*</span></label>
+                    <input type="month" class="form-control" formControlName="passing_year"   placeholder="Passing Year">
+                    <p class="lblError"*ngIf="item.get('passing_year').hasError('required') && !item.get('passing_year').pristine ">Passing Year is required!...</p>
+                  </div>
+
+                  <div class="col-xs-6 col-md-1">
+                    <label>Score<span class="lblError">*</span></label>
+                    <input type="text" class="form-control" formControlName="score"  placeholder="Score">
+                    <p class="lblError"*ngIf="item.get('score').hasError('required') && !item.get('score').pristine ">Score is required!...</p>
+                  </div>
+
+                  <div class="col-xs-6 col-md-2">
+                    <label>Qualification Area<span class="lblError">*</span></label>
+                    <input type="text" class="form-control" formControlName="qualification_area" placeholder="Qualification Area">
+                    <p class="lblError"*ngIf="item.get('qualification_area').hasError('required') && !item.get('qualification_area').pristine ">Qualifictaion Area is required!...</p>
+                  </div>
+
+                  <div class="col-xs-6 col-md-2">
+                    <label>&nbsp;&nbsp;&nbsp;Actions</label><br>
+                      <button type="button"class="btn btn-danger"(click)="deletequalification(i)" ><i class="fa fa-trash-o"></i></button>
+                        &nbsp;&nbsp;<button  (click)="onEdit(i)"  class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                  </div>
+              </div><div><br></div>
+        </div>
+
+      </div>
+</form>
+          <div><br></div><p><span class="lblError">* Indicates the Field are Mandatory</span></p><div><br></div>
+
+
+          <button class="btn btn-primary" routerLink="/bankdetail" >Previous</button>&nbsp;&nbsp;
+          <button type="submit"  class="btn btn-primary" [disabled]="signupForm.invalid" (click)="onAddDetail()" (click)="onSaveDetail($event)">Save</button>&nbsp;&nbsp;
+          <button class="btn btn-primary" routerLink="/employment" [disabled]="OnClickAdd()" >next</button>
+          <div><br></div>
+</div>
+
+
+
+
+
+
+<!--(click)="addang()"-->
+     <!-- <form [formGroup]="signupForm" (ngSubmit)="onAddDetail()" >
+
+      &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" (click)="onclickFlag()" (click)="addqualification()" >Add Qualification</button><div><br></div>
+      <div formArrayName="qualification_details" ><div><br></div>
+     <div *ngFor="let item of qualiArray.controls; let i=index;" [formGroupName]="i" >
+
+
+
+      <div class="form-row">
+        <div>&nbsp;&nbsp;</div>
+
+        <div class="col-md-4" >
+
+        <label>Qualification<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="qualification" placeholder="Enter Qualification">
+        <p class="lblError"*ngIf="item.get('qualification').hasError('required') && !item.get('qualification').pristine">Qualification is required!...</p>
+        <p class="lblError"*ngIf="item.get('qualification').hasError('invalid name') && !item.get('qualification').pristine">Qualification is required!...</p> -->
+      <!-- <p class="lblError" *ngIf="Duplicate(item.get('qualification').value, i) && i > 0">Repetition not Allowed!...</p>
+      </div>
+
+      <div class="col-md-8" >
+        <label>Institute<span class="lblError">*</span></label><br>
+        <input type="text" class="form-control" formControlName="institute"  placeholder="Institute name">
+        <p class="lblError"*ngIf="item.get('institute').hasError('required') && !item.get('institute').pristine ">Institute is required!...</p>
+      </div>
+
+      <div class="col-md-4">
+        <label>Passing Year<span class="lblError">*</span></label>
+        <input type="month" class="form-control"  formControlName="passing_year" placeholder="Passing Year">
+        <p class="lblError"*ngIf="item.get('passing_year').hasError('required') && !item.get('passing_year').pristine ">Passing Year is required!...</p>
+      </div>
+
+      <div class="col-md-4">
+        <label>Score<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="score" placeholder="Enter Score">
+        <p class="lblError"*ngIf="item.get('score').hasError('required') && !item.get('score').pristine ">Score is required!...</p>
+      </div>
+
+      <div class="col-md-4">
+        <label>Qualification Area<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="qualification_area" placeholder="Qualification Area">
+        <p class="lblError"*ngIf="item.get('qualification_area').hasError('required') && !item.get('qualification_area').pristine ">Qualifictaion Area is required!...</p>
+      </div>
+
+
+      </div>
+
+      <div>&nbsp;&nbsp;</div>
+      <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
+
+      &nbsp;&nbsp;&nbsp;&nbsp; <button type="button"class="btn btn-danger"(click)="deletequalification(i)" >Delete</button>
+       &nbsp;&nbsp;&nbsp;&nbsp;<button  (click)="onEdit(item,i)" class="btn btn-primary">Edit</button>
+      <div>&nbsp;</div>
+
+  </div>
+</div>
+
+    </form>
+
+
+
+<div>&nbsp;&nbsp;</div><div>&nbsp;&nbsp;</div>
+
+
+<div class="form-group col-md-12">
+  <button class="btn btn-primary" routerLink="/bankdetail" >Previous</button>&nbsp;&nbsp;
+  <button type="submit"  class="btn btn-primary" [disabled]="signupForm.invalid" (click)="onAddDetail()" (click)="onSaveDetail($event)">Save</button>&nbsp;&nbsp;
+  <button class="btn btn-primary" routerLink="/employment" [disabled]="OnClickAdd()" >next</button>
+</div> -->
+
+</div>

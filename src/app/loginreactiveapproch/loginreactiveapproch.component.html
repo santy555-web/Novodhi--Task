@@ -1,0 +1,295 @@
+
+<div class="container">
+  <form [formGroup]="signupForm" (ngSubmit)="onRegister()" >
+    <h3 align="center">Register Form</h3><br>
+    <div class="form-row">
+      <div class="col-md-3">
+        <label for="validationTooltip01">First name<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="firstname" placeholder="First name">
+        <p class="lblError" *ngIf="signupForm.get('firstname').hasError('required') && !signupForm.get('firstname').pristine">First Name is Required!...</p>
+        <p class="lblError" *ngIf="signupForm.get('firstname').hasError('minlength') && !signupForm.get('firstname').pristine">Minimum 3 character is Required!...</p>
+      </div>
+      <div class="col-md-3">
+        <label for="validationTooltip01">Middle name</label>
+        <input type="text" class="form-control" formControlName="middlename" placeholder="Middle name">
+      </div>
+      <div class="col-md-3">
+        <label>Last name<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="lastname" placeholder="Last name">
+        <p class="lblError" *ngIf="signupForm.get('lastname').hasError('required') && !signupForm.get('lastname').pristine"> Last Name is Required!...</p>
+        <p class="lblError" *ngIf="signupForm.get('lastname').hasError('minlength') && !signupForm.get('lastname').pristine">Minumum 3 Character is Required!...</p>
+      </div>
+
+      <div class="col-md-3">
+        <label>User Name<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="userName" placeholder="User Name">
+        <p class="lblError" *ngIf="signupForm.get('userName').hasError('required') && !signupForm.get('userName').pristine"> User Name is Required!...</p>
+      </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+        <label>Gender<span class="lblError">*</span></label>
+        <select formControlName="gender" class="form-control">
+          <option value="" disabled selected>Choose...</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+          <p class="lblError" *ngIf="signupForm.get('gender').hasError('required') && !signupForm.get('gender').pristine">
+            Gender is Required!...</p>
+        </select>
+      </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputEmail4">Email<span class="lblError">*</span></label>
+      <input type="email" formControlName="email" class="form-control" placeholder="Email">
+      <p class="lblError" *ngIf="signupForm.get('email').hasError('required') && !signupForm.get('email').pristine">Email is Required!...</p>
+      <p class="lblError" *ngIf="signupForm.get('email').hasError('email') && !signupForm.get('email').pristine">Invalid Email!...</p>
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputMobile">Mobile No<span class="lblError">*</span></label>
+      <input type="text" formControlName="mobile" class="form-control" placeholder="Mobile Number">
+      <p class="lblError" *ngIf="signupForm.get('mobile').hasError('required') && !signupForm.get('mobile').pristine">Mobile number is Required!...</p>
+      <p class="lblError" *ngIf="signupForm.get('mobile').hasError('pattern') && !signupForm.get('mobile').pristine">Invalid mobile number!...</p>
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputPassword4">Password<span class="lblError">*</span></label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      <p class="lblError" *ngIf="signupForm.get('password').hasError('required') && !signupForm.get('password').pristine">Password is Required!...</p>
+      <p class="lblError" *ngIf="signupForm.get('password').hasError('pattern') && !signupForm.get('password').pristine">Password should contain at least 1 number & 1 special Character!...</p>
+    </div>
+  </div>
+
+  <div class="form-group col-md-12">
+    <label for="inputAddress">College Name<span class="lblError">*</span></label>
+    <input type="text" class="form-control" formControlName="clg" placeholder="college Name">
+    <p class="lblError" *ngIf="signupForm.get('clg').hasError('required') && !signupForm.get('clg').pristine">Collage name is Required!...</p>
+  </div>
+
+  <div class="form-group col-md-12 ">
+    <label for="inputAddress2">Address<span class="lblError">*</span></label>
+    <input type="text" class="form-control" formControlName="add" placeholder="Apartment, studio, or floor">
+    <p class="lblError" *ngIf="signupForm.get('add').hasError('required') && !signupForm.get('add').pristine">Address is Required!...</p>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="inputCity" >City<span class="lblError">*</span></label>
+      <input type="text" formControlName="city" class="form-control" placeholder="City">
+      <p class="lblError" *ngIf="signupForm.get('city').hasError('required') && !signupForm.get('city').pristine">City is Required!...</p>
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputState">State<span class="lblError">*</span></label>
+      <select  formControlName="state" class="form-control" >
+        <option value="" disabled>Choose...</option>
+        <option value="maharashtra" >Maharashtra</option>
+        <option value="andhra pradesh">Andhra Pradesh</option>
+        <p class="lblError" *ngIf="signupForm.get('state').hasError('required') && !signupForm.get('state').pristine">State is Required!...</p>
+      </select>
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputCountry">Country<span class="lblError">*</span></label>
+      <select formControlName="country" class="form-control">
+        <option value="" disabled>Choose...</option>
+        <option value="india">India</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+        <p class="lblError" *ngIf="signupForm.get('country').hasError('required') && !signupForm.get('country').pristine">Country is Required!...</p>
+      </select>
+    </div>
+
+
+    <div class="form-group col-md-3">
+      <label for="inputZip">Zip<span class="lblError">*</span></label>
+      <input type="text" formControlName="zip" class="form-control" >
+      <p class="lblError"*ngIf="signupForm.get('zip').hasError('required') && !signupForm.get('zip').pristine">Zip code is Required!...</p>
+      <p class="lblError" *ngIf="signupForm.get('zip').hasError('maxlength') && !signupForm.get('zip').pristine">Invalid zip code!...</p>
+      <p class="lblError" *ngIf="signupForm.get('zip').hasError('pattern') && !signupForm.get('zip').pristine">Invalid zip code!...</p>
+    </div>
+  </div>
+  <div class="form-row">
+  <div class="form-group col-md-1">
+    <label for="inputZip">Resume<span class="lblError">*</span></label>
+
+  </div>
+
+  <div class="form-group col-md-11">
+    <div class="custom-file">
+    <input type="file"  class="custom-file-input" formControlName="file"  />
+  </div>
+</div>
+  </div>
+<div class="form-group col-md-12" >
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="gridCheck">
+    <label class="form-check-label" for="gridCheck">
+      Check me out
+    </label>
+  </div>
+</div>
+<div class="form-group col-md-12">
+  <button type="submit"  class="btn btn-primary" >Sign in</button>
+</div>
+</form>
+
+
+</div>
+
+
+ <div class="container bootstrap snippets bootdey">
+  <div *ngFor="let item of Register">
+  <div class="panel-body inf-content">
+      <div class="row">
+          <div class="col-md-4">
+              <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="https://bootdey.com/img/Content/avatar/avatar7.png" data-original-title="Usuario">
+              <ul title="Ratings" class="list-inline ratings text-center">
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+              </ul>
+          </div>
+          <div class="col-md-6">
+              <strong>Information</strong><br>
+              <div class="table-responsive">
+              <table class="table table-user-information">
+                  <tbody>
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-user  text-primary"></span>
+                                  Name
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                             {{item.firstname |titlecase}}&nbsp;{{item.lastname|titlecase}}
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-user  text-primary"></span>
+                                Gender
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                           {{item.gender|titlecase}}
+                        </td>
+                    </tr>
+                      <tr>
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-user  text-primary"></span>
+                               User Name
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                           {{item.userName}}
+                        </td>
+                    </tr>
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                  Email
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                              {{item.email}}
+                          </td>
+                      </tr>
+                      <tr>
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                Mobile Number
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                            {{item.mobile}}
+                        </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                          <strong>
+                              <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                              College Name
+                          </strong>
+                      </td>
+                      <td class="text-primary">
+                          {{item.clg|titlecase}}
+                      </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                        <strong>
+                            <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                            Address
+                        </strong>
+                    </td>
+                    <td class="text-primary">
+                        {{item.add |titlecase}}&nbsp;{{item.city}}
+                    </td>
+                </tr>
+
+                <tr>
+                  <td>
+                      <strong>
+                          <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                          State
+                      </strong>
+                  </td>
+                  <td class="text-primary">
+                      {{item.state |titlecase}},&nbsp;{{item.country|titlecase}},&nbsp;PinCode:{{item.zip}}
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                    <strong>
+                        <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                        Resume
+                    </strong>
+                </td>
+                <td class="text-primary">
+                   <img *ngFor="let item of Register" [src]="item.file">
+                    <!--<div class="img-box"><img *ngFor="let url of urls" [src]= "urls" alt="image" /></div>-->
+                </td>
+            </tr>
+
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                  Password
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                            {{item.password}}
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                              <strong>
+                                  <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                  Date of Registration
+                              </strong>
+                          </td>
+                          <td class="text-primary">
+                            {{today | date:'short' }}
+                          </td>
+                      </tr>
+              </table>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>

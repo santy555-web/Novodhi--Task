@@ -30,7 +30,7 @@
 @media screen and (min-width: 642px) and (max-width:800px){
 	.main-content{width: 70%;}
 }
-.row > h2{
+.row > h3{
 	color:#008080;
 }
 .login_form{
@@ -48,15 +48,15 @@ form{
 	border:0px solid transparent;
 	border-radius: 0;
 	border-bottom: 1px solid #aaa;
-	padding: 1em .5em .5em;
-	padding-left: 2em;
+	padding: 0em .5em .5em;
+	padding-left: 1em;
 	outline:none;
 	margin:1.5em auto;
 	transition: all .5s ease;
 }
 .form__input:focus{
 	border-bottom-color: #008080;
-	box-shadow: 0 0 5px rgba(0,80,80,.4); 
+	box-shadow: 0 0 5px rgba(0,80,80,.4);
 	border-radius: 4px;
 }
 .btn{
@@ -73,4 +73,7 @@ form{
 .btn:hover, .btn:focus{
 	background-color: #008080;
 	color:#fff;
+}
+.lblError{
+  color: red;
 }

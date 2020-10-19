@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation,EventEmitter, Input, Output } from
 import { Product,register } from "./product";
 import { HttpClient } from "@angular/common/http";
 import { product1 } from '../addtocart/product1';
+import { EventHandlerVars } from '@angular/compiler/src/compiler_util/expression_converter';
 @Component({
   selector: 'app-parent',
   templateUrl: './parent.component.html',
@@ -10,6 +11,7 @@ import { product1 } from '../addtocart/product1';
 })
 export class ParentComponent implements OnInit {
   //  selectedCategory: string = 'Special deal';
+
   flag : boolean = true;
   flag1 : boolean = true;
   flag2 : boolean = true;
@@ -46,7 +48,7 @@ export class ParentComponent implements OnInit {
   ];
 
  Register: register[]=[];
-
+  urls =[];
 //It is the array where we are adding data of cart manu
   Productarr1: Product[]=[];
   //this is empty array for add data
@@ -114,7 +116,18 @@ export class ParentComponent implements OnInit {
 //file uplode in array
   onFileSelected(event) {
   //console.log(event);
-  this.selectedFile = <File> event.target.files[0];
+  if (event.target.files){
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]);
+
+      reader.onload = (event:any ) =>
+      {
+        this.urls.push(event.target.result);
+      }
+
+  }
   }
 
 // This Method is of product for add product

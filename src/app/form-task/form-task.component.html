@@ -1,0 +1,162 @@
+
+<div class="container">
+  <form [formGroup]="signupForm" (ngSubmit)="onRegister()" >
+    <h3 align="center">Register Form</h3>
+    <h5 align="center">Basic Information</h5>
+
+    <div class="form-row">
+      <div class="col-md-3">
+        <label for="validationTooltip01">Employee ID No<span class="lblError">*</span></label>
+        <input type="text" appNumbersOnly class="form-control" formControlName="employee_number" placeholder="Employee Number">
+        <p class="lblError" *ngIf="signupForm.get('employee_number').hasError('required') && !signupForm.get('employee_number').pristine">Employee number is Required!...</p>
+      </div>
+
+      <div class="col-md-3">
+        <label for="inputState">Employee Title</label>
+        <select  formControlName="employee_title" class="form-control" >
+          <option value="" disabled>Choose...</option>
+          <option value="Mr." >Mr.</option>
+          <option value="Mrs.">Mrs.</option>
+          <option value="Dr.">Dr.</option>
+          <option value="Miss.">Miss.</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label>Name<span class="lblError">*</span></label>
+        <input type="text" appAlphabets class="form-control" formControlName="employee_name" placeholder="Name">
+        <p class="lblError" *ngIf="signupForm.get('employee_name').hasError('required') && !signupForm.get('employee_name').pristine">  Name is Required!...</p>
+
+      </div>
+
+      <div class="col-md-12">
+        <label>Addressed As </label>
+        <input type="text" class="form-control" formControlName="employee_address" placeholder="Enter Address">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-3">
+        <label for="validationTooltip01">First name<span class="lblError">*</span></label>
+        <input type="text" appAlphabets class="form-control" formControlName="firstname" placeholder="First name">
+        <p class="lblError" *ngIf="signupForm.get('firstname').hasError('required') && !signupForm.get('firstname').pristine">First Name is Required!...</p>
+        <p class="lblError" *ngIf="signupForm.get('firstname').hasError('minlength') && !signupForm.get('firstname').pristine">Minimum 3 character is Required!...</p>
+      </div>
+      <div class="col-md-3">
+        <label for="validationTooltip01">Middle name</label>
+        <input type="text" appAlphabets class="form-control" formControlName="middlename" placeholder="Middle name">
+      </div>
+      <div class="col-md-3">
+        <label>Last name</label>
+        <input type="text" appAlphabets class="form-control" formControlName="lastname" placeholder="Last name">
+      </div>
+
+      <div class="col-md-3">
+        <label>Initials</label>
+        <input type="text" class="form-control" formControlName="initial" placeholder="Enter Initials">
+      </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+        <label>Gender<span class="lblError">*</span></label>
+              <div class="row">
+                  <div class="col-sm-4">
+                      <label class="radio-inline">
+                          <input type="radio"  value="Female"formControlName="gender">Female
+                      </label>
+                  </div>
+                  <div class="col-sm-4">
+                      <label class="radio-inline">
+                          <input type="radio" value="Male" formControlName="gender">Male
+                      </label>
+                  </div>
+              </div>
+      </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputEmail4">Date of Birth<span class="lblError">*</span></label>
+      <input type="date"  class="form-control" formControlName="dob" >
+      <p class="lblError" *ngIf="signupForm.get('dob').hasError('required') && !signupForm.get('dob').pristine">Date of Birth is Required!...</p>
+    </div>
+
+    <div class="col-md-3">
+      <label for="validationTooltip01">Employee Age</label>
+      <input type="text" class="form-control" formControlName="employee_age" value={{age}} placeholder="Employee Age" >
+      <!-- <span class="input-group-addon"><i class="fa fa-eye" onClick="getAge()"></i></span> -->
+    </div>
+
+
+    <div class="form-group col-md-3">
+      <label for="inputMobile">Official Phone No</label>
+      <input type="text" formControlName="official_phone" class="form-control" placeholder="Official Phone Number">
+    </div>
+  </div>
+
+
+  <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputMobile">Personal Mobile No<span class="lblError">*</span></label>
+        <input type="text" formControlName="mobile" class="form-control" placeholder="Mobile Number">
+        <p class="lblError" *ngIf="signupForm.get('mobile').hasError('required') && !signupForm.get('mobile').pristine">Mobile number is Required!...</p>
+        <p class="lblError" *ngIf="signupForm.get('mobile').hasError('pattern') && !signupForm.get('mobile').pristine">Invalid mobile number!...</p>
+      </div>
+
+    <div class="form-group col-md-4">
+      <label>Fax</label>
+        <input type="text" class="form-control" formControlName="fax" placeholder="Enter Fax Id">
+    </div>
+
+    <div class="col-md-4">
+      <label for="inputEmail4">Official Email</label>
+      <input type="email" formControlName="official_email" class="form-control" placeholder="Official Email">
+      <p class="lblError" *ngIf="signupForm.get('official_email').hasError('email') && !signupForm.get('official_email').pristine">Invalid Email!...</p>
+   </div>
+  </div>
+  <div>&nbsp;</div>
+
+  <div class="form-row">
+  <div class="form-group col-md-4">
+    <label for="inputEmail4">Personal Email<span class="lblError">*</span></label>
+      <input type="email" formControlName="personal_email" class="form-control" placeholder=" Personal Email">
+      <p class="lblError" *ngIf="signupForm.get('personal_email').hasError('required') && !signupForm.get('personal_email').pristine">Email is Required!...</p>
+      <p class="lblError" *ngIf="signupForm.get('personal_email').hasError('email') && !signupForm.get('personal_email').pristine">Invalid Email!...</p>
+  </div>
+
+
+<div class="form-group col-md-4">
+  <label for="inputEmail4">Personal Email 2</label>
+    <input type="email" formControlName="personal2_email" class="form-control" placeholder=" Personal Email 2">
+    <p class="lblError" *ngIf="signupForm.get('personal2_email').hasError('email') && !signupForm.get('personal2_email').pristine">Invalid Email!...</p>
+</div>
+
+<div class="form-group col-md-4">
+  <label for="inputEmail4">Personal Email 3</label>
+    <input type="email" formControlName="personal3_email" class="form-control" placeholder=" Personal Email 3">
+    <p class="lblError" *ngIf="signupForm.get('personal3_email').hasError('email') && !signupForm.get('personal3_email').pristine">Invalid Email!...</p>
+</div>
+</div>
+
+  <div class="form-row">
+  <div class="form-group col-md-4">
+    <label for="inputZip">Upload Image<span class="lblError">*</span></label>
+
+  </div>
+
+  <div class="form-group col-md-11">
+    <div class="custom-file">
+    <input type="file"  class="custom-file-input" formControlName="file"  />
+  </div>
+</div>
+  </div>
+
+  <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
+<div class="form-group col-md-12">
+  <button type="submit"  class="btn btn-primary" [disabled]="signupForm.invalid" >Save</button>&nbsp;&nbsp;
+  <button class="btn btn-primary" [disabled]="OnNextClick()" routerLink="/addresstask">next</button>
+
+</div>
+</form>
+
+
+</div>

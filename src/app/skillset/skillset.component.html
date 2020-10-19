@@ -1,0 +1,90 @@
+<div class="row"><div>&nbsp;</div>
+<div class="container">
+
+
+<h3 align="center">Skill Set</h3>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onAddDetail()" >
+
+     &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-success" (click)="addskillset()" >Add +</button>&nbsp;&nbsp;
+      <div formArrayName="skillset_details" ><div><br></div>
+     <div *ngFor="let item of skillsetArray.controls; let i=index;" [formGroupName]="i" >
+
+
+      <div class="form-row">
+        <div>&nbsp;&nbsp;</div>
+      <div class="col-md-2">
+        <label>Skill Category</label>
+        <input type="text" class="form-control" formControlName="skill_category" placeholder="Enter Skill Category ">
+      </div>
+
+
+      <div class="col-md-2">
+        <label>Skill </label>
+        <input type="text" class="form-control" formControlName="skill" placeholder="Enter Skills ">
+        <p class="lblError" *ngIf="Duplicate(item.get('skill').value, i) && i > 0">Repetition not Allowed!...</p>
+      </div>
+
+      <div class="col-md-2">
+        <label for="inputState">Skill Level</label>
+        <select  formControlName="skill_level" class="form-control" >
+          <option value="" disabled>Choose...</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="expert" >Expert</option>
+        </select>
+      </div>
+
+
+
+      <div class="col-md-1">
+        <label for="inputState">Current?</label>
+        <select  formControlName="iscurrent" class="form-control" >
+          <option value="" disabled>Choose...</option>
+          <option value="yes" >Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+
+
+
+      <div class="col-md-2">
+        <label>Experience</label>
+        <input type="text" class="form-control" formControlName="experience" placeholder="Enter Experience">
+      </div>
+
+      <div class="col-md-2">
+        <label>Remarks</label>
+        <input type="text" class="form-control" formControlName="remarks" placeholder="Enter Remarks">
+      </div>
+
+      </div>
+
+
+      <label>&nbsp;&nbsp;&nbsp;Actions</label><br>
+      <button type="button"class="btn btn-danger"(click)="deleteskillset(i)" ><i class="fa fa-trash-o"></i></button>
+      &nbsp;<button  (click)="myReset(i)"  class="btn btn-primary"><i class="fa fa-edit"></i></button>
+      <div>&nbsp;&nbsp;</div>
+
+
+
+
+  </div>
+  </div>
+
+
+    <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
+    <div class="form-group col-md-12">
+      <button class="btn btn-primary" routerLink="/employment" >Previous</button>&nbsp;&nbsp;
+      <button type="submit"  class="btn btn-primary" [disabled]="signupForm.invalid" (click)="onSaveDetail($event)" >Save</button>&nbsp;&nbsp;
+      <button class="btn btn-primary" routerLink="/skillset"  (click)="onRegister($event)">Submit</button>
+
+    </div>
+  </form>
+
+
+
+
+</div>
+</div>

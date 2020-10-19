@@ -1,0 +1,119 @@
+<div class="container">
+  <form [formGroup]="signupForm" (ngSubmit)="onRegister()" >
+    <h3 align="center">Personal Details </h3><br>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label  >Birth Place<span class="lblError">*</span></label>
+        <input type="text" appAlphabets style="text-transform: capitalize;" formControlName="birthplace" class="form-control" placeholder="Enter Birth Place">
+        <p class="lblError" *ngIf="signupForm.get('birthplace').hasError('required') && !signupForm.get('birthplace').pristine">Birth Place is Required!...</p>
+      </div>
+
+
+      <div class="form-group col-md-4">
+        <label for="inputState"> Religion</label>
+        <select  formControlName="religion" class="form-control" >
+          <option value="" disabled>Choose...</option>
+          <option value="christian" >Christian</option>
+          <option value="hindu">Hindu</option>
+          <option value="sikh">Sikh</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputcaste">Caste</label>
+        <select  formControlName="caste" class="form-control" >
+          <option value="" disabled>Choose...</option>
+          <option value="II-A" >II-A</option>
+          <option value="II-B">II-B</option>
+        </select>
+      </div>
+
+      </div>
+
+
+
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>Domicile</label>
+        <input type="text" appAlphabets formControlName="domicile" class="form-control" placeholder="Enter Domicile">
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="nationality">Nationality<span class="lblError">*</span></label>
+        <select formControlName="nationality" class="form-control">
+          <p class="lblError" *ngIf="signupForm.get('nationality').hasError('required') && !signupForm.get('nationality').pristine">Nationality is Required!...</p>
+          <option value="" disabled>Choose...</option>
+          <option value="india">IND</option>
+          <option value="nepal">NPL</option>
+          <option value="usa">USA</option>
+          <option value="japan">JPN</option>
+        </select>
+      </div>
+
+
+      <div class="form-group col-md-4">
+        <label>Voter ID</label>
+        <input type="text" appVoterid formControlName="voterid" class="form-control" placeholder="Enter Voter ID">
+      </div>
+
+    </div>
+
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>PAN Number<span class="lblError">*</span></label>
+        <input type="text" appVoterid formControlName="pan" class="form-control" placeholder="Enter PAN Number">
+        <p class="lblError" *ngIf="signupForm.get('pan').hasError('required') && !signupForm.get('pan').pristine">PAN No is Required!...</p>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Aadhaar Card No<span class="lblError">*</span></label>
+        <input type="text" appAadharcard formControlName="aadhaar" class="form-control" placeholder="Enter Aadhaar Number">
+        <p class="lblError" *ngIf="signupForm.get('aadhaar').hasError('required') && !signupForm.get('aadhaar').pristine">Aadhaar Card No is Required!...</p>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputState">Marital Status</label>
+        <select  formControlName="marriage_status" class="form-control" >
+          <option value="" disabled>Choose...</option>
+          <option value="married" >Married</option>
+          <option value="unmarried">Unmarried</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+      <label>No of Children</label>
+      <input type="text" formControlName="no_children" class="form-control" placeholder="Enter Number of Children">
+    </div>
+
+
+    <div class="form-group col-md-4">
+      <label>Marriage Date</label>
+      <input type="date"  class="form-control" formControlName="marriage_date" >
+    </div>
+    <div class="form-group col-md-4">
+      <label>Spouse Name</label>
+      <input type="text" formControlName="spouse_name" style="text-transform: capitalize;" class="form-control" placeholder="Enter Spouse Name">
+    </div>
+
+    </div>
+
+
+    <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
+    <div class="form-group col-md-12">
+      <button class="btn btn-primary" routerLink="/addresstask" >Previous</button>&nbsp;&nbsp;
+      <button type="submit"  class="btn btn-primary" [disabled]="signupForm.invalid"  >Save</button>&nbsp;&nbsp;
+      <button class="btn btn-primary"  routerLink="/bankdetail"  [disabled]="OnNextClick()">next</button>
+
+      <!--[disabled]="signupForm.invalid"-->
+    </div>
+</form>
+
+
+</div>

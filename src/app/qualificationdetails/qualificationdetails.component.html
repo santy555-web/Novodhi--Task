@@ -1,0 +1,69 @@
+<!--
+
+<div class="container">
+<div><br></div>
+
+      <div><br></div>
+  <form class="form-group" [formGroup]="angForm" (ngSubmit)="angsubmit()">
+    <div class="row">&nbsp;&nbsp;
+      <label>Qualification details</label>&nbsp;&nbsp;
+      <button (click)="getControl()" type="button">+</button>
+  </div>
+  <div><br></div>
+    <div formArrayName="controls">
+      <div class="row">
+      <div class="col-md-2">
+        <label>Qualification<span class="lblError">*</span></label>
+        <div *ngFor="let item of getang(angForm); let i=index" [formGroupName]="i">
+          <input type="text" placeholder="Enter qualification" formControlName="qualification" />
+            <p style="color:red;" *ngIf="Duplicate(item.controls.qualification.value, i) && i > 0">Duplicate Qalification </p>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <label>Institute<span class="lblError">*</span></label>
+        <div *ngFor="let item of getang(angForm); let i=index" [formGroupName]="i">
+          <input type="text" placeholder="Enter institute" formControlName="institute" />
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <label>Score<span class="lblError">*</span></label>
+        <div *ngFor="let item of getang(angForm); let i=index" [formGroupName]="i">
+          <input type="text" placeholder="Enter score" formControlName="score" />
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <label>Passing Year<span class="lblError">*</span></label>
+        <div *ngFor="let item of getang(angForm); let i=index" [formGroupName]="i">
+          <input type="text" placeholder="Enter passing_year" formControlName="passing_year" />
+        </div>
+      </div>
+
+
+      <div class="col-md-2">
+        <label>Qualification Area<span class="lblError">*</span></label>
+        <div *ngFor="let item of getang(); let i=index" [formGroupName]="i">
+          <input type="text" placeholder="Enter qualification_area" formControlName="qualification_area" />
+        </div>
+
+      </div>
+    </div>
+    <div>&nbsp;</div>    <div>&nbsp;</div>
+    </div>
+
+  </form>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+ -->

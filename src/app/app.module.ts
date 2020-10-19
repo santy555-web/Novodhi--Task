@@ -17,6 +17,7 @@ import { CreditcardDirective } from './creditcard.directive';
 import { BindingexampleComponent } from './bindingexample/bindingexample.component';
 import { SwitchcaseComponent } from './switchcase/switchcase.component';
 import { childComponent } from './child/child.component';
+
 import { ParentComponent } from './parent/parent.component';
 import { HeaderComponent } from './header/header.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
@@ -24,9 +25,27 @@ import { IndexpageComponent } from './indexpage/indexpage.component';
 import { TermsandpolicyComponent } from './termsandpolicy/termsandpolicy.component';
 import { AddtocartComponent } from './addtocart/addtocart.component';
 import { LoginReactiveComponent } from './login-reactive/login-reactive.component';
-
 import { arrRouting } from "./app.routing";
 import { LoginformComponent } from './loginform/loginform.component';
+import { RegisterformComponent } from './registerform/registerform.component';
+import { LoginreactiveapprochComponent } from './loginreactiveapproch/loginreactiveapproch.component';
+import { AnimationComponent } from './animation/animation.component';
+import { LoginpagereactiveComponent } from './loginpagereactive/loginpagereactive.component';
+import { RegisterRectiveComponent } from './register-rective/register-rective.component';
+import { FormTaskComponent } from './form-task/form-task.component';
+import { AddresstaskComponent } from './addresstask/addresstask.component';
+import { PersonaldetailComponent } from './personaldetail/personaldetail.component';
+import { BankdetailComponent } from './bankdetail/bankdetail.component';
+import { QualificationComponent } from './qualification/qualification.component';
+import { EmploymentComponent } from './employment/employment.component';
+import { SkillsetComponent } from './skillset/skillset.component';
+import { AlphabetsDirective } from './alphabets.directive';
+import { NumbersOnlyDirective } from './numbers-only.directive';
+import { AadharcardDirective } from './aadharcard.directive';
+import { VoteridDirective } from './voterid.directive';
+import { QualificationdetailsComponent } from './qualificationdetails/qualificationdetails.component';
+import { ReactiveFromComponent } from './reactive-from/reactive-from.component';
+import { DisableControlDirective } from './disable-control.directive';
 
 @NgModule({
   declarations: [
@@ -47,6 +66,25 @@ import { LoginformComponent } from './loginform/loginform.component';
     AddtocartComponent,
     LoginReactiveComponent,
     LoginformComponent,
+    RegisterformComponent,
+    LoginreactiveapprochComponent,
+    AnimationComponent,
+    LoginpagereactiveComponent,
+    RegisterRectiveComponent,
+    FormTaskComponent,
+    AddresstaskComponent,
+    PersonaldetailComponent,
+    BankdetailComponent,
+    QualificationComponent,
+    EmploymentComponent,
+    SkillsetComponent,
+    AlphabetsDirective,
+    NumbersOnlyDirective,
+    AadharcardDirective,
+    VoteridDirective,
+    QualificationdetailsComponent,
+    ReactiveFromComponent,
+    DisableControlDirective,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +92,8 @@ import { LoginformComponent } from './loginform/loginform.component';
     FormsModule,
     DragDropModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,7 +5,8 @@
 
 
 <div class="container">
-  <div><app-child [categoryName]="selectedCategory" (myEvent)="onMyEvent($event)"></app-child></div>
+  <div align="left"><app-child [categoryName]="selectedCategory" (myEvent)="onMyEvent($event)"></app-child></div>
+
   <div align="right">
   <button class="btn btn-success" (click)="onclick()" (click)="onCancelClick2()" (click)="onCancelClick1()"> Product Manu</button>&nbsp;
   <button class="btn btn-success"(click)="onclick1()" (click)="onCancelClick()" (click)="onCancelClick2()"> Cart Manu <span class="badge">{{ClickCounter}}</span></button>&nbsp;
@@ -41,12 +42,9 @@
                   <div class="col-sm-3">
                     <div class="thumb-wrapper">
                     <div class="row">
-
-
-
                       <div class="thumb-content">
-
-                          <div class="img-box"><img [src]= 'item.images' alt="images"  /></div>
+                          <div class="img-box"><img [src]= 'item.images' alt="image"  /></div>
+                          <!--<div class="img-box"><img *ngFor="let url of urls" [src]= "urls" alt="image" /></div>-->
                           <h4>{{item.name}}</h4>
                         <p class="item-price"><s>{{item.mrp | currency:'INR' : 'symbol' :'2.1'}}</s>&nbsp;&nbsp;
                           <span>{{item.price | currency:'INR' : 'symbol' :'3.1' }}</span></p>
@@ -166,71 +164,71 @@
 		<div class="col-md-9">
 			<div class="contact-form">
 				<div class="form-group">
-				  <label class="control-label col-sm-2" for="fname">Product Name:</label>
+				  <label class="control-label col-sm-2">Product Name:</label>
 				  <div class="col-sm-10">
-					<input type="text" [(ngModel)]="name" class="form-control" id="fname" placeholder="Enter Product Name" name="fname">
+					<input type="text" [(ngModel)]="name" class="form-control"  placeholder="Enter Product Name" name="pname">
 				  </div>
         </div>
         <div class="form-group">
-				  <label class="control-label col-sm-2" for="fname">Color:</label>
+				  <label class="control-label col-sm-2" >Color:</label>
 				  <div class="col-sm-10">
-					<input type="text" [(ngModel)]="color"class="form-control" id="fname" placeholder="Enter Product Color" name="fname">
+					<input type="text" [(ngModel)]="color"class="form-control" placeholder="Enter Product Color" name="color">
 				  </div>
 				</div>
 
         <div class="form-group">
-				  <label class="control-label col-sm-2" for="fname">Warranty:</label>
+				  <label class="control-label col-sm-2" >Warranty:</label>
 				  <div class="col-sm-10">
-					<input type="text" [(ngModel)]="warranty" class="form-control" id="fname" placeholder="Enter Product Warranty" name="fname">
+					<input type="text" [(ngModel)]="warranty" class="form-control" placeholder="Enter Product Warranty" name="warranty">
 				  </div>
 				</div>
 
 				<div class="form-group">
-				  <label class="control-label col-sm-2" for="lname">Brand:</label>
+				  <label class="control-label col-sm-2" >Brand:</label>
 				  <div class="col-sm-10">
-					<input type="text" [(ngModel)]="brand" class="form-control" id="lname" placeholder="Enter Product brand" name="lname">
+					<input type="text" [(ngModel)]="brand" class="form-control" placeholder="Enter Product brand" name="brand">
 				  </div>
         </div>
 
         <div class="form-group">
-				  <label class="control-label col-sm-2" for="lname">Price:</label>
+				  <label class="control-label col-sm-2" >Price:</label>
 				  <div class="col-sm-10">
-					<input type="text" [(ngModel)]="price" class="form-control" id="lname" placeholder="Enter Product Price" name="lname">
+					<input type="text" [(ngModel)]="price" class="form-control" placeholder="Enter Product Price" name="price">
 				  </div>
         </div>
 
         <div class="form-group">
-				  <label class="control-label col-sm-2" for="lname">MRP:</label>
+				  <label class="control-label col-sm-2" >MRP:</label>
 				  <div class="col-sm-10">
-					<input type="text" class="form-control" [(ngModel)]="mrp" id="mrp" placeholder="Enter Product MRP" name="lname">
+					<input type="text" class="form-control" [(ngModel)]="mrp" placeholder="Enter Product MRP" name="mrp">
 				  </div>
         </div>
 
         <div class="form-group">
-				  <label class="control-label col-sm-2" for="lname">Discount:</label>
+				  <label class="control-label col-sm-2" >Discount:</label>
 				  <div class="col-sm-10">
-					<input type="text" [(ngModel)]="discount" class="form-control" id="discount" placeholder="Discount in %" name="lname">
+					<input type="text" [(ngModel)]="discount" class="form-control" id="discount" placeholder="Discount in %" name="discount">
 				  </div>
 				</div>
 
         <div class="form-group">
-				  <label class="control-label col-sm-2" for="lname">Quantity:</label>
+				  <label class="control-label col-sm-2" >Quantity:</label>
 				  <div class="col-sm-10">
-					<input type="text" [(ngModel)]="quantity" class="form-control" id="quantity" placeholder="Enter Available Quantity" name="lname">
+					<input type="text" [(ngModel)]="quantity" class="form-control"  placeholder="Enter Available Quantity" name="quantity">
 				  </div>
         </div>
 
 				<div class="form-group">
-				  <label class="control-label col-sm-2" for="discription">Discription:</label>
+				  <label class="control-label col-sm-2" >Discription:</label>
 				  <div class="col-sm-10">
-					<textarea class="form-control" [(ngModel)]="discription" rows="5" id="discription"></textarea>
+					<textarea class="form-control" [(ngModel)]="discription" rows="5" ></textarea>
 				  </div>
         </div>
 
         <div class="form-group">
-				  <label class="control-label col-sm-2" for="status">Upload Img:</label>
+				  <label class="control-label col-sm-2" >Upload Img:</label>
 				  <div class="col-sm-10">
-          <input type="file" class="form-control"[(ngModel)]="images" id="img" name="img" (change)="onFileSelected($event)" >
+          <input type="file" class="form-control" name="img" (change)="onFileSelected($event)" >
 
 				  </div>
 				</div>
@@ -252,3 +250,5 @@
 
 
 </div>
+
+

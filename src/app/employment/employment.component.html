@@ -1,0 +1,85 @@
+<div class="row"><div>&nbsp;</div>
+<div class="container">
+
+
+<h3 align="center">Previous Employment</h3>
+
+
+    <form [formGroup]="signupForm" (ngSubmit)="onAddDetail()" >
+
+     &nbsp;&nbsp; <button type="button" class="btn btn-success" (click)="addemployment()" >Add +</button>&nbsp;&nbsp;
+      <div formArrayName="employment_details" ><div><br></div>
+     <div *ngFor="let item of EmployeeArray.controls; let i=index;" [formGroupName]="i" >
+
+
+      <div class="form-row">
+        <div>&nbsp;&nbsp;</div>
+    <div formGroupName="fromto">
+      <div class="col-xs-6 col-md-2">
+
+        <label>From Date<span class="lblError">*</span></label>
+        <input type="date" class="form-control" formControlName="fromDate" placeholder="Enter From Date">
+        <p class="lblError"*ngIf="item.get('fromto').get('fromDate').hasError('required') && !item.get('fromto').get('fromDate').pristine ">From Date is required!...</p>
+        <p class="lblError" *ngIf="Duplicate(item.get('fromto').get('fromDate').value, i) && i > 0">Overlapping not Allowed!...</p>
+        <p class="lblError" *ngIf="Duplicate1(item.get('fromto').get('fromDate').value, i) && i > 0">Duplicate not Allowed!...</p>
+      </div>
+
+      <div class="col-xs-6 col-md-2 ">
+        <label>To Date<span class="lblError">*</span></label><br>
+        <input type="date" class="form-control" formControlName="toDate"  placeholder="To Date name">
+        <p class="lblError"*ngIf="item.get('fromto').get('toDate').hasError('required') && !item.get('fromto').get('toDate').pristine ">To Date is required!...</p>
+        <p class="lblError"*ngIf="item.get('fromto').hasError('dates') && !item.get('fromto').pristine ">From Date should be less than To Date!...</p>
+
+      </div>
+
+      <!-- <p class="lblError" *ngIf="fromToDate(item.get('fromto').get('fromDate').value && item.get('fromto').get('toDate').value, i) && i > 0">Invalid Date!...</p> -->
+    </div>
+      <div  class="col-xs-6 col-md-2">
+        <label>Company<span class="lblError">*</span></label>
+        <input type="text" class="form-control"  formControlName="company" placeholder="Company Name">
+        <p class="lblError"*ngIf="item.get('company').hasError('required') && !item.get('company').pristine ">Company Name is required!...</p>
+      </div>
+
+      <div class="col-xs-6 col-md-2">
+        <label>Designation<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="designation" placeholder="Enter Designation">
+        <p class="lblError"*ngIf="item.get('designation').hasError('required') && !item.get('designation').pristine ">Designation is required!...</p>
+      </div>
+
+      <div class="col-xs-6 col-md-1">
+        <label>Rel<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="relevant" placeholder="yy/mm">
+        <p class="lblError"*ngIf="item.get('relevant').hasError('required') && !item.get('relevant').pristine ">Relevant is required!...</p>
+      </div>
+
+      <div class="col-xs-6 col-md-1">
+        <label>Non-Rel<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="nrelevant" placeholder="yy/mm ">
+        <p class="lblError"*ngIf="item.get('nrelevant').hasError('required') && !item.get('nrelevant').pristine ">Non Relevant is required!...</p>
+      </div>
+
+      </div>
+
+
+      <label>&nbsp;&nbsp;&nbsp;Actions</label><br>
+    <button type="button"class="btn btn-danger"(click)="deleteemployment(i)" ><i class="fa fa-trash-o"></i></button>
+       &nbsp;&nbsp;&nbsp;&nbsp;<button  (click)="myReset(i)"  class="btn btn-primary"><i class="fa fa-edit"></i></button>
+
+       <div>&nbsp;&nbsp;</div>
+
+
+    </div>
+  </div>
+    </form>
+    <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
+
+    <div class="form-group col-md-12">
+      <button class="btn btn-primary" routerLink="/qualification" >Previous</button>&nbsp;&nbsp;
+      <button type="button"  class="btn btn-primary" [disabled]="signupForm.invalid" (click)="onAddDetail()" (click)="onSaveDetail($event)">Save</button>&nbsp;&nbsp;
+      <button class="btn btn-primary" routerLink="/skillset" [disabled]="OnClickAdd()" >next</button>
+    </div>
+
+
+
+</div>
+</div>
