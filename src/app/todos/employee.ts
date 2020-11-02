@@ -1,4 +1,4 @@
 export class Employee{
-constructor(public eid: Number, public ename: string, public eage:string, public estatus:string){}
+constructor(public user_email:string, public user_name: string, public user_password:string, public user_mobile_no:string){}
 
 }

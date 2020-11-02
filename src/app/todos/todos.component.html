@@ -5,21 +5,21 @@
 <div classss="container" >
   <div>&nbsp;</div>
 
-<!--<div align="center" >-->
-  <div class="row" style="background-color:#bbb;"><div>&nbsp;&nbsp;</div>
-
-    <h3 align="center">Todo Component</h3>
+<!--<div align="center" -->
+   <div class="row" style="background-color:#bbb;"><div>&nbsp;&nbsp;</div>
+   <h3 align="center">Todo Component</h3>
+   <form [formGroup]="signupForm" (ngSubmit)="onRegister()">
     <div align="center" class="column"><div>&nbsp;&nbsp;</div><div>&nbsp;&nbsp;</div>
 
       <div align="center" style="box-sizing: border-box; width: 50%; border: 2px double indigo; float:center;" >
           <h3>Enter The Task</h3>
-          <input type="number " size="20px" [(ngModel)]="id" placeholder="Enter Id "><br>
+          <input type="number" size="20px" formControlName="Id" placeholder="Enter Id "><br>
           <div>&nbsp;&nbsp;</div>
-          <input type="text" size="20px" [(ngModel)]="title"  placeholder="Enter Title "><br>
+          <input type="text" size="20px" formControlName="Title"  placeholder="Enter Title "><br>
           <div>&nbsp;&nbsp;</div>
-          <input type="text" size="20px" [(ngModel)]="status" placeholder="Enter Status "><br>
+          <input type="text" size="20px" formControlName="Status" placeholder="Enter Status "><br>
           <div>&nbsp;&nbsp;</div>
-          <button class="btn btn-primary"(click)="onAdd()">Add Task</button><br>
+          <button class="btn btn-primary" type="submit">Add Task</button><br>
           <div>&nbsp;&nbsp;</div>
       </div>
     </div><div>&nbsp;&nbsp;</div><div>&nbsp;&nbsp;</div>
@@ -35,19 +35,20 @@
     </tr>
 
      <tbody>
-       <tr *ngFor="let item of arrtodos">
-               <td>{{item.id}}</td>
-               <td>{{item.title}}</td>
-                <!--<td *ngIf="item.status='done'"> <span style="color: green;"></span>{{item.status}}</td>
+       <tr *ngFor="let item of arrtodos; let i=index">
+               <td>{{item.Id}}</td>
+               <td>{{item.Title}}</td>
+          <!-- <td *ngIf="item.status='done'"> <span style="color: green;"></span>{{item.status}}</td>
                 <td *ngIf="item.status=='pending'"> <span style="color: red;"></span>{{item.status}}</td>
                 -->
-                <td><span [ngClass]="{done : item.status=='done', pending: item.status=='pending'}">{{item.status}}</span></td>
+               <td><span [ngClass]="{done : item.Status=='done', pending: item.Status=='pending'}">{{item.Status}}</span></td>
                 <td><button (click)="onDelete(item)" class="btn btn-danger">Delete</button>&nbsp;&nbsp;
                     <button (click)="onEdit(item)"class="btn btn-info">Edit</button>
                 </td>
          </tr>
       </tbody>
     </table>
+  </form>
   </div>
 
 <div>&nbsp;&nbsp;</div>
@@ -60,21 +61,17 @@
 
 
 <!--Employee Table-->
-
 <div class="row" style="background-color:#bbb;" ><div>&nbsp;</div>
 
           <h3 align="center">Employee Table</h3>
     <div align="center" class="column" ><div>&nbsp;&nbsp;</div>
-      <div align="center" style="box-sizing: border-box; height:200px; width: 80%; border: 2px double indigo; float:center;" >
+      <div align="center" style="box-sizing: border-box; height:250px; width: 80%; border: 2px double indigo; float:center;" >
          <h3>Enter Employee Details</h3><div>&nbsp;</div>
-            <input type="number " size="5px" [(ngModel)]="eid" placeholder="Enter Id ">&nbsp;&nbsp;
-            <input type="text" size="14px"[(ngModel)]="ename"  placeholder="Enter Name ">&nbsp;&nbsp;
-            <input type="text" size="7px" [(ngModel)]="eage" placeholder="Enter Age ">&nbsp;&nbsp;
-            <select id="estatus" [(ngModel)]="estatus">
-              <option>--choose--</option>
-              <option value="manager">Manager</option>
-              <option value="software developer">software Developer</option>
-            </select>&nbsp;&nbsp;<div>&nbsp;</div>
+            <input type="text" size="20px" [(ngModel)]="user_email" placeholder="Enter Email ">&nbsp;&nbsp;
+            <input type="text" size="15px"[(ngModel)]="user_name"  placeholder="Enter User Name"><div><br></div>&nbsp;&nbsp;
+            <input type="text" size="20px" [(ngModel)]="user_password" placeholder="Enter Password ">&nbsp;&nbsp;
+            <input type="text"size="15px"[(ngModel)]="user_mobile_no" placeholder="Enter Mobile Number">
+             &nbsp;&nbsp;<div>&nbsp;</div>
              <button class="btn btn-primary"(click)="onAddEmployee()">Add Employee</button>
      </div>
     </div><div>&nbsp;&nbsp;</div><div>&nbsp;&nbsp;</div>
@@ -82,23 +79,22 @@
     <table class="table table-bordered" align="center" style="width: 630px;">
           <thead>
             <tr>
-              <th scope="col">Id</th>
+              <th scope="col">Email</th>
               <th scope="col">Name</th>
-              <th scope="col">Age</th>
-              <th scope="col">Status</th>
+              <th scope="col">Password</th>
+              <th scope="col">Mobile No</th>
               <th scope="col" >Actions</th>
             </tr>
           </thead>
 
           <tbody>
             <tr *ngFor="let item of arremployee">
-              <td>{{item.eid}}</td>
-              <td>{{item.ename}}</td>
-              <td>{{item.eage}}</td>
-              <td><span [ngClass]="{manager : item.estatus=='software developer','software developer': item.estatus=='manager'}">{{item.estatus}}</span></td>
+              <td>{{item.user_email}}</td>
+              <td>{{item.user_name}}</td>
+              <td>{{item.user_password}}</td>
+              <td>{{item.user_mobile_no}}</td>
               <td><button (click)="onDeleteEmployee(item)" class="btn btn-danger">Delete</button>&nbsp;&nbsp;
-                <button (click)="onEditEmployeeStatus(item)"class="btn btn-success">Edit Status</button>&nbsp;&nbsp;
-                <button (click)="onEditEmployeeAge(item)"class="btn btn-info">Edit Age</button>
+                <button (click)="onEditEmployee(item)"class="btn btn-success">Edit</button>&nbsp;&nbsp;
               </td>
             </tr>
           </tbody>
@@ -109,32 +105,38 @@
 
 
 <!--Product table-->
-<div class="row" style="background-color:#bbb;" >
+ <div class="row" style="background-color:#bbb;" >
 <div>&nbsp;</div>
 <h3 align="center">Product Table</h3>
-<div align="center" class="column" >
+
   <div>&nbsp;&nbsp;</div>
-  <div align="center" style="box-sizing: border-box; height:200px; width: 80%; border: 2px double indigo; float:right;" >
+  <div align="center" >
     <div>&nbsp;&nbsp;</div>
     <h3>Enter Product Details</h3>
     <div>&nbsp;&nbsp;</div>
-  <input type="number " size="10px" [(ngModel)]="pid" placeholder="Enter Id ">&nbsp;&nbsp;
-  <input type="text" size="10px"[(ngModel)]="pname"  placeholder="Enter Name ">&nbsp;&nbsp;
-  <input type="text" size="10px"[(ngModel)]="pstatus" placeholder="Enter Status ">&nbsp;&nbsp;
-  <input type="text" size="10px"[(ngModel)]="pprice" placeholder="Enter Price ">&nbsp;&nbsp;
+  <input type="number " size="10px" [(ngModel)]="pro_id" placeholder="Enter Id ">&nbsp;&nbsp;
+  <input type="text" size="10px"[(ngModel)]="pro_name"  placeholder="Enter Name ">&nbsp;&nbsp;
+  <input type="text" size="10px"[(ngModel)]="pro_mfg"  placeholder="Enter Mfg ">&nbsp;&nbsp;
+  <input type="text" size="10px"[(ngModel)]="pro_qty"  placeholder="Enter Quantity">&nbsp;&nbsp;
+  <input type="text" size="10px"[(ngModel)]="pro_img"  placeholder="Enter img">&nbsp;&nbsp;
+  <input type="text" size="10px"[(ngModel)]="pro_desc" placeholder="Enter Description ">&nbsp;&nbsp;
+  <input type="text" size="10px"[(ngModel)]="pro_price" placeholder="Enter Price ">&nbsp;&nbsp;
   <div>&nbsp;&nbsp;</div>
   <button class="btn btn-primary"(click)="onAddProduct()">Add Product</button>
-  </div>
+
   </div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;</div>
 <div>&nbsp;&nbsp;</div>
-  <table class="table table-bordered" align="center" style="width: 600px;">
+  <table class="table" align="center" >
   <thead>
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Name</th>
-      <th scope="col">Status</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Description</th>
+      <th scope="col">MFG</th>
+      <th scope="col">IMG</th>
       <th scope="col">Price</th>
       <th scope="col">Actions</th>
     </tr>
@@ -142,10 +144,13 @@
 
   <tbody>
     <tr *ngFor="let item of arrproduct">
-      <td>{{item.pid}}</td>
-      <td>{{item.pname}}</td>
-      <td>{{item.pstatus}}</td>
-      <td>{{item.pprice}}</td>
+      <td>{{item.pro_id}}</td>
+      <td>{{item.pro_name}}</td>
+      <td>{{item.pro_qty}}</td>
+      <td>{{item.pro_desc}}</td>
+      <td>{{item.pro_mfg}}</td>
+      <td>{{item.pro_img}}</td>
+      <td>{{item.pro_price}}</td>
       <td><button (click)="onDeleteProduct(item)" class="btn btn-danger">Delete</button>&nbsp;&nbsp;
         <button (click)="onEditProduct(item)"class="btn btn-success">Edit</button>
     </td>
@@ -153,4 +158,6 @@
   </tbody>
 </table>
 </div>
+<div>&nbsp;&nbsp;</div>
+<div>&nbsp;&nbsp;</div>
 </div>

@@ -1,0 +1,288 @@
+<div class="container">
+<h3 align="center">Task Crude Operation</h3>
+
+<button class="btn btn-sm btn-outline-danger" routerLink="/useradd">Add+</button>
+
+  <div>&nbsp;</div>
+  <div class="row border">
+    <div class="container bg-info">
+      <div class="row">
+        <div class="col-md-3 md-3-padd">ID</div>
+        <div class="col-md-3 md-3-paddE">Title</div>
+        <div class="col-md-3 md-3-paddD">Status</div>
+        <div class="col-md-3 md-3-paddD">&nbsp;&nbsp;&nbsp;Action</div>
+      </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="col-md-12 border" *ngFor="let emp of arrtodos, let i = index;">
+      <div>&nbsp;</div>
+      <div class="row">
+            <div class="col-md-3">{{emp.Id}}</div>
+            <div class="col-md-3">{{emp.Title | titlecase}}</div>
+            <div class="col-md-3">{{emp.Status | titlecase}}</div>
+
+          <div class="col-md-3">
+            <button (click)="EditTask(emp)" class="btn btn-sm btn-outline-primary mr-2" >
+              <i  class="fa fa-pencil" aria-hidden="true"></i>
+            </button>&nbsp;
+            <button (click)="deleteTask(emp)" class="btn btn-sm btn-outline-danger">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+  <body *ngIf="flag1">
+    <form [formGroup]="Task_Form" >
+    <section class="popup-graybox">
+    <div class="ebook-popup-sec" >
+    <div>&nbsp;</div>
+      <h2 data-edit="text">Edit Task</h2>
+      <div class="ebook-email-sec">
+
+       <div class="form-group">
+        <label style="text-align: left;">Task ID</label>
+        <input type="text" formControlName="Id" readonly class="form-control" data-edit="placeholder" >
+       </div>
+
+      <div class="form-group">
+        <label >Task Title</label>
+        <input type="text" formControlName="Title" class="form-control" data-edit="placeholder" >
+        <p class="lblError" *ngIf="Task_Form.get('Title').hasError('required')&& !Task_Form.get('Title').pristine">Title is Required!...</p>
+      </div>
+
+      <div class="form-group">
+        <label>Task Status</label>
+        <select formControlName="Status"  class="form-control" >
+          <p class="lblError" *ngIf="Task_Form.get('Status').hasError('required')&& !Task_Form.get('Status').pristine">Status is Required!...</p>
+          <option value="" disabled>Choose...</option>
+          <option  *ngFor="let item of status_arr" [value]="item" >{{item}}</option>
+        </select>
+      </div>
+      <div>&nbsp;</div>
+        <button class="ebook-input-btn" (click)="EditTaskPopUp()" (click)="onClear()" [disabled]="Task_Form.invalid" Onclick="reloadPage();" type="submit">alright, Edit now</button>
+        <button class="ebook-cls-btn close-btn" (click)="onClear()" >X</button>
+      </div>
+
+    </div>
+    </section>
+    </form>
+    </body>
+
+
+
+
+
+
+  <div>&nbsp;</div><div>&nbsp;</div>
+
+  <h3 align="center">User Detail</h3>
+
+  <button class="btn btn-sm btn-outline-danger" routerLink="/taskadd">Add+</button>
+
+    <div>&nbsp;</div>
+    <div class="row border">
+      <div class="container bg-info">
+        <div class="row">
+          <div class="col-md-3 md-3-padd">Email</div>
+          <div class="col-md-2 md-3-paddE">User Name</div>
+          <div class="col-md-2 md-3-paddD">Password</div>
+          <div class="col-md-3 md-3-paddD">Mobile No</div>
+          <div class="col-md-2 md-3-paddD">&nbsp;&nbsp;&nbsp;Action</div>
+        </div>
+      </div>
+      <div>&nbsp;</div>
+      <div class="col-md-12 border" *ngFor="let item of arremployee, let i = index;">
+        <div>&nbsp;</div>
+        <div class="row">
+              <div class="col-md-3">{{item.user_email | lowercase}}</div>
+              <div class="col-md-2">{{item.user_name | titlecase}}</div>
+              <div class="col-md-2">{{item.user_password }}</div>
+              <div class="col-md-3">{{item.user_mobile_no }}</div>
+            <div class="col-md-2">
+              <button (click)="editUser(item)" class="btn btn-sm btn-outline-primary mr-2">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>&nbsp;
+              <button (click)="deleteUser(item)" class="btn btn-sm btn-outline-danger">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+    <div>&nbsp;</div><div>&nbsp;</div> <div>&nbsp;</div><div>&nbsp;</div>
+
+
+
+
+
+    <body *ngIf="flag2">
+      <form [formGroup]="user_Form" >
+      <section class="popup-graybox">
+      <div class="ebook-popup-sec" >
+      <div>&nbsp;</div>
+        <h2 data-edit="text">Edit User </h2>
+        <div class="ebook-email-sec">
+
+          <div  class="form-group">
+          <label>User Email</label>
+          <input type="email" formControlName="user_email" class="form-control" data-edit="placeholder" >
+          <p class="lblError" *ngIf="user_Form.get('user_email').hasError('required')&& !user_Form.get('user_email').pristine">Email is Required!...</p>
+          <p class="lblError" *ngIf="user_Form.get('user_email').hasError('email')&& !user_Form.get('user_email').pristine">Invalid Email !...</p>
+          </div>
+
+          <div  class="form-group">
+          <label>User Name</label>
+          <input type="text"  readonly class="form-control"  formControlName="user_name">
+          <p class="lblError" *ngIf="user_Form.get('user_name').hasError('required')&& !user_Form.get('user_name').pristine">User Name is Required!...</p>
+          </div>
+
+          <div class="form-group">
+          <label>Password</label>
+          <input type="text" class="form-control" formControlName="user_password" >
+          <p class="lblError" *ngIf="user_Form.get('user_password').hasError('required')&& !user_Form.get('user_password').pristine">Password is Required!...</p>
+          </div>
+
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="text" class="form-control" formControlName="user_mobile_no" >
+            <p class="lblError" *ngIf="user_Form.get('user_mobile_no').hasError('required')&& !user_Form.get('user_mobile_no').pristine">Mobile Number is Required!...</p>
+          </div>
+          <div>&nbsp;</div>
+          <button class="ebook-input-btn" (click)="EditUserPopUp()" (click)="onClear1()" [disabled]="user_Form.invalid" Onclick="reloadPage();" type="submit">alright, Edit now</button>
+          <button class="ebook-cls-btn close-btn" (click)="onClear1()" >X</button>
+        </div>
+
+      </div>
+      </section>
+      </form>
+      </body>
+
+
+
+
+
+
+
+
+    <h3 align="center">Product Detail</h3>
+
+    <button class="btn btn-sm btn-outline-danger" routerLink="/productadd">Add+</button>
+
+      <div>&nbsp;</div>
+      <div class="row border">
+        <div class="container bg-info">
+          <div class="row">
+            <div class="col-md-1 md-3-padd">Id</div>
+            <div class="col-md-1 md-3-padd">Name</div>
+            <div class="col-md-1 md-3-paddE">Quantity</div>
+            <div class="col-md-2 md-3-paddD">Description</div>
+            <div class="col-md-2 md-3-paddD">MFG Date</div>
+            <div class="col-md-2 md-3-paddD">Product Image</div>
+            <div class="col-md-1 md-3-paddD">Price</div>
+            <div class="col-md-2 md-3-paddD">Actions</div>
+          </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="col-md-12 border" *ngFor="let item of arrproduct, let i = index;">
+          <div>&nbsp;</div>
+          <div class="row">
+                <div class="col-md-1">{{item.pro_id}}</div>
+                <div class="col-md-1">{{item.pro_name | titlecase}}</div>
+                <div class="col-md-1">{{item.pro_qty }}</div>
+                <div class="col-md-2">{{item.pro_desc }}</div>
+                <div class="col-md-2">{{item.pro_mfg }}</div>
+                <div class="col-md-2">{{item.pro_img }}</div>
+                <div class="col-md-1">{{item.pro_price }}</div>
+              <div class="col-md-2">
+                <button (click)="editProductdetail(item)" class="btn btn-sm btn-outline-primary mr-2">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>&nbsp;
+                <button (click)="deleteProduct(item)" class="btn btn-sm btn-outline-danger">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+
+      <body *ngIf="flag3">
+        <form [formGroup]="ProductForm" >
+        <section class="popup-graybox">
+        <div class="ebook-popup-sec" >
+        <div>&nbsp;</div>
+          <h3 data-edit="text">Edit Product </h3>
+          <div class="ebook-email-sec">
+
+            <div class="form-group">
+              <label for="pid">Product Id</label>
+              <input type="text" class="form-control" readonly formControlName="pro_id" placeholder="Enter Id">
+              <p class="lblError" *ngIf="ProductForm.get('pro_id').hasError('required')&& !ProductForm.get('pro_id').pristine">Id is Required!...</p>
+            </div>
+
+            <div class="form-group">
+              <label>Product Name</label>
+              <input type="text" class="form-control"  formControlName="pro_name" placeholder="Enter Product Name">
+              <p class="lblError" *ngIf="ProductForm.get('pro_name').hasError('required')&& !ProductForm.get('pro_name').pristine">Product Name is Required!...</p>
+            </div>
+
+            <div class="form-group">
+              <label>Product Price</label>
+              <input type="text" class="form-control" formControlName="pro_price"  placeholder="Enter Price" >
+              <p class="lblError" *ngIf="ProductForm.get('pro_price').hasError('required')&& !ProductForm.get('user_password').pristine">Price is Required!...</p>
+            </div>
+
+            <div class="form-group">
+              <label>Description</label>
+              <input type="text" class="form-control" formControlName="pro_desc"  placeholder="Enter Description" >
+              <p class="lblError" *ngIf="ProductForm.get('pro_desc').hasError('required') && !ProductForm.get('pro_desc').pristine">Description is Required!...</p>
+            </div>
+
+            <div class="form-group">
+              <label>Product Quantity</label>
+              <input type="text" class="form-control" formControlName="pro_qty"  placeholder="Enter Available Quantity" >
+              <p class="lblError" *ngIf="ProductForm.get('pro_qty').hasError('required') && !ProductForm.get('pro_qty').pristine">Quantity is Required!...</p>
+            </div>
+
+            <div class="form-group">
+              <label>Magnifying Date</label>
+              <input type="date" class="form-control" formControlName="pro_mfg">
+
+            </div>
+
+            <div class="form-group">
+              <label>Product Image</label>
+              <input type="text" class="form-control" formControlName="pro_img">
+            </div>
+
+            <button class="ebook-input-btn" (click)="EditProductPopUp()" (click)="onClear2()" [disabled]="ProductForm.invalid" Onclick="reloadPage();" type="submit">alright, Edit now</button>
+            <button class="ebook-cls-btn close-btn" (click)="onClear2()" >X</button>
+          </div>
+
+        </div>
+        </section>
+        </form>
+        </body>
+
+
+
+
+
+
+
+
+      <div>&nbsp;</div>  <div>&nbsp;</div>  <div>&nbsp;</div>
+
+    <div>&nbsp;</div><div>&nbsp;</div>
+</div>

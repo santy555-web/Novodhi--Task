@@ -44,8 +44,6 @@ export class AddresstaskComponent implements OnInit {
     this.signupForm.valueChanges.subscribe((x)=> this.updateaddress(x));
   }
 
-  
-
 
 
   //this method is for add the data in array first
@@ -75,7 +73,7 @@ export class AddresstaskComponent implements OnInit {
 
 
 //this method is disbled upto data is not present in array
-OnNextClick1()
+OnNextClick()
 {
  if( this.Register1.length ==0)
  {
@@ -112,10 +110,5 @@ updateaddress(val:boolean){
           }
 
 }
-
-
-
-
-
 
 }

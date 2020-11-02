@@ -1,0 +1,59 @@
+
+
+<div class="container">
+  <div>&nbsp;</div>
+  <h3 align="center">Product Add</h3>
+  <div>&nbsp;</div>
+  <div class="col-md-12 m-auto">
+    <form [formGroup]="ProductForm">
+      <div class="form-group">
+        <label for="pid">Product Id</label>
+        <input type="text" class="form-control" formControlName="pro_id" placeholder="Enter Id">
+        <p class="lblError" *ngIf="ProductForm.get('pro_id').hasError('required')&& !ProductForm.get('pro_id').pristine">Id is Required!...</p>
+      </div>
+
+      <div class="form-group">
+        <label>Product Name</label>
+        <input type="text" class="form-control"  formControlName="pro_name" placeholder="Enter Product Name">
+        <p class="lblError" *ngIf="ProductForm.get('pro_name').hasError('required')&& !ProductForm.get('pro_name').pristine">Product Name is Required!...</p>
+      </div>
+
+      <div class="form-group">
+        <label>Product Price</label>
+        <input type="text" class="form-control" formControlName="pro_price"  placeholder="Enter Price" >
+        <p class="lblError" *ngIf="ProductForm.get('pro_price').hasError('required')&& !ProductForm.get('user_password').pristine">Price is Required!...</p>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" formControlName="pro_desc"  placeholder="Enter Description" >
+        <p class="lblError" *ngIf="ProductForm.get('pro_desc').hasError('required') && !ProductForm.get('pro_desc').pristine">Description is Required!...</p>
+      </div>
+
+      <div class="form-group">
+        <label>Product Quantity</label>
+        <input type="text" class="form-control" formControlName="pro_qty"  placeholder="Enter Available Quantity" >
+        <p class="lblError" *ngIf="ProductForm.get('pro_qty').hasError('required') && !ProductForm.get('pro_qty').pristine">Quantity is Required!...</p>
+      </div>
+
+
+      <div class="form-group">
+        <label>Product Image</label>
+        <input type="text" class="form-control" formControlName="pro_img">
+      </div>
+
+      <div class="form-group">
+        <label>Magnifying Date</label>
+        <input type="date" class="form-control" formControlName="pro_mfg">
+      </div>
+
+
+      <button (click)="addProduct()" type="submit" [disabled]="ProductForm.invalid"
+        class="btn mt-4 btn-outline-success btn-sm" routerLink="/usedetail">Add Data</button>
+      <button class="btn btn-outline-danger btn-sm mt-4 ml-2" routerLink="/usedetail">Close</button>
+    </form>
+  </div>
+</div>
+
+
+

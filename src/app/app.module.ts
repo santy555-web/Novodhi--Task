@@ -46,6 +46,10 @@ import { VoteridDirective } from './voterid.directive';
 import { QualificationdetailsComponent } from './qualificationdetails/qualificationdetails.component';
 import { ReactiveFromComponent } from './reactive-from/reactive-from.component';
 import { DisableControlDirective } from './disable-control.directive';
+import { UsedetailComponent } from './usedetail/usedetail.component';
+import { UseraddComponent } from './usedetail/useradd/useradd.component';
+import { TaskaddComponent } from './usedetail/taskadd/taskadd.component';
+import { ProductaddComponent } from './usedetail/productadd/productadd.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +89,10 @@ import { DisableControlDirective } from './disable-control.directive';
     QualificationdetailsComponent,
     ReactiveFromComponent,
     DisableControlDirective,
+    UsedetailComponent,
+    UseraddComponent,
+    TaskaddComponent,
+    ProductaddComponent,
   ],
   imports: [
     BrowserModule,

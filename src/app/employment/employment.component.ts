@@ -44,22 +44,7 @@ employment_Group()
       relevant: new  FormControl(null, [Validators.required]),
       nrelevant: new  FormControl(null, [Validators.required]),
     });
-
 }
-
-  // fromToDate(fromDateField: string, toDateField: string, errorName: string = 'Date is not valid'): ValidatorFn {
-  //     return (formGroup: AbstractControl): { [key: string]: boolean } | null => {
-  //         const fromDate = formGroup.get(fromDateField).value;
-  //         const toDate = formGroup.get(toDateField).value;
-  //        // the fromDate and toDate are numbers. In not convert them first after null check
-  //         if ((fromDate !== null && toDate !== null) && fromDate > toDate) {
-  //             return {[errorName]: true};
-  //         }
-  //         return null;
-  //     };
-  //   }
-
-
 
   fromToDate(fromDate: string, toDate: string)
   {
@@ -74,9 +59,6 @@ employment_Group()
       return {};
     }
   }
-
-
-
 
 
  //Edit the Age of employee from table
@@ -122,18 +104,13 @@ employment_Group()
            {
            item.designation;
            }
-
-
   }
 
 
 //Duration calculation
 timeCalculation(val: Date){
   let myArray = this.getang(this.signupForm);
-  //let test = myArray.filter(data => data.controls.fromto.get('fromDate').value);
- // let test1 = myArray.filter(data => data.controls.fromto.get('toDate').value);
   var fyear= new Date(val).getFullYear();
-  //var tyear= new Date(val1).getFullYear();
   var today=new Date();
   var tyear=new Date(today).getFullYear();
   var a=tyear-fyear;
@@ -142,19 +119,18 @@ timeCalculation(val: Date){
 }
 
 
-
 //get details from employee
 getang(form): Array<any> {
   return form.controls.employment_details.controls;
 }
 
-Duplicate(fromDate, toDate): boolean {
+Duplicate(fromDate): boolean {
   let myArray = this.getang(this.signupForm);
   let test = myArray.filter(data => data.controls.fromto.get('toDate').value >= fromDate && fromDate != null)
   if (test.length > 1) {
     return true;
   } else {
-    return false
+    return false;
   }
 }
 
@@ -169,10 +145,6 @@ Duplicate1(fromDate): boolean {
   }
 }
 
-
-
-
-
 fromToDateValidation(fromDate, toDate): boolean {
   let myArray = this.getang(this.signupForm);
   let test = myArray.filter(data => data.controls.fromto.get('fromDate').value > toDate && toDate != null)
@@ -182,10 +154,6 @@ fromToDateValidation(fromDate, toDate): boolean {
       }
       return false;
   };
-
-
-
-
 
 
 //start here
@@ -221,26 +189,6 @@ this.EmployeeArray.reset(index);
  //end data
 
 
-
-
-
-
-
-
-
-
-
-
-
-  //This method for adding Qualification details on component
-  // onAddDetail()
-  // {
-  //   this.arremployee.push(this.signupForm.value);
-  //   console.log(this.arremployee);
-  // }
-
-
-
    onSaveDetail(control: AbstractControl)
     {
       if (this.arremployee.indexOf(control.value) >= 0)
@@ -248,18 +196,7 @@ this.EmployeeArray.reset(index);
          alert("Data is not Added...") ;
        }
        alert("Data is Added Successfully!...");
-     }
-
-
-  //   onClickFlag2()
-  //   {
-  //     this.flag2=true;
-  //   }
-
-  //   onCancleFlag1()
-  //   {
-  //     this.flag2=false;
-  //   }
+    }
 
     OnClickAdd()
     {

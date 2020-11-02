@@ -1,0 +1,40 @@
+
+<div class="container">
+  <div>&nbsp;</div>
+  <h3 align="center">Task Add</h3>
+  <div>&nbsp;</div>
+  <div class="col-md-12 m-auto">
+    <form [formGroup]="user_Form">
+      <div class="form-group">
+        <label for="eid">User Email</label>
+        <input type="email" class="form-control" formControlName="user_email" placeholder="Enter Email ID">
+        <p class="lblError" *ngIf="user_Form.get('user_email').hasError('required')&& !user_Form.get('user_email').pristine">Email is Required!...</p>
+        <p class="lblError" *ngIf="user_Form.get('user_email').hasError('email')&& !user_Form.get('user_email').pristine">Invalid Email !...</p>
+      </div>
+
+      <div class="form-group">
+        <label>User Name</label>
+        <input type="text" class="form-control"  formControlName="user_name" placeholder="Enter Name">
+        <p class="lblError" *ngIf="user_Form.get('user_name').hasError('required')&& !user_Form.get('user_name').pristine">User Name is Required!...</p>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="text" class="form-control" formControlName="user_password"  placeholder="Enter Password" >
+        <p class="lblError" *ngIf="user_Form.get('user_password').hasError('required')&& !user_Form.get('user_password').pristine">Password is Required!...</p>
+      </div>
+
+      <div class="form-group">
+        <label>Mobile Number</label>
+        <input type="text" class="form-control" formControlName="user_mobile_no"  placeholder="Enter Mobile No" >
+        <p class="lblError" *ngIf="user_Form.get('user_mobile_no').hasError('required')&& !user_Form.get('user_mobile_no').pristine">Mobile Number is Required!...</p>
+      </div>
+
+      <button (click)="addUser()" type="submit" [disabled]="user_Form.invalid"
+        class="btn mt-4 btn-outline-success btn-sm" routerLink="/usedetail">Add Data</button>
+      <button class="btn btn-outline-danger btn-sm mt-4 ml-2" routerLink="/usedetail">Close</button>
+    </form>
+  </div>
+</div>
+
+
