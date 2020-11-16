@@ -50,6 +50,7 @@ import { UsedetailComponent } from './usedetail/usedetail.component';
 import { UseraddComponent } from './usedetail/useradd/useradd.component';
 import { TaskaddComponent } from './usedetail/taskadd/taskadd.component';
 import { ProductaddComponent } from './usedetail/productadd/productadd.component';
+import { TrialComponent } from './trial/trial.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { ProductaddComponent } from './usedetail/productadd/productadd.component
     UseraddComponent,
     TaskaddComponent,
     ProductaddComponent,
+    TrialComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,10 @@
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, MinLengthValidator, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
+import { AnimationService } from "./animation.service";
+import { quali,skill,employment, BasicForm, paddress } from './basicform';
 @Component({
   selector: 'app-animation',
   templateUrl: './animation.component.html',
@@ -15,28 +18,29 @@ export class AnimationComponent implements OnInit {
   flag7 : boolean = false;
   flag8 : boolean = false;
   flag9 : boolean = false;
-
-  basicinfo: any []=[];
+  counter:number;
+  basicinfo: BasicForm []=[];
   basicinfo_age;
   BasicinfoFrom: FormGroup;
+  imagePath:String;
 
-
-  addressDetails: any []=[];
-  addressDetails_1: any []=[];
+  addressDetails: paddress []=[];
+  addressDetails_1=[];
   isReadonly= false;
   flag1 : boolean = false;
-  addressDetails_address;
-  addressDetails_city;
-  addressDetails_state;
-  addressDetails_country;
-  addressDetails_district;
-  addressDetails_zip;
-  addressDetails_phone1;
-  addressDetails_phone2;
-  addressDetails_mobile_fax;
-  addressDetails_personal_email;
-  addressDetails_same_address;
+  addressDetails_address1;
+  addressDetails_city1;
+  addressDetails_state1;
+  addressDetails_country1;
+  addressDetails_district1;
+  addressDetails_zip1;
+  addressDetails_phone11;
+  addressDetails_phone21;
+  addressDetails_mobile_fax1;
+  addressDetails_personal_email1;
+  addressDetails_same_address1;
   addressDetailsFrom: FormGroup;
+  addressDetailsFrom1: FormGroup;
 
 
 
@@ -50,7 +54,7 @@ export class AnimationComponent implements OnInit {
 
 
 
-  qualificationDetails: any [] = [];
+  qualificationDetails: quali [] = [];
   qualificationinvalidNamesArr: any [] = [];
   qualification_qualification;
   qualification_institute;
@@ -61,10 +65,15 @@ export class AnimationComponent implements OnInit {
   qualificationForm: FormGroup;
   flag2:boolean = true;
   res;
-
-
-
-  employmentDetails: any[]=[];
+  res1;
+  res2;
+  res3;
+  res4;
+  counter1;
+  counter2;
+  tes;
+  les;
+  employmentDetails: employment[]=[];
   employment_fromDate;
   employment_toDate;
   employment_company;
@@ -78,79 +87,38 @@ export class AnimationComponent implements OnInit {
 
 
 
-  skillDetails: any [] = [];
+  skillDetails: skill [] = [];
   skillDetailsFrom: FormGroup;
 
 
-  constructor(private ang:FormBuilder) { }
+  constructor(private ang:FormBuilder, private data:AnimationService) { }
 
   ngOnInit(): void {
-
-
       /* basic information table start here */
-      this.BasicinfoFrom   =  new FormGroup({
-      basicinfo_employee_number: new  FormControl(null, [Validators.required]),
-      basicinfo_employee_title: new  FormControl(""),
-      basicinfo_employee_name: new  FormControl(null, [Validators.required]),
-      basicinfo_employee_address: new  FormControl(),
-      basicinfo_firstname: new  FormControl(null, [Validators.required, Validators.minLength(3)  ]),
-      basicinfo_middlename: new  FormControl(),
-      basicinfo_lastname: new  FormControl(),
-      basicinfo_initial: new  FormControl(null, Validators.pattern('[a-zA-Z0-9_]*')),
-      basicinfo_gender:  new FormControl("Male"),
-      basicinfo_dob: new  FormControl(null, [Validators.required]),
-      basicinfo_age: new  FormControl(),
-      basicinfo_official_phone: new  FormControl(),
-      basicinfo_mobile: new  FormControl(null, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$") ]),
-      basicinfo_fax: new  FormControl(),
-      basicinfo_official_email:  new  FormControl(null, [Validators.email ]),
-      basicinfo_personal_email:  new  FormControl(null, [Validators.email,Validators.required ]),
-      basicinfo_personal2_email:  new  FormControl(null,[Validators.email ]),
-      basicinfo_personal3_email:  new  FormControl(null,[Validators.email]),
+      this.BasicinfoFrom  =  new FormGroup({
+      basicinfo_employee_number: new FormControl(null, [Validators.required]),
+      basicinfo_employee_title: new FormControl(""),
+      basicinfo_employee_name: new FormControl(null, [Validators.required]),
+      basicinfo_employee_address: new FormControl(),
+      basicinfo_firstname: new FormControl(null, [Validators.required, Validators.minLength(3)  ]),
+      basicinfo_middlename: new FormControl(),
+      basicinfo_lastname: new FormControl(),
+      basicinfo_initial: new FormControl(null, Validators.pattern('[a-zA-Z0-9_]*')),
+      basicinfo_gender: new FormControl("Male"),
+      basicinfo_dob: new FormControl(null, [Validators.required]),
+      basicinfo_age: new FormControl(),
+      basicinfo_official_phone: new FormControl(),
+      basicinfo_mobile: new FormControl(null, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$") ]),
+      basicinfo_fax: new FormControl(),
+      basicinfo_official_email: new FormControl(null, [Validators.email ]),
+      basicinfo_personal_email: new FormControl(null, [Validators.email,Validators.required ]),
+      basicinfo_personal2_email: new FormControl(null,[Validators.email ]),
+      basicinfo_personal3_email: new FormControl(null,[Validators.email]),
       basicinfo_file: new  FormControl('',[
         RxwebValidators.file({maxFiles:1}),
-        RxwebValidators.extension({extensions:["jpg","png"]})
+        RxwebValidators.extension({extensions:[".jpg",".png"]})
       ],),
-    });
-    //it will update the age on the basis od date changed by user
-    this.BasicinfoFrom.get('basicinfo_dob').valueChanges.subscribe((x)=>this.AgeCalculation(x));
-    /* basic information table end here */
 
-
-
-
-
-
-    /* Address information table start here */
-
-          this.addressDetailsFrom    =  new FormGroup({
-            addressDetails_address: new  FormControl(null, [Validators.required]),
-            addressDetails_city: new  FormControl(),
-            addressDetails_state: new  FormControl(""),
-            addressDetails_country: new  FormControl(""),
-            addressDetails_district: new  FormControl(""),
-            addressDetails_zip: new  FormControl(null, [Validators.pattern("^[0-9]{6}$")]),
-            addressDetails_phone1: new  FormControl(null, [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$") ]),
-            addressDetails_phone2: new  FormControl(null, [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$") ]),
-            addressDetails_mobile_fax: new  FormControl(),
-            addressDetails_personal_email: new  FormControl(null,[Validators.email]),
-            addressDetails_same_address: new  FormControl(),
-          });
-
-          this.BasicinfoFrom.valueChanges.subscribe((x)=> this.updateaddress(x));
-
-          /* Address information table end here */
-
-
-
-
-
-
-
-
-        /* Personal Details information table start here */
-
-        this.personalDetailsFrom =  new FormGroup({
           personalDetails_birthplace: new  FormControl(null, [Validators.required]),
           personalDetails_religion: new  FormControl(""),
           personalDetails_caste: new  FormControl(""),
@@ -163,50 +131,65 @@ export class AnimationComponent implements OnInit {
           personalDetails_no_children: new  FormControl(null,[Validators.pattern("^[0-7]{1}$")]),
           personalDetails_marriage_date: new  FormControl(),
           personalDetails_spouse_name: new  FormControl(null, Validators.pattern('[a-zA-Z_]*')),
-          });
 
-        /* Personal Details information end here */
-
-
-
-        /* Bank Details information start here */
-        this.bankDetailsFrom =  new FormGroup({
-          bankDetails_bank_name: new  FormControl(null, [Validators.required]),
-          bankDetails_account_type: new  FormControl(),
+          bankDetails_bank_name: new FormControl(null, [Validators.required]),
+          bankDetails_account_type: new FormControl(),
           bankDetails_account_number:new FormControl(null, [Validators.required]),
-          bankDetails_peyment_type: new  FormControl(null, [Validators.required]),
-          bankDetails_branch_detail: new  FormControl(),
-          bankDetails_ifsc: new  FormControl(null, [Validators.required]),
-          bankDetails_reimbursement_name: new  FormControl(),
-          bankDetails_reimbursement_number: new  FormControl(),
-        });
-      /* Bank Details information end here */
+          bankDetails_peyment_type: new FormControl(null, [Validators.required]),
+          bankDetails_branch_detail: new FormControl(),
+          bankDetails_ifsc: new FormControl(null, [Validators.required]),
+          bankDetails_reimbursement_name: new FormControl(),
+          bankDetails_reimbursement_number: new FormControl(),
+
+    });
+    this.BasicinfoFrom.get('basicinfo_dob').valueChanges.subscribe((x)=>this.AgeCalculation(x));
+
+
+
+    /* Address information table start here */
+           this.addressDetailsFrom =  new FormGroup({
+            addressDetails_address: new FormControl(null, [Validators.required]),
+            addressDetails_city: new FormControl(),
+            addressDetails_state: new FormControl(""),
+            addressDetails_country: new FormControl(""),
+            addressDetails_district: new FormControl(""),
+            addressDetails_zip: new FormControl(null, [Validators.pattern("^[0-9]{6}$")]),
+            addressDetails_phone1: new FormControl(null, [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$") ]),
+            addressDetails_phone2: new FormControl(null, [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$") ]),
+            addressDetails_mobile_fax: new FormControl(),
+            addressDetails_personal_email: new FormControl(null,[Validators.email]),
+            addressDetails_same_address: new FormControl(),
+
+            addressDetails_address1: new FormControl(null, [Validators.required]),
+            addressDetails_city1: new FormControl(),
+            addressDetails_state1: new FormControl(""),
+            addressDetails_country1: new FormControl(""),
+            addressDetails_district1: new FormControl(""),
+            addressDetails_zip1: new FormControl(null, [Validators.pattern("^[0-9]{6}$")]),
+            addressDetails_phone11: new FormControl(null, [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$") ]),
+            addressDetails_phone21: new FormControl(null, [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$") ]),
+            addressDetails_mobile_fax1: new FormControl(),
+            addressDetails_personal_email1: new FormControl(null,[Validators.email]),
+          });
+          this.addressDetailsFrom.valueChanges.subscribe((x)=> this.updateaddress(x));
+
+
 
 
 
       /* Qualification details information end here */
-
-      this.qualificationForm =  this.ang.group
+      this.qualificationForm = this.ang.group
       ({
         qualification_details: this.ang.array([this.qualification_Group()]),
       });
-
       this.qualificationForm.controls['qualification_details'].valueChanges.subscribe(value => {});
 
-      /* Qualification details information end here */
-
-
 
 
       /* Employment details information end here */
-
-      this.employmentForm =  this.ang.group({
-
+      this.employmentForm = this.ang.group({
         employment_details: this.ang.array([this.employment_Group()]),
       });
-
-      /* Employment details information end here */
-
 
 
 
@@ -214,9 +197,32 @@ export class AnimationComponent implements OnInit {
         this.skillDetailsFrom =  this.ang.group({
           skillset_details: this.ang.array([this.skillset_Group()]),
           });
-    /* skill details information end here */
 
 
+          this.data.getBasicForm().subscribe((data)=>
+            {
+              this.basicinfo=data;
+            });
+
+            this.data.getPaddress().subscribe((data)=>
+            {
+              this.addressDetails_1=data;
+            });
+
+            this.data.getQualification().subscribe((data)=>
+            {
+              this.qualificationDetails=data;
+            });
+
+            this.data.getEmployment().subscribe((data)=>
+            {
+              this.employmentDetails=data;
+            });
+
+            this.data.getSkill().subscribe((data)=>
+            {
+              this.skillDetails=data;
+            });
   }
 
 
@@ -225,35 +231,34 @@ export class AnimationComponent implements OnInit {
 
 
 
-  /* basic information table start here */
-
- //this method is for submit data
  basicinfo_onRegister()
  {
-   this.basicinfo.push(this.BasicinfoFrom.value);
-   console.log('Basic Information',this.basicinfo);
-   alert("Data Added successfully!....");
-
+   this.data.addBasicForm(this.BasicinfoFrom.value).subscribe((x)=>
+    {
+      this.basicinfo.push(this.BasicinfoFrom.value);
+      alert("Data Added successfully!....");
+      console.log('Basic Information', JSON.stringify(this.BasicinfoFrom.value));
+    });
  }
 
-//Age calculation
+
+
+
+
+
+
 AgeCalculation(val: Date){
  var today = new Date();
  var year= today.getFullYear();
  var birthDate= new Date(val).getFullYear();
  var a=year-birthDate;
- //console.log(a);
 this.BasicinfoFrom.get('basicinfo_age').setValue(a);
 }
-//file uplode in array
+
 basicinfo_onFileSelected(event) {
-
  if (event.target.files){
-
      var reader = new FileReader();
-
      reader.readAsDataURL(event.target.files[0]);
-
      reader.onload = (event:any ) =>
      {
        this.basicinfo.push(event.target.result);
@@ -262,17 +267,24 @@ basicinfo_onFileSelected(event) {
  }
 
 
+ onSelectedFile(event)
+ {
+  if(event.target.files.length>0)
+  {
+    const file= event.target.files[0];
+    this.BasicinfoFrom.get('basicinfo_file').setValue(file);
+  }
+ }
+
+
 //this method (basicinfo) is disbled the button upto data is not present in array
 basicinfo_OnNextClick()
   {
-
    if( this.basicinfo.length ==0)
    {
      return true;
    }
-
   }
-/* basic information table end here */
 
 basicinfo_OnNextClick1()
 {
@@ -285,19 +297,24 @@ basicinfo_OnNextClick1()
 
 
 
- /* Address information table start here */
-
-//this method is for add the data in array first
 addressDetails_onRegister()
 {
-  this.addressDetails.push(this.addressDetailsFrom.value);
-  alert("Data Added successful!....");
-  console.log('Current Address',this.addressDetails);
-
-
+  this.data.addPaddress(this.addressDetailsFrom.value).subscribe((x:any)=>
+  {
+   //if(x.affectedValue==1)
+   //{
+    alert("Data Added successful!....");
+    this.addressDetails.push(this.addressDetailsFrom.value);
+    console.log('Current Address',JSON.stringify(this.addressDetails));
+  // }
+  //else(x.code=='ER_DUP_ENTRY')
+  //{
+    //alert("Duplicate");
+ // }
+  });
 }
 
-//this method is for same address on click of checkbox
+
 addressDetails_onclick()
   {
     this.flag1=true;
@@ -305,12 +322,22 @@ addressDetails_onclick()
   }
 
 
-//this method is for add the data in array second
+
 addressDetails_onRegister1()
   {
-    this.addressDetails_1.push(this.addressDetailsFrom.value);
-    alert("Data Added successfully!....");
-    console.log('Permanent Address',this.addressDetails_1);
+ this.data.addPaddress(this.addressDetailsFrom.value).subscribe((x:any)=>
+    {
+     // if(x.affectedValue==1)
+      //{
+      this.addressDetails_1.push(this.addressDetailsFrom.value);
+      alert("Data Added successfully!....");
+      console.log('Permanent Address',JSON.stringify(this.addressDetails_1));
+      //}
+    //else(x.code=='ER_DUP_ENTRY')
+    //{
+      //alert("Duplicate");
+    //}
+    });
   }
 
 
@@ -331,7 +358,6 @@ addressDetails_OnNextClick()
 
   addressDetails_OnPreviousClick()
   {
-
     this.flag3 =true;
     this.flag4 =false;
   }
@@ -339,123 +365,32 @@ addressDetails_OnNextClick()
 //update the values for same address details
 updateaddress(val:boolean){
 if(val){
-        this.addressDetails_address=this.addressDetailsFrom.get('addressDetails_address').value;
-        this.addressDetails_city=this.addressDetailsFrom.get('addressDetails_city').value;
-        this.addressDetails_state=this.addressDetailsFrom.get('addressDetails_state').value;
-        this.addressDetails_country=this.addressDetailsFrom.get('addressDetails_country').value;
-        this.addressDetails_district=this.addressDetailsFrom.get('addressDetails_district').value;
-        this.addressDetails_zip=this.addressDetailsFrom.get('addressDetails_zip').value;
-        this.addressDetails_phone2=this.addressDetailsFrom.get('addressDetails_phone2').value;
-        this.addressDetails_phone1=this.addressDetailsFrom.get('addressDetails_phone1').value;
-        this.addressDetails_mobile_fax=this.addressDetailsFrom.get('addressDetails_mobile_fax').value;
-        this.addressDetails_personal_email=this.addressDetailsFrom.get('addressDetails_personal_email').value
-
+        this.addressDetails_address1 = this.addressDetailsFrom.get('addressDetails_address').value;
+        this.addressDetails_city1 = this.addressDetailsFrom.get('addressDetails_city').value;
+        this.addressDetails_state1 = this.addressDetailsFrom.get('addressDetails_state').value;
+        this.addressDetails_country1 = this.addressDetailsFrom.get('addressDetails_country').value;
+        this.addressDetails_district1 = this.addressDetailsFrom.get('addressDetails_district').value;
+        this.addressDetails_zip1 = this.addressDetailsFrom.get('addressDetails_zip').value;
+        this.addressDetails_phone21 = this.addressDetailsFrom.get('addressDetails_phone2').value;
+        this.addressDetails_phone11 = this.addressDetailsFrom.get('addressDetails_phone1').value;
+        this.addressDetails_mobile_fax1 = this.addressDetailsFrom.get('addressDetails_mobile_fax').value;
+        this.addressDetails_personal_email1 = this.addressDetailsFrom.get('addressDetails_personal_email').value;
       }
    else{
-        this.addressDetails_address=null;
-        this.addressDetails_city=null;
-        this.addressDetails_state=null;
-        this.addressDetails_country=null;
-        this.addressDetails_district=null;
-        this.addressDetails_zip=null
-        this.addressDetails_phone2=null
-        this.addressDetails_phone1=null
-        this.addressDetails_mobile_fax=null
-        this.addressDetails_personal_email=null
+        this.addressDetails_address1 = null;
+        this.addressDetails_city1 = null;
+        this.addressDetails_state1 = null;
+        this.addressDetails_country1 = null;
+        this.addressDetails_district1 = null;
+        this.addressDetails_zip1 = null;
+        this.addressDetails_phone21 = null;
+        this.addressDetails_phone11 = null;
+        this.addressDetails_mobile_fax1 = null;
+        this.addressDetails_personal_email1 = null;
         }
-
 }
 
-/* Address information table end here */
 
-
-
-
-
-
-
-/* Personal details information table start here */
-
-  //this is for data Addition in array
-  personalDetails_onRegister(event: Event)
-  {
-    this.personalDetails.push(this.personalDetailsFrom.value);
-    alert("Data added successful!....");
-    console.log('Personal Details',this.personalDetails);
-  }
-
-//this method is disbled upto data is not present in array
-personalDetails_OnNextClick()
-      {
-      if( this.personalDetails.length ==0)
-        {
-          return true;
-        }
-      }
-
-
-personalDetails_OnNextClick1()
-      {
-        this.flag5=false;
-        this.flag6=true;
-      }
-
-personalDetails_OnPreviousClick()
-      {
-        this.flag4=true;
-        this.flag5=false;
-
-      }
-
-
-/* Personal details information table end here */
-
-
-
-
-
-
-    /* Bank details information start here */
-
- //to store data in array
- bankDetails_onRegister()
-    {
-      this.bankDetails.push(this.bankDetailsFrom.value);
-      console.log('Bank Details',this.bankDetails);
-      alert("Data added successful!....");
-      }
-
-
-    //this method is disbled upto data is not present in array
-    bankDetails_OnNextClick()
-    {
-     if( this.bankDetails.length ==0)
-     {
-       return true;
-     }
-    }
-
-
-  bankDetails_OnNextClick1()
-  {
-    this.flag6=false;
-    this.flag7=true;
-  }
-
-  bankDetails_OnPreviousClick()
-  {
-    this.flag5=true;
-    this.flag6=false;
-  }
-    /* Bank details information end here */
-
-
-
-
-
-
-
-    /* qualification details information end here */
 
     //this is for group of array in oninit method
   qualification_Group()
@@ -467,41 +402,51 @@ personalDetails_OnPreviousClick()
         qualification_passing_year: new FormControl (null,[Validators.required]),
         qualification_score: new FormControl (null,[Validators.required]),
         qualification_qualification_area: new FormControl (null,[Validators.required]),
-
       });
   }
-
 
   qualification_onclickFlag(){
     this.flag2 = !this.flag2;
   }
 
-//start here
-qualification_onAddDetail(): void
-      {
-        this.qualificationDetails.push(this.qualificationForm.value);
-        console.log('Qualification Details',this.qualificationDetails);
 
+qualification_onAddDetail(): void
+  {
+   this.counter=0;
+   this.res="";
+    this.qualificationDetails.push(this.qualificationForm.get('qualification_details').value);
+      alert("Data Added Successfully!...");
+      for(var i=0;i<=(this.qualificationForm.get('qualification_details').value).length-1;i++)
+      {
+        {
+          this.data.addquali(this.qualificationForm.get('qualification_details').get([this.counter]).value).subscribe((x)=>
+          {
+            console.log("success");
+          }
+          );}
+        this.res=this.qualificationForm.get('qualification_details').get([this.counter]).value;
+        this.counter++;
+        console.log('Qualification Details',this.counter,this.res);
       }
+  }
 
   get qualiArray()
   {
     return<FormArray>this.qualificationForm.get('qualification_details');
   }
 
-//add the qualicatin box
+
   addqualification()
   {
     this.qualiArray.push(this.qualification_Group());
   }
 
-//delete the item from Qualification table
   deletequalification(index)
   {
   this.qualiArray.removeAt(index);
   }
 
-  //for clear data
+
   qualification_myReset()
   {
   this.qualiArray.reset();
@@ -514,7 +459,6 @@ qualification_addang() {
 }
 
 
-//get details from Qualifications
 qualification_getang(form): Array<any> {
   return form.controls.qualification_details.controls;
 }
@@ -530,44 +474,37 @@ qualification_Duplicate(quali): boolean {
 }
 
 
-
-
-
-//this is for save button
 qualification_onSaveDetail(control: AbstractControl)
 {
    if (this.qualificationDetails.length == 0)
    {
      alert("Data is not Added...") ;
    }
-   alert("Data Added Successfully!...");
  }
 
 
-//this for hiding next button
+
 qualification_OnClickAdd()
  {
   if( this.qualificationDetails.length == 0 )
   {
     return true;
   }
-
  }
 
  qualification_OnClickAdd1()
  {
-  this.flag7=false;
-  this.flag8=true;
+  this.flag5=false;
+  this.flag6=true;
  }
 
  qualification_OnClickPrevious()
  {
-  this.flag6=true;
-  this.flag7=false;
+  this.flag4=true;
+  this.flag5=false;
  }
 
 
- /* Qualification details information end here */
 
 
 
@@ -575,7 +512,6 @@ qualification_OnClickAdd()
 
 
 
-    /* Employment details information start here */
 
 
 //this is for group of array in oninit method
@@ -583,16 +519,16 @@ employment_Group()
   {
     return this.ang.group
     ({
-      fromto: new FormGroup({
-        employment_fromDate: new  FormControl( null, [Validators.required ]),
-        employment_toDate: new  FormControl( null, [Validators.required ]),
-      },  [this.fromToDate('employment_fromDate', 'employment_toDate').bind(this)]
-      ),
+
+      employment_fromDate: new  FormControl( null, [Validators.required ]),
+      employment_toDate: new  FormControl( null, [Validators.required ]),
       employment_company: new  FormControl(null, [Validators.required]),
       employment_designation: new  FormControl(null, [Validators.required]),
       employment_relevant: new  FormControl(null, [Validators.required]),
       employment_nrelevant: new  FormControl(null, [Validators.required]),
-    });
+    },
+    [this.fromToDateValidation.bind(this)],
+    );
   }
 
 
@@ -621,7 +557,7 @@ employment_Group()
 
 Overlapping(fromDate): boolean {
   let myArray = this.employment_getang(this.employmentForm);
-  let test = myArray.filter(data => data.controls.fromto.get('employment_toDate').value >= fromDate && fromDate != null)
+  let test = myArray.filter(data => data.controls.employment_toDate.value >= fromDate && fromDate != null)
   if (test.length > 1) {
     return true;
   } else {
@@ -632,30 +568,49 @@ Overlapping(fromDate): boolean {
 
 employment_Duplicate(fromDate): boolean {
   let myArray = this.employment_getang(this.employmentForm);
-  let test = myArray.filter(data => data.controls.fromto.get('employment_fromDate').value == fromDate && fromDate != null)
+  let test = myArray.filter(data => data.controls.employment_fromDate.value == fromDate && fromDate != null)
   if (test.length > 1) {
     return true;
   } else {
-    return false
+    return false;
   }
 }
 
-fromToDateValidation(employment_toDate): boolean {
-  let myArray = this.employment_getang(this.employmentForm);
-  let test = myArray.filter(data => data.controls.fromto.get('employment_fromDate').value > employment_toDate && employment_toDate != null)
-     // the fromDate and toDate are numbers. In not convert them first after null check
-      if (test !== null ) {
-          return true;
+fromToDateValidation(control: AbstractControl):{ [key:string]:boolean}
+{
+      let myArray = this.employment_getang(this.employmentForm);
+      this.tes=myArray.filter(data => data.get('employment_fromDate').value);
+      this.les=myArray.filter(data => data.get('employment_toDate').value);
+      if ( this.tes>this.les)
+      {
+        return { lessDate:true};
       }
-      return false;
+      return null;
   };
+
+
 
 
 
 employment_onAddDetail(): void
   {
-    this.employmentDetails.push(this.employmentForm.value);
-    console.log('Employment Details', this.employmentDetails);
+    this.counter1=0
+    this.res1="";
+    for(var i=0;i<=(this.employmentForm.get('employment_details').value).length-1;i++)
+      {
+        {
+          this.data.addEmployment(this.employmentForm.get('employment_details').get([this.counter1]).value).subscribe((x)=>
+          {
+            console.log("success");
+            this.employmentDetails.push(this.employmentForm.get('employment_details').value);
+          }
+          );}
+        this.res1=this.employmentForm.get('employment_details').get([this.counter1]).value;
+        this.counter1++;
+        alert("Data Added Successfully!...");
+        console.log('Employment Details',this.counter1,this.res1);
+      }
+
   }
 
 
@@ -703,14 +658,18 @@ employment_myReset(index)
 
     employment_OnClickPrevious()
     {
-      this.flag7=true;
-      this.flag8=false;
+      this.flag5=true;
+      this.flag6=false;
+
     }
 
     employment_OnClickAdd1()
     {
-      this.flag8=false;
-      this.flag9=true;
+      this.flag6=false;
+      this.flag7=true;
+
+     // this.flag8=false;
+      //this.flag9=true;
     }
     /* Employment details information end here */
 
@@ -737,10 +696,23 @@ employment_myReset(index)
 
 //start here
 skill_onAddDetail(): void {
-  //this.skillDetails.push(this.skillDetailsFrom.value);
-  this.skillDetails.push(this.skillDetailsFrom.get('skillset_details').value);
-  console.log('Skill Set Data',this.skillDetails);
-  }
+
+  this.counter2=0;
+  this.res3="";
+    this.skillDetails.push(this.skillDetailsFrom.get('skillset_details').value);
+      alert("Data Added Successfully!...");
+     for(var i=0;i<=(this.skillDetailsFrom.get('skillset_details').value).length-1;i++)
+     {
+         this.data.addSkill(this.skillDetailsFrom.get('skillset_details').get([this.counter2]).value).subscribe((x)=>
+         {
+           console.log("success");
+           this.skillDetails.push(this.skillDetailsFrom.get('skillset_details').value);
+           this.counter2++;
+         });
+         this.res3=this.skillDetailsFrom.get('skillset_details').get([this.counter2]).value;
+         console.log('Skill Set Data',this.counter2,this.res3);
+     }
+}
 
 get skillsetArray()
 {
@@ -812,12 +784,18 @@ skill_OnClickAdd()
 
    skill_OnClickPrevious()
    {
-    this.flag9=false;
-    this.flag8=true;
+
+    this.flag6=true;
+    this.flag7=false;
+
+    //this.flag9=false;
+    //this.flag8=true;
    }
 
    skill_onSubmitDetail()
     {
+      this.flag7=false;
+      this.flag8=true;
       alert("Data is Added Successfully!...");
     }
 

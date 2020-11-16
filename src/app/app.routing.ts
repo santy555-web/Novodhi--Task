@@ -29,6 +29,7 @@ import { IndexpageComponent } from './indexpage/indexpage.component';
 import { LoginpagereactiveComponent } from "./loginpagereactive/loginpagereactive.component";
 import { AddtocartComponent } from "./addtocart/addtocart.component";
 import { FormTaskComponent } from "./form-task/form-task.component";
+import { TrialComponent } from "./trial/trial.component";
 import { ReactiveFromComponent } from "./reactive-from/reactive-from.component";
 import { LoginReactiveComponent } from "./login-reactive/login-reactive.component";
 import { Component } from '@angular/core';
@@ -67,6 +68,7 @@ const arr : Routes=[
 {path:'personaldetail',component: PersonaldetailComponent},
 {path:'addresstask',component: AddresstaskComponent},
 {path:'formtask',component: FormTaskComponent},
+{path:'trail',component: TrialComponent},
 {path: 'animation',component:AnimationComponent},
 {path:'registerpage',component:LoginpagereactiveComponent},
 {path:'reactive', component:LoginreactiveapprochComponent},

@@ -1,4 +1,3 @@
-
 <div class="container">
 
   <div *ngIf="flag3">
@@ -153,6 +152,7 @@
   </div>
   <div>&nbsp;</div>
   <div>&nbsp;</div><div>&nbsp;</div>
+
   <h3 align="center">Personal Details </h3><br>
 
   <div class="form-row">
@@ -316,39 +316,6 @@
     </div>
   </div>
 
-  <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
-  <div class="form-group col-md-12">
-      <button type="submit"  class="btn btn-primary" [disabled]="BasicinfoFrom.invalid" >Save</button>&nbsp;&nbsp;
-      <button class="btn btn-primary"  (click)="basicinfo_OnNextClick1()" >next</button>
-  </div>
-</form>
-</div>
-<!--////////////////// end here Basic information Details //////////////////-->
-
-
-
-  <!--////////////////// Personal Details Start here //////////////////-->
-
-  <!--////////////////// Personal details end here //////////////////-->
-
-
-
-
-
-  <!--////////////////// Bank details start here //////////////////-->
-
-  <!--////////////////// Bank details end here //////////////////-->
-
-
-
-
-
-
-<!--////////////////// start here Address Details //////////////////-->
-
-<div *ngIf="flag4">
-
-<form [formGroup]="addressDetailsFrom" (ngSubmit)="addressDetails_onRegister()" >
   <div>&nbsp;</div>
   <h3 align="center">Current Address Details </h3><br>
 
@@ -356,7 +323,7 @@
     <div class="form-group col-md-12 ">
       <label for="inputAddress2">Current Address<span class="lblError">*</span></label>
       <input type="text" class="form-control" formControlName="addressDetails_address" placeholder="Apartment, studio, or floor">
-      <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_address').hasError('required') && !addressDetailsFrom.get('addressDetails_address').pristine">Address is Required!...</p>
+      <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_address').hasError('required') && !BasicinfoFrom.get('addressDetails_address').pristine">Address is Required!...</p>
     </div>
   </div>
 
@@ -364,7 +331,7 @@
     <div class="form-group col-md-4">
       <label for="inputCity" >City<span class="lblError">*</span></label>
       <input type="text" appAlphabets formControlName="addressDetails_city" class="form-control" placeholder="City">
-      <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_city').hasError('required') && !addressDetailsFrom.get('addressDetails_city').pristine">City is Required!...</p>
+      <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_city').hasError('required') && !BasicinfoFrom.get('addressDetails_city').pristine">City is Required!...</p>
     </div>
 
     <div class="form-group col-md-4">
@@ -404,12 +371,12 @@
       <div class="form-group col-md-4">
         <label for="inputZip">Zip</label>
         <input type="text" appNumbersOnly formControlName="addressDetails_zip" class="form-control" placeholder="Enter zip code">
-        <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_zip').hasError('pattern') && !addressDetailsFrom.get('addressDetails_zip').pristine">Invalid zip code!...</p>
+        <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_zip').hasError('pattern') && !BasicinfoFrom.get('addressDetails_zip').pristine">Invalid zip code!...</p>
       </div>
       <div class="form-group col-md-4">
         <label for="inputMobile"> Phone No 1</label>
         <input type="text" appNumbersOnly formControlName="addressDetails_phone1" class="form-control" placeholder="Phone Number 1">
-        <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_phone1').hasError('pattern') && !addressDetailsFrom.get('addressDetails_phone1').pristine">Invalid Mobile Number!...</p>
+        <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_phone1').hasError('pattern') && !BasicinfoFrom.get('addressDetails_phone1').pristine">Invalid Mobile Number!...</p>
       </div>
     </div>
 
@@ -418,7 +385,7 @@
     <div class="form-group col-md-4">
       <label for="inputMobile"> Phone No 2</label>
       <input type="text" appNumbersOnly formControlName="addressDetails_phone2" class="form-control" placeholder="Phone Number 2">
-      <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_phone2').hasError('pattern') && !addressDetailsFrom.get('addressDetails_phone2').pristine">Invalid Mobile Number!...</p>
+      <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_phone2').hasError('pattern') && !BasicinfoFrom.get('addressDetails_phone2').pristine">Invalid Mobile Number!...</p>
     </div>
 
     <div class="form-group col-md-4">
@@ -430,7 +397,7 @@
     <div class="form-group col-md-4">
       <label for="inputEmail4">Personal Email</label>
       <input type="email" formControlName="addressDetails_personal_email" class="form-control" placeholder=" Personal Email">
-      <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_personal_email').hasError('email') && !addressDetailsFrom.get('addressDetails_personal_email').pristine">Invalid Email!...</p>
+      <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_personal_email').hasError('email') && !BasicinfoFrom.get('addressDetails_personal_email').pristine">Invalid Email!...</p>
     </div>
     <div class="form-group col-md-4">
       <input type="checkbox" formControlName="addressDetails_same_address" (click)="addressDetails_onclick()">&nbsp;<label>Same as Present Address<span class="lblError">*</span></label>
@@ -438,227 +405,169 @@
 
   </div>
 
-  <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
-  <p><span class="lblError">* Checkbox is Required</span></p>
-  <div class="form-group col-md-12">
-    <!--<button type="submit" class="btn btn-primary" [disabled]="addressDetailsFrom.invalid" >Save</button>&nbsp;&nbsp;
-    --> </div>
 
+  <div *ngIf="flag1">
 
-<!--////////////////// current address end here //////////////////-->
+    <h3 align="center">Permanent Address Details </h3><br>
 
-
-
-
-<!--////////////////// Permanent Address start here //////////////////-->
-
-<div *ngIf="flag1">
-
-<h3 align="center">Permanent Address Details </h3><br>
-
-<div class="form-row">
-  <div class="form-group col-md-12 ">
-    <label for="inputAddress2">Permanent Address<span class="lblError">*</span></label>
-    <input type="text" class="form-control" formControlName="addressDetails_address1" value={{addressDetails_address1}} [readonly]="isReadonly" placeholder="Apartment, studio, or floor">
-    <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_address1').hasError('required') && !addressDetailsFrom.get('addressDetails_address1').pristine">Address is Required!...</p>
-  </div>
-</div>
-
-<div class="form-row">
-  <div class="form-group col-md-4">
-    <label for="inputCity" >City<span class="lblError">*</span></label>
-    <input type="text" appAlphabets formControlName="addressDetails_city1" value={{addressDetails_city1}} [readonly]="isReadonly" class="form-control" placeholder="City">
-    <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_city1').hasError('required') && !addressDetailsFrom.get('addressDetails_city1').pristine">City is Required!...</p>
-  </div>
-
-  <div class="form-group col-md-4">
-    <label for="inputState">State</label>
-    <select formControlName="addressDetails_state1" value={{addressDetails_state1}} class="form-control" >
-      <option value="" disabled>Choose...</option>
-      <option value="maharashtra" >Maharashtra</option>
-      <option value="andhra pradesh">Andhra Pradesh</option>
-    </select>
-  </div>
-
-  <div class="form-group col-md-4">
-    <label for="inputCountry">Country</label>
-    <select formControlName="addressDetails_country1" value={{addressDetails_country1}} class="form-control">
-      <option value="" disabled>Choose...</option>
-      <option value="india">India</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
-    </select>
-  </div>
-
-  </div>
-
-
-  <div class="form-row">
-
-
-    <div class="form-group col-md-4">
-      <label for="inputDistrict">District</label>
-      <select formControlName="addressDetails_district1" value={{addressDetails_district1}} class="form-control">
-        <option value="" disabled>Choose...</option>
-        <option value="aurangabad">Aurangabad</option>
-        <option value="pune">Pune</option>
-        <option value="new_muumbai">New Mumbai</option>
-        <option value="amravati">Amaravati</option>
-      </select>
+    <div class="form-row">
+      <div class="form-group col-md-12 ">
+        <label for="inputAddress2">Permanent Address<span class="lblError">*</span></label>
+        <input type="text" class="form-control" formControlName="addressDetails_address" value={{addressDetails_address1}} [readonly]="isReadonly" placeholder="Apartment, studio, or floor">
+        <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_address').hasError('required') && !BasicinfoFrom.get('addressDetails_address').pristine">Address is Required!...</p>
+      </div>
     </div>
 
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputCity" >City<span class="lblError">*</span></label>
+        <input type="text" appAlphabets formControlName="addressDetails_city" value={{addressDetails_city1}} [readonly]="isReadonly" class="form-control" placeholder="City">
+        <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_city').hasError('required') && !BasicinfoFrom.get('addressDetails_city').pristine">City is Required!...</p>
+      </div>
 
-    <div class="form-group col-md-4">
-      <label for="inputZip">Zip</label>
-      <input type="text" appNumbersOnly value={{addressDetails_zip1}} formControlName="addressDetails_zip1" [readonly]="isReadonly" class="form-control" placeholder="Enter zip code">
-      <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_zip1').hasError('pattern') && !addressDetailsFrom.get('addressDetails_zip1').pristine">Invalid zip code!...</p>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputMobile"> Phone No 1</label>
-      <input type="text" appNumbersOnly value={{addressDetails_phone11}} formControlName="addressDetails_phone11"[readonly]="isReadonly" class="form-control" placeholder="Phone Number 1">
-      <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_phone11').hasError('pattern') && !addressDetailsFrom.get('addressDetails_phone11').pristine">Invalid Mobile Number!...</p>
-    </div>
-  </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <select formControlName="addressDetails_state" value={{addressDetails_state1}} class="form-control" >
+          <option value="" disabled>Choose...</option>
+          <option value="maharashtra" >Maharashtra</option>
+          <option value="andhra pradesh">Andhra Pradesh</option>
+        </select>
+      </div>
 
-  <div class="form-row">
-
-  <div class="form-group col-md-4">
-    <label for="inputMobile"> Phone No 2</label>
-    <input type="text" appNumbersOnly value={{addressDetails_phone21}} formControlName="addressDetails_phone21" [readonly]="isReadonly"class="form-control" placeholder="Phone Number 2">
-    <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_phone21').hasError('pattern') && !addressDetailsFrom.get('addressDetails_phone21').pristine">Invalid Mobile Number!...</p>
-  </div>
-
-  <div class="form-group col-md-4">
-    <label for="inputMobile">Fax/Mobile No</label>
-    <input type="text" appNumbersOnly value={{addressDetails_mobile_fax1}} formControlName="addressDetails_mobile_fax1" [readonly]="isReadonly" class="form-control" placeholder="Fax Or Mobile Number">
-  </div>
-
-  <div class="form-group col-md-4">
-    <label for="inputEmail4">Personal Email</label>
-      <input type="email" formControlName="addressDetails_personal_email1" value={{addressDetails_personal_email1}} [readonly]="isReadonly" class="form-control" placeholder=" Personal Email">
-      <p class="lblError" *ngIf="addressDetailsFrom.get('addressDetails_personal_email1').hasError('email') && !addressDetailsFrom.get('addressDetails_personal_email1').pristine">Invalid Email!...</p>
-  </div>
-
-</div>
-
-<p><span class="lblError">* Indicates the Field are Mandatory</span></p>
-<div class="form-group col-md-12">
-  <button type="button" class="btn btn-primary" (click)="addressDetails_OnPreviousClick()" >Previous</button>&nbsp;&nbsp;
-  <button type="submit"  class="btn btn-primary">Save</button>&nbsp;&nbsp;
-  <button class="btn btn-primary" (click)="addressDetails_OnNextClick1()" >next</button>
-</div>
-
-</div>
-</form>
-</div>
-<!--////////////////// Address details end here //////////////////-->
-
-
-
-
-
-
-
-
-<!--////////////////// Qualification details start here //////////////////-->
-
-<div *ngIf="flag5">
-<h3 align="center">Qualification</h3>
-
-<form [formGroup]="qualificationForm" (ngSubmit)="qualification_onAddDetail()">
- &nbsp;<button type="button" class="btn btn-success"  (click)="addqualification()" >Add +</button><div><br></div>
-      <div formArrayName="qualification_details" ><div><br></div>
-        <div *ngFor="let item of qualiArray.controls; let i=index;" [formGroupName]="i" >
-              <div class="row">
-                  <div class="col-xs-6 col-md-2"  >
-                    <label>Qualifictaion<span class="lblError">*</span></label><br>
-                    <input type="text"class="form-control" formControlName="qualification_qualification" placeholder="Enter Qualification">
-                    <p class="lblError"*ngIf="item.get('qualification_qualification').hasError('required') && !item.get('qualification_qualification').pristine">Qualification is required!...</p>
-                    <p class="lblError" *ngIf="qualification_Duplicate(item.get('qualification_qualification').value, i) && i > 0">Repetition not Allowed!...</p>
-                  </div>
-
-                  <div class="col-xs-6 col-md-3 ">
-                      <label>Institute<span class="lblError">*</span></label>
-                      <input type="text" class="form-control" formControlName="qualification_institute" placeholder="Institute name">
-                      <p class="lblError"*ngIf="item.get('qualification_institute').hasError('required') && !item.get('qualification_institute').pristine ">Institute is required!...</p>
-                  </div>
-                  <div class="col-xs-6 col-md-2">
-                    <label>Passing Year<span class="lblError">*</span></label>
-                    <input type="month" class="form-control" formControlName="qualification_passing_year"   placeholder="Passing Year">
-                    <p class="lblError"*ngIf="item.get('qualification_passing_year').hasError('required') && !item.get('qualification_passing_year').pristine ">Passing Year is required!...</p>
-                  </div>
-
-                  <div class="col-xs-6 col-md-1">
-                    <label>Score<span class="lblError">*</span></label>
-                    <input type="text" class="form-control" formControlName="qualification_score"  placeholder="Score">
-                    <p class="lblError"*ngIf="item.get('qualification_score').hasError('required') && !item.get('qualification_score').pristine ">Score is required!...</p>
-                  </div>
-
-                  <div class="col-xs-6 col-md-2">
-                    <label>Qualification Area<span class="lblError">*</span></label>
-                    <input type="text" class="form-control" formControlName="qualification_qualification_area" placeholder="Qualification Area">
-                    <p class="lblError"*ngIf="item.get('qualification_qualification_area').hasError('required') && !item.get('qualification_qualification_area').pristine ">Qualifictaion Area is required!...</p>
-                  </div>
-
-                  <div class="col-xs-6 col-md-2">
-                    <label>&nbsp;&nbsp;&nbsp;Actions</label><br>
-                      <button type="button"class="btn btn-danger"(click)="deletequalification(i)" ><i class="fa fa-trash-o"></i></button>
-                        &nbsp;&nbsp;<button  (click)="qualification_myReset(i)"  class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                  </div>
-              </div><div><br></div>
-        </div>
+      <div class="form-group col-md-4">
+        <label for="inputCountry">Country</label>
+        <select formControlName="addressDetails_country" value={{addressDetails_country1}} class="form-control">
+          <option value="" disabled>Choose...</option>
+          <option value="india">India</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
 
       </div>
 
-          <div><br></div><p><span class="lblError">* Indicates the Field are Mandatory</span></p><div><br></div>
+
+      <div class="form-row">
 
 
-          <button class="btn btn-primary" (click)="qualification_OnClickPrevious()" >Previous</button>&nbsp;&nbsp;
-          <button type="submit" class="btn btn-primary" [disabled]="qualificationForm.invalid" >Save</button>&nbsp;&nbsp;
-          <button class="btn btn-primary"  (click)="qualification_OnClickAdd1()" >next</button>
-          <div><br></div>
-        </form>
+        <div class="form-group col-md-4">
+          <label for="inputDistrict">District</label>
+          <select formControlName="addressDetails_district" value={{addressDetails_district1}} class="form-control">
+            <option value="" disabled>Choose...</option>
+            <option value="aurangabad">Aurangabad</option>
+            <option value="pune">Pune</option>
+            <option value="new_muumbai">New Mumbai</option>
+            <option value="amravati">Amaravati</option>
+          </select>
+        </div>
+
+
+        <div class="form-group col-md-4">
+          <label for="inputZip">Zip</label>
+          <input type="text" appNumbersOnly value={{addressDetails_zip1}} formControlName="addressDetails_zip" [readonly]="isReadonly" class="form-control" placeholder="Enter zip code">
+          <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_zip').hasError('pattern') && !BasicinfoFrom.get('addressDetails_zip').pristine">Invalid zip code!...</p>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputMobile"> Phone No 1</label>
+          <input type="text" appNumbersOnly value={{addressDetails_phone11}} formControlName="addressDetails_phone1"[readonly]="isReadonly" class="form-control" placeholder="Phone Number 1">
+          <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_phone1').hasError('pattern') && !BasicinfoFrom.get('addressDetails_phone1').pristine">Invalid Mobile Number!...</p>
+        </div>
+      </div>
+
+      <div class="form-row">
+
+      <div class="form-group col-md-4">
+        <label for="inputMobile"> Phone No 2</label>
+        <input type="text" appNumbersOnly value={{addressDetails_phone21}} formControlName="addressDetails_phone2"[readonly]="isReadonly"class="form-control" placeholder="Phone Number 2">
+        <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_phone2').hasError('pattern') && !BasicinfoFrom.get('addressDetails_phone2').pristine">Invalid Mobile Number!...</p>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputMobile">Fax/Mobile No</label>
+        <input type="text" appNumbersOnly value={{addressDetails_mobile_fax1}} formControlName="addressDetails_mobile_fax" [readonly]="isReadonly" class="form-control" placeholder="Fax Or Mobile Number">
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">Personal Email</label>
+          <input type="email" formControlName="addressDetails_personal_email" value={{addressDetails_personal_email1}} [readonly]="isReadonly" class="form-control" placeholder=" Personal Email">
+          <p class="lblError" *ngIf="BasicinfoFrom.get('addressDetails_personal_email').hasError('email') && !BasicinfoFrom.get('addressDetails_personal_email').pristine">Invalid Email!...</p>
+      </div>
+
+    </div>
 </div>
-<!--////////////////// Qualification details end here //////////////////-->
 
+<h3 align="center">Qualification Details </h3>
 
+&nbsp;<button type="button" class="btn btn-success"  (click)="addqualification()" >Add +</button><div><br></div>
+  <div formArrayName="qualification_details" ><div><br></div>
+    <div *ngFor="let item of qualiArray.controls; let i=index;" [formGroupName]="i" >
+        <div class="row">
+            <div class="col-xs-6 col-md-2"  >
+              <label>Qualifictaion<span class="lblError">*</span></label><br>
+              <input type="text"class="form-control" formControlName="qualification_qualification" placeholder="Enter Qualification">
+              <p class="lblError"*ngIf="item.get('qualification_qualification').hasError('required') && !item.get('qualification_qualification').pristine">Qualification is required!...</p>
+              <p class="lblError" *ngIf="qualification_Duplicate(item.get('qualification_qualification').value, i) && i > 0">Repetition not Allowed!...</p>
+            </div>
 
+            <div class="col-xs-6 col-md-3 ">
+                <label>Institute<span class="lblError">*</span></label>
+                <input type="text" class="form-control" formControlName="qualification_institute" placeholder="Institute name">
+                <p class="lblError"*ngIf="item.get('qualification_institute').hasError('required') && !item.get('qualification_institute').pristine ">Institute is required!...</p>
+            </div>
+            <div class="col-xs-6 col-md-2">
+              <label>Passing Year<span class="lblError">*</span></label>
+              <input type="month" class="form-control" formControlName="qualification_passing_year"   placeholder="Passing Year">
+              <p class="lblError"*ngIf="item.get('qualification_passing_year').hasError('required') && !item.get('qualification_passing_year').pristine ">Passing Year is required!...</p>
+            </div>
 
+            <div class="col-xs-6 col-md-1">
+              <label>Score<span class="lblError">*</span></label>
+              <input type="text" class="form-control" formControlName="qualification_score"  placeholder="Score">
+              <p class="lblError"*ngIf="item.get('qualification_score').hasError('required') && !item.get('qualification_score').pristine ">Score is required!...</p>
+            </div>
 
+            <div class="col-xs-6 col-md-2">
+              <label>Qualification Area<span class="lblError">*</span></label>
+              <input type="text" class="form-control" formControlName="qualification_qualification_area" placeholder="Qualification Area">
+              <p class="lblError"*ngIf="item.get('qualification_qualification_area').hasError('required') && !item.get('qualification_qualification_area').pristine ">Qualifictaion Area is required!...</p>
+            </div>
 
-<!-- //////////////////Employment details start here//////////////////-->
+            <div class="col-xs-6 col-md-2">
+              <label>&nbsp;&nbsp;&nbsp;Actions</label><br>
+                <button type="button"class="btn btn-danger"(click)="deletequalification(i)" ><i class="fa fa-trash-o"></i></button>
+                  &nbsp;&nbsp;<button  (click)="qualification_myReset(i)"  class="btn btn-primary"><i class="fa fa-edit"></i></button>
+            </div>
+        </div><div><br></div>
+    </div>
+  </div>
 
-<div *ngIf="flag6">
-<h3 align="center">Previous Employment</h3>
-
-    <form [formGroup]="employmentForm" (ngSubmit)="employment_onAddDetail()" >
-
+  <h3 align="center">Previous Employment</h3>
      &nbsp;&nbsp; <button type="button" class="btn btn-success" (click)="addemployment()" >Add +</button>&nbsp;&nbsp;
       <div formArrayName="employment_details" ><div><br></div>
      <div *ngFor="let item of EmployeeArray.controls; let i=index;" [formGroupName]="i" >
 
-
       <div class="form-row">
         <div>&nbsp;&nbsp;</div>
-
+    <div formGroupName="fromto">
       <div class="col-xs-6 col-md-2">
 
         <label>From Date<span class="lblError">*</span></label>
         <input type="date" class="form-control" formControlName="employment_fromDate" placeholder="Enter From Date">
-        <p class="lblError"*ngIf="item.get('employment_fromDate').hasError('required') && !item.get('employment_fromDate').pristine ">From Date is required!...</p>
-        <p class="lblError" *ngIf="Overlapping(item.get('employment_fromDate').value, i) && i > 0">Overlapping not Allowed!...</p>
-        <p class="lblError" *ngIf="employment_Duplicate(item.get('employment_fromDate').value, i) && i > 0">Duplicate not Allowed!...</p>
+        <p class="lblError"*ngIf="item.get('fromto').get('employment_fromDate').hasError('required') && !item.get('fromto').get('employment_fromDate').pristine ">From Date is required!...</p>
+        <p class="lblError" *ngIf="Overlapping(item.get('fromto').get('employment_fromDate').value, i) && i > 0">Overlapping not Allowed!...</p>
+        <p class="lblError" *ngIf="employment_Duplicate(item.get('fromto').get('employment_fromDate').value, i) && i > 0">Duplicate not Allowed!...</p>
       </div>
 
       <div class="col-xs-6 col-md-2 ">
         <label>To Date<span class="lblError">*</span></label><br>
         <input type="date" class="form-control" formControlName="employment_toDate"  placeholder="To Date name">
-        <p class="lblError"*ngIf="item.get('employment_toDate').hasError('required') && !item.get('employment_toDate').pristine ">To Date is required!...</p>
-        <p class="lblError"*ngIf="fromToDateValidation(item.get('employment_fromDate') && item.get('employment_toDate') ) && !item.pristine ">From Date should be less than To Date!...</p>
-        <!-- <p class="lblError" *ngIf="fromToDate(item.get('fromto').get('fromDate').value && item.get('fromto').get('toDate').value, i) && i > 0">Invalid Date!...</p> -->
+        <p class="lblError"*ngIf="item.get('fromto').get('employment_toDate').hasError('required') && !item.get('fromto').get('employment_toDate').pristine ">To Date is required!...</p>
+        <p class="lblError"*ngIf="item.get('fromto').hasError('dates') && !item.get('fromto').pristine ">From Date should be less than To Date!...</p>
+
       </div>
 
 
+    </div>
       <div  class="col-xs-6 col-md-2">
         <label>Company<span class="lblError">*</span></label>
         <input type="text" class="form-control"  formControlName="employment_company" placeholder="Company Name">
@@ -695,33 +604,12 @@
     </div>
   </div>
 
-    <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
 
-    <div class="form-group col-md-12">
-      <button class="btn btn-primary" (click)="employment_OnClickPrevious()" >Previous</button>&nbsp;&nbsp;
-      <button type="submit"  class="btn btn-primary" [disabled]="employmentForm.invalid">Save</button>&nbsp;&nbsp;
-      <button class="btn btn-primary" (click)="employment_OnClickAdd1()">next</button>
-    </div>
-  </form>
-</div>
-<!--////////////////// Employment details end here //////////////////-->
-
-
-
-
-
-
-
-<!--////////////////// Skill details start here //////////////////-->
-<div *ngIf="flag7">
-<h3 align="center">Skill Set</h3>
-
-<form [formGroup]="skillDetailsFrom" (ngSubmit)="skill_onAddDetail()" >
+  <h3 align="center">Skill Set</h3>
 
  &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-success" (click)="addskillset()" >Add +</button>&nbsp;&nbsp;
   <div formArrayName="skillset_details" ><div><br></div>
  <div *ngFor="let item of skillsetArray.controls; let i=index;" [formGroupName]="i" >
-
 
   <div class="form-row">
     <div>&nbsp;&nbsp;</div>
@@ -729,7 +617,6 @@
     <label>Skill Category</label>
     <input type="text" class="form-control" formControlName="skill_category" placeholder="Enter Skill Category ">
   </div>
-
 
   <div class="col-md-2">
     <label>Skill </label>
@@ -747,8 +634,6 @@
     </select>
   </div>
 
-
-
   <div class="col-md-1">
     <label for="inputState">Current?</label>
     <select  formControlName="iscurrent" class="form-control" >
@@ -757,7 +642,6 @@
       <option value="no">No</option>
     </select>
   </div>
-
 
   <div class="col-md-2">
     <label>Experience</label>
@@ -771,7 +655,6 @@
 
   </div>
 
-
   <label>&nbsp;&nbsp;&nbsp;Actions</label><br>
   <button type="button"class="btn btn-danger"(click)="deleteskillset(i)" ><i class="fa fa-trash-o"></i></button>
   &nbsp;<button  (click)="myReset(i)"  class="btn btn-primary"><i class="fa fa-edit"></i></button>
@@ -781,353 +664,10 @@
 </div>
 
 
-<p><span class="lblError">* Indicates the Field are Mandatory</span></p>
-<div class="form-group col-md-12">
-  <button class="btn btn-primary" (click)="skill_OnClickPrevious()" >Previous</button>&nbsp;&nbsp;
-  <button type="submit" class="btn btn-primary" [disabled]="skillDetailsFrom.invalid">Save</button>&nbsp;&nbsp;
-</div>
+  <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
+  <div class="form-group col-md-12">
+      <button type="submit"  class="btn btn-primary" >Submit</button>&nbsp;&nbsp;
+      <button class="btn btn-primary" [disabled]="BasicinfoFrom.invalid" (click)="basicinfo_OnNextClick1()" >next</button>
+  </div>
 </form>
-&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" (click)="skill_onSubmitDetail()">Submit All</button>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
 </div>
-
-
-<!--////////////////// Skill details end here //////////////////-->
-
-
-<div *ngIf="flag8">
-
-<div class="container">
-
-    <h1 align="center">Form</h1>
-    <h3 style="color: dodgerblue">Basic Information</h3>
-
-  <table *ngFor="let item of basicinfo let i=index">
-       <tr>
-         <td>Employee Number</td>
-         <td>{{item.basicinfo_employee_number}}</td>
-          <td>Employee Title</td>
-          <td>{{item.basicinfo_employee_title}}</td>
-      </tr>
-
-      <tr><th>Employee Name</th><td>{{item.basicinfo_employee_name}}</td>
-          <th>Employee Address</th><td>{{item.basicinfo_employee_address}}</td>
-        </tr>
-
-           <tr>
-            <th>First Name</th>
-            <td>{{item.basicinfo_firstname}}</td>
-            <th>Middle Name</th>
-            <td>{{item.basicinfo_middlename}}</td>
-          </tr>
-
-          <tr>
-              <th>Last Name</th>
-              <td>{{item.basicinfo_lastname}}</td>
-              <th>Initial</th>
-              <td>{{item.basicinfo_initial}}</td>
-            </tr>
-
-            <tr>
-              <td>Gender</td>
-              <td>{{item.basicinfo_gender}}</td>
-              <td>Date of Birth</td>
-              <td>{{item.basicinfo_dob |date:'longDate'}}</td>
-            </tr>
-
-            <tr>
-              <td>Age</td>
-              <td>{{item.basicinfo_age}}</td>
-              <td>Official Phone No</td>
-              <td>{{item.basicinfo_official_phone}}</td>
-            </tr>
-            <tr>
-              <td>Mobile Number</td>
-              <td>{{item.basicinfo_mobile}}</td>
-              <td>FAX</td>
-              <td>{{item.basicinfo_fax}}</td>
-            </tr>
-            <tr>
-              <td>Official Email</td>
-              <td>{{item.basicinfo_official_email}}</td>
-              <td>Personal Email </td>
-              <td>{{item.basicinfo_personal_email}}</td>
-            </tr>
-            <tr>
-              <td>Personal Email 2</td>
-              <td>{{item.basicinfo_personal2_email}}</td>
-              <td>Personal Email 3</td>
-              <td>{{item.basicinfo_personal3_email}}</td>
-            </tr>
-            <tr>
-              <td>Image</td>
-              <td class="img-box"><img [src]= 'item.basicinfo_file' alt="image" /></td>
-            </tr>
-
-
-              <div><br></div>
-                    <h3 style="color: dodgerblue;" >Personal Details</h3>
-
-            <tr>
-              <td>Birth Place</td>
-              <td>{{item.personalDetails_birthplace}}</td>
-              <td>Religion</td>
-              <td>{{item.personalDetails_religion}}</td>
-            </tr>
-
-            <tr>
-              <td>Caste</td>
-              <td>{{item.personalDetails_caste}}</td>
-              <td>Domicile</td>
-              <td>{{item.personalDetails_domicile}}</td>
-            </tr>
-            <tr>
-              <td>Nationality</td>
-              <td>{{item.personalDetails_nationality}}</td>
-              <td>Voter Id</td>
-              <td>{{item.personalDetails_voterid}}</td>
-            </tr>
-
-            <tr>
-              <td>Pan Id</td>
-              <td>{{item.personalDetails_pan}}</td>
-              <td>Aadhaar Id</td>
-              <td>{{item.personalDetails_aadhaar}}</td>
-            </tr>
-            <tr>
-              <td>Marriage Status</td>
-              <td>{{item.personalDetails_marriage_status}}</td>
-              <td>No of Children</td>
-              <td>{{item.personalDetails_no_children}}</td>
-            </tr>
-
-            <tr>
-              <td>Marriage Date</td>
-              <td>{{item.personalDetails_marriage_date|date:'longDate'}}</td>
-              <td>Spouse Name</td>
-              <td>{{item.personalDetails_spouse_name}}</td>
-            </tr>
-
-
-
-            <div><br></div><h3 style="color: dodgerblue;">Bank Details</h3>
-
-            <tr>
-              <td>Bank Name</td>
-              <td>{{item.bankDetails_bank_name}}</td>
-              <td>Account Type</td>
-              <td>{{item.bankDetails_account_type}}</td>
-            </tr>
-            <tr>
-              <td>Account No</td>
-              <td>{{item.bankDetails_account_number}}</td>
-              <td>Payment Type</td>
-              <td>{{item.bankDetails_peyment_type}}</td>
-            </tr>
-            <tr>
-              <td>Branch Detail</td>
-              <td>{{item.bankDetails_branch_detail}}</td>
-              <td>IFSC Code</td>
-              <td>{{item.bankDetails_ifsc}}</td>
-            </tr>
-            <tr>
-              <td>Reimbursement Name</td>
-              <td>{{item.bankDetails_reimbursement_name}}</td>
-              <td>Reimbursement Number</td>
-              <td>{{item.bankDetails_reimbursement_number}}</td>
-            </tr>
-  </table>
-</div>
-
-
-
-<div><br></div>
-
-
-<div class="container">
-<h3 style="color: dodgerblue">Permanent Details</h3>
-
-  <table *ngFor="let item of addressDetails_1; let i=index">
-       <tr>
-         <td>Permanent Address</td>
-         <td>{{item.addressDetails_address}}</td>
-          <td>City</td>
-          <td>{{item.addressDetails_city}}</td>
-      </tr>
-      <tr>
-        <td>State</td>
-        <td>{{item.addressDetails_state}}</td>
-        <td>Country</td>
-        <td>{{item.addressDetails_country}}</td>
-      </tr>
-
-      <tr>
-        <td>District</td>
-        <td>{{item.addressDetails_district}}</td>
-        <td>ZIP Code</td>
-        <td>{{item.addressDetails_zip}}</td>
-      </tr>
-
-      <tr>
-        <td>Mobile No 1</td>
-        <td>{{item.addressDetails_phone1}}</td>
-        <td>Mobile No 2</td>
-        <td>{{item.addressDetails_phone2}}</td>
-      </tr>
-      <tr>
-        <td>Mobile/FAX</td>
-        <td>{{item.addressDetails_mobile_fax}}</td>
-        <td>Personal Email</td>
-        <td>{{item.addressDetails_personal_email}}</td>
-      </tr>
-
-      <div><br></div>
-      <h3 style="color: dodgerblue">Current Details</h3>
-
-      <tr>
-        <td>Current Address</td>
-        <td>{{item.addressDetails_address}}</td>
-        <td>City</td>
-        <td>{{item.addressDetails_city}}</td>
-      </tr>
-
-      <tr>
-        <td>State</td>
-        <td>{{item.addressDetails_state}}</td>
-        <td>Country</td>
-        <td>{{item.addressDetails_country}}</td>
-      </tr>
-
-      <tr>
-        <td>District</td>
-        <td>{{item.addressDetails_district}}</td>
-        <td>ZIP Code</td>
-        <td>{{item.addressDetails_zip}}</td>
-      </tr>
-      <tr>
-        <td>Mobile No 1</td>
-        <td>{{item.addressDetails_phone1}}</td>
-        <td>Mobile No 2</td>
-        <td>{{item.addressDetails_phone2}}</td>
-      </tr>
-      <tr>
-        <td>Mobile/FAX</td>
-        <td>{{item.addressDetails_mobile_fax}}</td>
-        <td>Personal Email</td>
-        <td>{{item.addressDetails_personal_email}}</td>
-      </tr>
-
-  </table>
-</div>
-
-
-
-
-    <div><br></div>
-
-    <div class="container">
-    <h3 style="color: dodgerblue">Qualification Details</h3>
-
-      <table>
-
-    <tr>
-      <th>Qualification</th>
-      <th>Institute</th>
-      <th>Passing Year</th>
-      <th>Score</th>
-      <th>Score</th>
-    </tr>
-
-    <tr *ngFor="let item of qualificationDetails; let i=index">
-      <td>{{item.qualification_qualification}}</td>
-      <td>{{item.qualification_institute}}</td>
-      <td>{{item.qualification_passing_year}}</td>
-      <td>{{item.qualification_score}}</td>
-      <td>{{item.qualification_qualification_area}}</td>
-    </tr>
-      </table>
-    </div>
-
-
-    <div><br></div>
-
-    <div class="container">
-    <h3 style="color: dodgerblue">Employment Details</h3>
-    <table >
-      <tr>
-        <th>From Date</th>
-        <th>To Date</th>
-        <th>Compony Name</th>
-        <th>Designation</th>
-        <th>Relevent</th>
-        <th>Non-Relevent</th>
-      </tr>
-
-      <tr *ngFor="let item of employmentDetails; let i=index">
-        <td>{{item.employment_fromDate|date:'longDate'}}</td>
-        <td>{{item.employment_toDate|date:'longDate'}}</td>
-        <td>{{item.employment_company}}</td>
-        <td>{{item.employment_designation}}</td>
-        <td>{{item.employment_relevant}}</td>
-        <td>{{item.employment_nrelevant}}</td>
-      </tr>
-
-    </table>
-  </div>
-
-
-
-
-  <div><br></div>
-
-  <div class="container">
-  <h3 style="color: dodgerblue">Skill Details</h3>
-  <table >
-  <tr>
-    <th>Skill Category</th>
-    <th>Skill</th>
-    <th>Skill Level</th>
-    <th>Is Current Working</th>
-    <th>Exprience</th>
-    <th>Remarks</th>
-  </tr>
-  <tr *ngFor="let item of skillDetails; let i=index">
-    <td>{{item.skill_category}}</td>
-    <td>{{item.skill}}</td>
-    <td>{{item.skill_level}}</td>
-    <td>{{item.iscurrent}}</td>
-    <td>{{item.experience}}</td>
-    <td>{{item.remarks}}</td>
-  </tr>
-  </table>
-</div>
-
-
-<div><br></div>
-<div><br></div>
-<div><br></div>
-
-
-<div class="container desc">
-  <div class="row centered">
-    <div class="col-lg-12">
-      <button type="submit" class="btn btn primary">Submit</button>
-    </div>
-  </div>
-</div>
-<div><br></div>
-<div><br></div>
-<div><br></div>
-<div><br></div>
-
-
-
-
-
-
-<!--container due end here-->
-
-
-
-
