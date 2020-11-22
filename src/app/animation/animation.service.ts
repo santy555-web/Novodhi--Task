@@ -7,7 +7,7 @@ import { BasicForm,employment,paddress,quali,skill} from "./basicform";
 export class AnimationService {
   url1:string= "http://localhost:3000/form/"
   url2:string= "http://localhost:3000/paddress/"
-  url3:string= "http://localhost:3000/saddress/"
+ // url3:string= "http://localhost:3000/saddress/"
   url4:string= "http://localhost:3000/qualification/"
   url5:string= "http://localhost:3000/employment/"
   url6:string= "http://localhost:3000/skill/"
@@ -40,7 +40,7 @@ export class AnimationService {
     {
       let head = new HttpHeaders().set('Content-Type','application/json');
       let body =JSON.stringify(items);
-      return this.data.put(this.url1+items.basicinfo_employee_number,body, {headers:head} );
+      return this.data.put(this.url1+items.id,body, {headers:head} );
     }
 
 
@@ -60,7 +60,6 @@ export class AnimationService {
       return this.data.post(this.url2, body, {headers:head}  );
     }
 
-
     deletePaddress(id)
     {
       let head = new HttpHeaders().set('Content-type','application/json');
@@ -71,38 +70,8 @@ export class AnimationService {
     {
       let head = new HttpHeaders().set('Content-type','application/json');
       let body =JSON.stringify(items);
-      return this.data.put(this.url2+items.addressDetails_address,body, {headers:head} );
+      return this.data.put(this.url2+items.id,body, {headers:head} );
     }
-
-    // getSaddress()
-    // {
-    //   return this.data.get<any>(this.url3);
-    // }
-    // getSaddressById(id)
-    // {
-    //   return this.data.get(this.url3+id);
-    // }
-
-    // addSaddress(items:saddress)
-    // {
-    //   let head = new HttpHeaders().set('Content-Type','application/json');
-    //   let body=JSON.stringify(items);
-    //   return this.data.post(this.url3, body, {headers:head}  );
-    // }
-
-
-    // deleteSaddress(id)
-    // {
-    //   let head = new HttpHeaders().set('Content-type','application/json');
-    //   return this.data.delete(this.url3+id, {headers:head} );
-    // }
-
-    // editSaddress(items:saddress)
-    // {
-    //   let head = new HttpHeaders().set('Content-type','application/json');
-    //   let body =JSON.stringify(items);
-    //   return this.data.put(this.url3+items.addressDetails_address,body, {headers:head} );
-    // }
 
     getQualification()
     {
@@ -127,11 +96,11 @@ export class AnimationService {
       return this.data.delete(this.url4+id, {headers:head} );
     }
 
-    editQualification(items:quali)
+    updateQualification(items:quali)
     {
       let head = new HttpHeaders().set('Content-type','application/json');
       let body =JSON.stringify(items);
-      return this.data.put(this.url4+items.qualification_qualification,body, {headers:head} );
+      return this.data.put(this.url4+items.qid,body, {headers:head} );
     }
 
     getEmployment()
@@ -157,11 +126,11 @@ export class AnimationService {
       return this.data.delete(this.url5+id, {headers:head} );
     }
 
-    editEmployment(items:employment)
+    updateEmployment(items:employment)
     {
       let head = new HttpHeaders().set('Content-type','application/json');
       let body =JSON.stringify(items);
-      return this.data.put(this.url5+items.employment_company,body, {headers:head} );
+      return this.data.put(this.url5+items.eid, body, {headers:head} );
     }
 
 
@@ -188,11 +157,11 @@ export class AnimationService {
       return this.data.delete(this.url6+id, {headers:head} );
     }
 
-    editSkill(items:skill)
+    updateSkill(items:skill)
     {
       let head = new HttpHeaders().set('Content-Type','application/json');
       let body =JSON.stringify(items);
-      return this.data.put(this.url4+items.skill,body, {headers:head} );
+      return this.data.put(this.url6+items.skid,body, {headers:head} );
     }
 
 }

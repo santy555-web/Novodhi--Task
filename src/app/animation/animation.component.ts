@@ -1,8 +1,6 @@
-import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, MinLengthValidator, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
-
 import { AnimationService } from "./animation.service";
 import { quali,skill,employment, BasicForm, paddress } from './basicform';
 @Component({
@@ -18,6 +16,10 @@ export class AnimationComponent implements OnInit {
   flag7 : boolean = false;
   flag8 : boolean = false;
   flag9 : boolean = false;
+  flag10 : boolean = false;
+  flag11 : boolean = false;
+
+
   counter:number;
   basicinfo: BasicForm []=[];
   basicinfo_age;
@@ -25,7 +27,7 @@ export class AnimationComponent implements OnInit {
   imagePath:String;
 
   addressDetails: paddress []=[];
-  addressDetails_1=[];
+
   isReadonly= false;
   flag1 : boolean = false;
   addressDetails_address1;
@@ -41,7 +43,7 @@ export class AnimationComponent implements OnInit {
   addressDetails_same_address1;
   addressDetailsFrom: FormGroup;
   addressDetailsFrom1: FormGroup;
-
+  res5;
 
 
   personalDetails: any [] = [];
@@ -182,8 +184,10 @@ export class AnimationComponent implements OnInit {
       ({
         qualification_details: this.ang.array([this.qualification_Group()]),
       });
+
       this.qualificationForm.controls['qualification_details'].valueChanges.subscribe(value => {});
 
+      //this.qualificationForm.controls.get['qualification_details'].valueChanges.subscribe((x)=>this.QualificationChange(x));
 
 
       /* Employment details information end here */
@@ -206,7 +210,7 @@ export class AnimationComponent implements OnInit {
 
             this.data.getPaddress().subscribe((data)=>
             {
-              this.addressDetails_1=data;
+              this.addressDetails=data;
             });
 
             this.data.getQualification().subscribe((data)=>
@@ -229,20 +233,25 @@ export class AnimationComponent implements OnInit {
 
 
 
-
-
  basicinfo_onRegister()
  {
    this.data.addBasicForm(this.BasicinfoFrom.value).subscribe((x)=>
     {
       this.basicinfo.push(this.BasicinfoFrom.value);
       alert("Data Added successfully!....");
-      console.log('Basic Information', JSON.stringify(this.BasicinfoFrom.value));
+      //console.log('Basic Information', JSON.stringify(this.BasicinfoFrom.value));
     });
  }
 
 
-
+ //QualificationChange(val: string)
+ //{
+   //this.res5 =this.basicinfo[0].basicinfo_employee_number;
+   //this.qualificationForm.get('qualification_details').setValue(this.res5);
+  //console.log("angle" ,this.res5);
+  //this.qualificationForm.get('qualification_details').get([0,'basicinfo_employee_number']).setValue(this.res5);
+  //console.log(this.qualificationForm.get('qualification_details').get([0,'basicinfo_employee_number']).setValue(this.res5));
+//}
 
 
 
@@ -289,11 +298,33 @@ basicinfo_OnNextClick()
 basicinfo_OnNextClick1()
 {
   this.flag3=false;
-  this.flag4=true;
+  this.flag9=true;
 }
 
 
+personalDetails_OnNextClick1()
+  {
+    this.flag9=false;
+    this.flag10=true;
+  }
 
+  personaldetails_OnPreviousClick()
+  {
+    this.flag3 =true;
+    this.flag9 =false;
+  }
+
+bankDetails_OnNextClick1()
+  {
+    this.flag10 =false;
+    this.flag4 =true;
+  }
+
+  bankdetails_OnPreviousClick()
+  {
+    this.flag9 =true;
+    this.flag10 =false;
+  }
 
 
 
@@ -301,16 +332,16 @@ addressDetails_onRegister()
 {
   this.data.addPaddress(this.addressDetailsFrom.value).subscribe((x:any)=>
   {
-   //if(x.affectedValue==1)
+  // if(x.affectedValue==1)
    //{
     alert("Data Added successful!....");
     this.addressDetails.push(this.addressDetailsFrom.value);
-    console.log('Current Address',JSON.stringify(this.addressDetails));
-  // }
+    //console.log('Current Address',JSON.stringify(this.addressDetails));
+   //}
   //else(x.code=='ER_DUP_ENTRY')
   //{
-    //alert("Duplicate");
- // }
+  //alert("Duplicate");
+  //}
   });
 }
 
@@ -323,28 +354,12 @@ addressDetails_onclick()
 
 
 
-addressDetails_onRegister1()
-  {
- this.data.addPaddress(this.addressDetailsFrom.value).subscribe((x:any)=>
-    {
-     // if(x.affectedValue==1)
-      //{
-      this.addressDetails_1.push(this.addressDetailsFrom.value);
-      alert("Data Added successfully!....");
-      console.log('Permanent Address',JSON.stringify(this.addressDetails_1));
-      //}
-    //else(x.code=='ER_DUP_ENTRY')
-    //{
-      //alert("Duplicate");
-    //}
-    });
-  }
 
 
 //this method is disbled upto data is not present in array
 addressDetails_OnNextClick()
     {
-    if( this.addressDetails_1.length ==0)
+    if( this.addressDetails.length ==0)
       {
         {return true;}
       }
@@ -358,7 +373,7 @@ addressDetails_OnNextClick()
 
   addressDetails_OnPreviousClick()
   {
-    this.flag3 =true;
+    this.flag10 =true;
     this.flag4 =false;
   }
 
@@ -415,18 +430,18 @@ qualification_onAddDetail(): void
    this.counter=0;
    this.res="";
     this.qualificationDetails.push(this.qualificationForm.get('qualification_details').value);
-      alert("Data Added Successfully!...");
+
       for(var i=0;i<=(this.qualificationForm.get('qualification_details').value).length-1;i++)
       {
         {
           this.data.addquali(this.qualificationForm.get('qualification_details').get([this.counter]).value).subscribe((x)=>
           {
-            console.log("success");
+            alert("Data Added Successfully");
           }
           );}
-        this.res=this.qualificationForm.get('qualification_details').get([this.counter]).value;
+        //this.res=this.qualificationForm.get('qualification_details').get([this.counter]).value;
         this.counter++;
-        console.log('Qualification Details',this.counter,this.res);
+       // console.log('Qualification Details',this.counter,this.res);
       }
   }
 
@@ -601,14 +616,14 @@ employment_onAddDetail(): void
         {
           this.data.addEmployment(this.employmentForm.get('employment_details').get([this.counter1]).value).subscribe((x)=>
           {
-            console.log("success");
+           // console.log("success");
             this.employmentDetails.push(this.employmentForm.get('employment_details').value);
           }
           );}
-        this.res1=this.employmentForm.get('employment_details').get([this.counter1]).value;
+       // this.res1=this.employmentForm.get('employment_details').get([this.counter1]).value;
         this.counter1++;
         alert("Data Added Successfully!...");
-        console.log('Employment Details',this.counter1,this.res1);
+        //console.log('Employment Details',this.counter1,this.res1);
       }
 
   }
@@ -699,18 +714,18 @@ skill_onAddDetail(): void {
 
   this.counter2=0;
   this.res3="";
-    this.skillDetails.push(this.skillDetailsFrom.get('skillset_details').value);
+    //this.skillDetails.push(this.skillDetailsFrom.get('skillset_details').value);
       alert("Data Added Successfully!...");
      for(var i=0;i<=(this.skillDetailsFrom.get('skillset_details').value).length-1;i++)
      {
          this.data.addSkill(this.skillDetailsFrom.get('skillset_details').get([this.counter2]).value).subscribe((x)=>
          {
-           console.log("success");
+          // console.log("success");
            this.skillDetails.push(this.skillDetailsFrom.get('skillset_details').value);
            this.counter2++;
          });
-         this.res3=this.skillDetailsFrom.get('skillset_details').get([this.counter2]).value;
-         console.log('Skill Set Data',this.counter2,this.res3);
+       //  this.res3=this.skillDetailsFrom.get('skillset_details').get([this.counter2]).value;
+        // console.log('Skill Set Data',this.counter2,this.res3);
      }
 }
 
@@ -798,9 +813,6 @@ skill_OnClickAdd()
       this.flag8=true;
       alert("Data is Added Successfully!...");
     }
-
-
-
 
 
   /* skill details information end here */

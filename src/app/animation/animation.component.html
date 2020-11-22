@@ -1,8 +1,9 @@
 
 <div class="container">
 
-  <div *ngIf="flag3">
+
     <form [formGroup]="BasicinfoFrom" (ngSubmit)="basicinfo_onRegister()" >
+      <div *ngIf="flag3">
     <h3 align="center">Register Form</h3>
     <h5 align="center">Basic Information</h5>
 
@@ -26,7 +27,7 @@
 
       <div class="col-md-6">
         <label>Name<span class="lblError">*</span></label>
-        <input type="text" appAlphabets class="form-control" formControlName="basicinfo_employee_name" placeholder="Name">
+        <input type="text"  class="form-control" formControlName="basicinfo_employee_name" placeholder="Name">
         <p class="lblError" *ngIf="BasicinfoFrom.get('basicinfo_employee_name').hasError('required') && !BasicinfoFrom.get('basicinfo_employee_name').pristine">  Name is Required!...</p>
 
       </div>
@@ -151,8 +152,16 @@
     </div>
   </div>
   </div>
+
+  <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
+  <div class="form-group col-md-12">
+      <button class="btn btn-primary"  (click)="basicinfo_OnNextClick1()" >next</button>
+  </div>
+</div>
   <div>&nbsp;</div>
   <div>&nbsp;</div><div>&nbsp;</div>
+
+  <div *ngIf="flag9">
   <h3 align="center">Personal Details </h3><br>
 
   <div class="form-row">
@@ -182,11 +191,7 @@
         <option value="II-B">II-B</option>
       </select>
     </div>
-
     </div>
-
-
-
 
   <div class="form-row">
     <div class="form-group col-md-4">
@@ -213,9 +218,7 @@
 
       <p class="lblError" *ngIf="BasicinfoFrom.get('personalDetails_voterid').hasError('minlength') && !BasicinfoFrom.get('personalDetails_voterid').pristine">Minimum 10 Number is Required!...</p>
     </div>
-
   </div>
-
 
   <div class="form-row">
     <div class="form-group col-md-4">
@@ -261,6 +264,15 @@
   </div>
   </div>
 
+  <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
+  <div class="form-group col-md-12">
+      <button  class="btn btn-primary" (click)="personaldetails_OnPreviousClick()" >Privious</button>&nbsp;&nbsp;
+      <button class="btn btn-primary"  (click)="personalDetails_OnNextClick1()" >next</button>
+  </div>
+
+</div>
+
+<div *ngIf="flag10">
   <h3 align="center">Bank Details </h3>
 
   <div class="form-row">
@@ -318,11 +330,15 @@
 
   <p><span class="lblError">* Indicates the Field are Mandatory</span></p>
   <div class="form-group col-md-12">
+    <button class="btn btn-primary" (click)="bankdetails_OnPreviousClick()" >Previous</button>&nbsp;&nbsp;
       <button type="submit"  class="btn btn-primary" [disabled]="BasicinfoFrom.invalid" >Save</button>&nbsp;&nbsp;
-      <button class="btn btn-primary"  (click)="basicinfo_OnNextClick1()" >next</button>
+      <button class="btn btn-primary"  (click)="bankDetails_OnNextClick1()" >next</button>
   </div>
-</form>
+
 </div>
+
+</form>
+
 <!--////////////////// end here Basic information Details //////////////////-->
 
 
@@ -347,7 +363,6 @@
 <!--////////////////// start here Address Details //////////////////-->
 
 <div *ngIf="flag4">
-
 <form [formGroup]="addressDetailsFrom" (ngSubmit)="addressDetails_onRegister()" >
   <div>&nbsp;</div>
   <h3 align="center">Current Address Details </h3><br>
@@ -642,7 +657,6 @@
         <div>&nbsp;&nbsp;</div>
 
       <div class="col-xs-6 col-md-2">
-
         <label>From Date<span class="lblError">*</span></label>
         <input type="date" class="form-control" formControlName="employment_fromDate" placeholder="Enter From Date">
         <p class="lblError"*ngIf="item.get('employment_fromDate').hasError('required') && !item.get('employment_fromDate').pristine ">From Date is required!...</p>
@@ -787,7 +801,7 @@
   <button type="submit" class="btn btn-primary" [disabled]="skillDetailsFrom.invalid">Save</button>&nbsp;&nbsp;
 </div>
 </form>
-&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" (click)="skill_onSubmitDetail()">Submit All</button>
+&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" routerLink="/showdata">Submit All</button>
 <div>&nbsp;</div>
 <div>&nbsp;</div>
 </div>
@@ -796,326 +810,6 @@
 <!--////////////////// Skill details end here //////////////////-->
 
 
-<div *ngIf="flag8">
-
-<div class="container">
-
-    <h1 align="center">Form</h1>
-    <h3 style="color: dodgerblue">Basic Information</h3>
-
-  <table *ngFor="let item of basicinfo let i=index">
-       <tr>
-         <td>Employee Number</td>
-         <td>{{item.basicinfo_employee_number}}</td>
-          <td>Employee Title</td>
-          <td>{{item.basicinfo_employee_title}}</td>
-      </tr>
-
-      <tr><th>Employee Name</th><td>{{item.basicinfo_employee_name}}</td>
-          <th>Employee Address</th><td>{{item.basicinfo_employee_address}}</td>
-        </tr>
-
-           <tr>
-            <th>First Name</th>
-            <td>{{item.basicinfo_firstname}}</td>
-            <th>Middle Name</th>
-            <td>{{item.basicinfo_middlename}}</td>
-          </tr>
-
-          <tr>
-              <th>Last Name</th>
-              <td>{{item.basicinfo_lastname}}</td>
-              <th>Initial</th>
-              <td>{{item.basicinfo_initial}}</td>
-            </tr>
-
-            <tr>
-              <td>Gender</td>
-              <td>{{item.basicinfo_gender}}</td>
-              <td>Date of Birth</td>
-              <td>{{item.basicinfo_dob |date:'longDate'}}</td>
-            </tr>
-
-            <tr>
-              <td>Age</td>
-              <td>{{item.basicinfo_age}}</td>
-              <td>Official Phone No</td>
-              <td>{{item.basicinfo_official_phone}}</td>
-            </tr>
-            <tr>
-              <td>Mobile Number</td>
-              <td>{{item.basicinfo_mobile}}</td>
-              <td>FAX</td>
-              <td>{{item.basicinfo_fax}}</td>
-            </tr>
-            <tr>
-              <td>Official Email</td>
-              <td>{{item.basicinfo_official_email}}</td>
-              <td>Personal Email </td>
-              <td>{{item.basicinfo_personal_email}}</td>
-            </tr>
-            <tr>
-              <td>Personal Email 2</td>
-              <td>{{item.basicinfo_personal2_email}}</td>
-              <td>Personal Email 3</td>
-              <td>{{item.basicinfo_personal3_email}}</td>
-            </tr>
-            <tr>
-              <td>Image</td>
-              <td class="img-box"><img [src]= 'item.basicinfo_file' alt="image" /></td>
-            </tr>
-
-
-              <div><br></div>
-                    <h3 style="color: dodgerblue;" >Personal Details</h3>
-
-            <tr>
-              <td>Birth Place</td>
-              <td>{{item.personalDetails_birthplace}}</td>
-              <td>Religion</td>
-              <td>{{item.personalDetails_religion}}</td>
-            </tr>
-
-            <tr>
-              <td>Caste</td>
-              <td>{{item.personalDetails_caste}}</td>
-              <td>Domicile</td>
-              <td>{{item.personalDetails_domicile}}</td>
-            </tr>
-            <tr>
-              <td>Nationality</td>
-              <td>{{item.personalDetails_nationality}}</td>
-              <td>Voter Id</td>
-              <td>{{item.personalDetails_voterid}}</td>
-            </tr>
-
-            <tr>
-              <td>Pan Id</td>
-              <td>{{item.personalDetails_pan}}</td>
-              <td>Aadhaar Id</td>
-              <td>{{item.personalDetails_aadhaar}}</td>
-            </tr>
-            <tr>
-              <td>Marriage Status</td>
-              <td>{{item.personalDetails_marriage_status}}</td>
-              <td>No of Children</td>
-              <td>{{item.personalDetails_no_children}}</td>
-            </tr>
-
-            <tr>
-              <td>Marriage Date</td>
-              <td>{{item.personalDetails_marriage_date|date:'longDate'}}</td>
-              <td>Spouse Name</td>
-              <td>{{item.personalDetails_spouse_name}}</td>
-            </tr>
-
-
-
-            <div><br></div><h3 style="color: dodgerblue;">Bank Details</h3>
-
-            <tr>
-              <td>Bank Name</td>
-              <td>{{item.bankDetails_bank_name}}</td>
-              <td>Account Type</td>
-              <td>{{item.bankDetails_account_type}}</td>
-            </tr>
-            <tr>
-              <td>Account No</td>
-              <td>{{item.bankDetails_account_number}}</td>
-              <td>Payment Type</td>
-              <td>{{item.bankDetails_peyment_type}}</td>
-            </tr>
-            <tr>
-              <td>Branch Detail</td>
-              <td>{{item.bankDetails_branch_detail}}</td>
-              <td>IFSC Code</td>
-              <td>{{item.bankDetails_ifsc}}</td>
-            </tr>
-            <tr>
-              <td>Reimbursement Name</td>
-              <td>{{item.bankDetails_reimbursement_name}}</td>
-              <td>Reimbursement Number</td>
-              <td>{{item.bankDetails_reimbursement_number}}</td>
-            </tr>
-  </table>
-</div>
-
-
-
-<div><br></div>
-
-
-<div class="container">
-<h3 style="color: dodgerblue">Permanent Details</h3>
-
-  <table *ngFor="let item of addressDetails_1; let i=index">
-       <tr>
-         <td>Permanent Address</td>
-         <td>{{item.addressDetails_address}}</td>
-          <td>City</td>
-          <td>{{item.addressDetails_city}}</td>
-      </tr>
-      <tr>
-        <td>State</td>
-        <td>{{item.addressDetails_state}}</td>
-        <td>Country</td>
-        <td>{{item.addressDetails_country}}</td>
-      </tr>
-
-      <tr>
-        <td>District</td>
-        <td>{{item.addressDetails_district}}</td>
-        <td>ZIP Code</td>
-        <td>{{item.addressDetails_zip}}</td>
-      </tr>
-
-      <tr>
-        <td>Mobile No 1</td>
-        <td>{{item.addressDetails_phone1}}</td>
-        <td>Mobile No 2</td>
-        <td>{{item.addressDetails_phone2}}</td>
-      </tr>
-      <tr>
-        <td>Mobile/FAX</td>
-        <td>{{item.addressDetails_mobile_fax}}</td>
-        <td>Personal Email</td>
-        <td>{{item.addressDetails_personal_email}}</td>
-      </tr>
-
-      <div><br></div>
-      <h3 style="color: dodgerblue">Current Details</h3>
-
-      <tr>
-        <td>Current Address</td>
-        <td>{{item.addressDetails_address}}</td>
-        <td>City</td>
-        <td>{{item.addressDetails_city}}</td>
-      </tr>
-
-      <tr>
-        <td>State</td>
-        <td>{{item.addressDetails_state}}</td>
-        <td>Country</td>
-        <td>{{item.addressDetails_country}}</td>
-      </tr>
-
-      <tr>
-        <td>District</td>
-        <td>{{item.addressDetails_district}}</td>
-        <td>ZIP Code</td>
-        <td>{{item.addressDetails_zip}}</td>
-      </tr>
-      <tr>
-        <td>Mobile No 1</td>
-        <td>{{item.addressDetails_phone1}}</td>
-        <td>Mobile No 2</td>
-        <td>{{item.addressDetails_phone2}}</td>
-      </tr>
-      <tr>
-        <td>Mobile/FAX</td>
-        <td>{{item.addressDetails_mobile_fax}}</td>
-        <td>Personal Email</td>
-        <td>{{item.addressDetails_personal_email}}</td>
-      </tr>
-
-  </table>
-</div>
-
-
-
-
-    <div><br></div>
-
-    <div class="container">
-    <h3 style="color: dodgerblue">Qualification Details</h3>
-
-      <table>
-
-    <tr>
-      <th>Qualification</th>
-      <th>Institute</th>
-      <th>Passing Year</th>
-      <th>Score</th>
-      <th>Score</th>
-    </tr>
-
-    <tr *ngFor="let item of qualificationDetails; let i=index">
-      <td>{{item.qualification_qualification}}</td>
-      <td>{{item.qualification_institute}}</td>
-      <td>{{item.qualification_passing_year}}</td>
-      <td>{{item.qualification_score}}</td>
-      <td>{{item.qualification_qualification_area}}</td>
-    </tr>
-      </table>
-    </div>
-
-
-    <div><br></div>
-
-    <div class="container">
-    <h3 style="color: dodgerblue">Employment Details</h3>
-    <table >
-      <tr>
-        <th>From Date</th>
-        <th>To Date</th>
-        <th>Compony Name</th>
-        <th>Designation</th>
-        <th>Relevent</th>
-        <th>Non-Relevent</th>
-      </tr>
-
-      <tr *ngFor="let item of employmentDetails; let i=index">
-        <td>{{item.employment_fromDate|date:'longDate'}}</td>
-        <td>{{item.employment_toDate|date:'longDate'}}</td>
-        <td>{{item.employment_company}}</td>
-        <td>{{item.employment_designation}}</td>
-        <td>{{item.employment_relevant}}</td>
-        <td>{{item.employment_nrelevant}}</td>
-      </tr>
-
-    </table>
-  </div>
-
-
-
-
-  <div><br></div>
-
-  <div class="container">
-  <h3 style="color: dodgerblue">Skill Details</h3>
-  <table >
-  <tr>
-    <th>Skill Category</th>
-    <th>Skill</th>
-    <th>Skill Level</th>
-    <th>Is Current Working</th>
-    <th>Exprience</th>
-    <th>Remarks</th>
-  </tr>
-  <tr *ngFor="let item of skillDetails; let i=index">
-    <td>{{item.skill_category}}</td>
-    <td>{{item.skill}}</td>
-    <td>{{item.skill_level}}</td>
-    <td>{{item.iscurrent}}</td>
-    <td>{{item.experience}}</td>
-    <td>{{item.remarks}}</td>
-  </tr>
-  </table>
-</div>
-
-
-<div><br></div>
-<div><br></div>
-<div><br></div>
-
-
-<div class="container desc">
-  <div class="row centered">
-    <div class="col-lg-12">
-      <button type="submit" class="btn btn primary">Submit</button>
-    </div>
-  </div>
-</div>
 <div><br></div>
 <div><br></div>
 <div><br></div>

@@ -35,7 +35,6 @@ export class UseraddService {
       let head = new HttpHeaders().set('Content-type','application/json');
       let body =JSON.stringify(items);
       return this.data.put(this.url+items.Id,body, {headers:head} );
-
     }
 
 
@@ -45,7 +44,6 @@ export class UseraddService {
       }
 
     getProductById(id) {
-
         return this.data.get(this.url1+id);
       }
 

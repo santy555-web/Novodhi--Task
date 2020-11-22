@@ -15,7 +15,6 @@ import { SwitchcaseComponent } from "./switchcase/switchcase.component";
 import { TableIndexComponent } from "./table-index/table-index.component";
 import { TodosComponent } from "./todos/todos.component";
 import { PersonaldetailComponent } from "./personaldetail/personaldetail.component";
-import { AddresstaskComponent  } from "./addresstask/addresstask.component";
 import { UsedetailComponent } from "./usedetail/usedetail.component";
 import { RegisterRectiveComponent } from "./register-rective/register-rective.component";
 import { LoginreactiveapprochComponent } from "./loginreactiveapproch/loginreactiveapproch.component";
@@ -30,22 +29,24 @@ import { LoginpagereactiveComponent } from "./loginpagereactive/loginpagereactiv
 import { AddtocartComponent } from "./addtocart/addtocart.component";
 import { FormTaskComponent } from "./form-task/form-task.component";
 import { TrialComponent } from "./trial/trial.component";
+import { ShowdataComponent} from "./animation/showdata/showdata.component"
 import { ReactiveFromComponent } from "./reactive-from/reactive-from.component";
 import { LoginReactiveComponent } from "./login-reactive/login-reactive.component";
 import { Component } from '@angular/core';
 import { AnimationComponent } from "./animation/animation.component";
 import { EmploymentComponent } from './employment/employment.component';
 import { SkillsetComponent } from './skillset/skillset.component';
+import { EditdataComponent } from "./animation/editdata/editdata.component";
 
 const arr : Routes=[
 
-{path:'indexpage', component: IndexpageComponent },
+{path:'', component: IndexpageComponent },
 {path:'bindingexample', component : BindingexampleComponent},
 {path: 'addtocart',component: AddtocartComponent},
 {path:'demo',component: DemoComponent },
 {path:'dragdrop',component:DragdropComponent },
 {path:'dragdropbox',component: DragdropboxComponent },
-{path:'',component:LoginformComponent },
+{path:'loginpage',component:LoginformComponent },
 {path:'registerform',component:RegisterformComponent },
 {path:'login',component:LoginComponent },
 {path:'parent',component:ParentComponent },
@@ -66,14 +67,21 @@ const arr : Routes=[
 {path:'productadd',component: ProductaddComponent},
 {path:'bankdetail',component: BankdetailComponent},
 {path:'personaldetail',component: PersonaldetailComponent},
-{path:'addresstask',component: AddresstaskComponent},
 {path:'formtask',component: FormTaskComponent},
-{path:'trail',component: TrialComponent},
-{path: 'animation',component:AnimationComponent},
+{path:'trail/:id',component: TrialComponent},
+{path:'animation',component:AnimationComponent},
+{path:'showdata',component:ShowdataComponent },
+{path:'editdata/:id',component:EditdataComponent },
 {path:'registerpage',component:LoginpagereactiveComponent},
 {path:'reactive', component:LoginreactiveapprochComponent},
 {path :'pagenotfound',component: PagenotfoundComponent},
 {path :'qualificationdetails',component: QualificationdetailsComponent },
+{
+  path:'addresstask',
+  loadChildren: () =>
+  import('./addresstask/addresstask.module').then((x)=>x.AddressModule),
+},
+
 {path:'**',redirectTo: 'pagenotfound' },
 
 ];

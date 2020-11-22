@@ -15,7 +15,7 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="inputCity" >City<span class="lblError">*</span></label>
-        <input type="text" appAlphabets formControlName="city" class="form-control" placeholder="City">
+        <input type="text" formControlName="city" class="form-control" placeholder="City">
         <p class="lblError" *ngIf="signupForm.get('city').hasError('required') && !signupForm.get('city').pristine">City is Required!...</p>
       </div>
 
@@ -55,12 +55,12 @@
 
         <div class="form-group col-md-4">
           <label for="inputZip">Zip</label>
-          <input type="text" appNumbersOnly formControlName="zip" class="form-control" placeholder="Enter zip code">
+          <input type="text" formControlName="zip" class="form-control" placeholder="Enter zip code">
           <p class="lblError" *ngIf="signupForm.get('zip').hasError('pattern') && !signupForm.get('zip').pristine">Invalid zip code!...</p>
         </div>
         <div class="form-group col-md-4">
           <label for="inputMobile"> Phone No 1</label>
-          <input type="text" appNumbersOnly formControlName="phone1" class="form-control" placeholder="Phone Number 1">
+          <input type="text" formControlName="phone1" class="form-control" placeholder="Phone Number 1">
           <p class="lblError" *ngIf="signupForm.get('phone1').hasError('pattern') && !signupForm.get('phone1').pristine">Invalid Mobile Number!...</p>
         </div>
       </div>
@@ -69,13 +69,13 @@
 
       <div class="form-group col-md-4">
         <label for="inputMobile"> Phone No 2</label>
-        <input type="text" appNumbersOnly formControlName="phone2" class="form-control" placeholder="Phone Number 2">
+        <input type="text" formControlName="phone2" class="form-control" placeholder="Phone Number 2">
         <p class="lblError" *ngIf="signupForm.get('phone2').hasError('pattern') && !signupForm.get('phone2').pristine">Invalid Mobile Number!...</p>
       </div>
 
       <div class="form-group col-md-4">
         <label for="inputMobile">Fax/Mobile No</label>
-        <input type="text" appNumbersOnly formControlName="mobile_fax" class="form-control" placeholder="Fax Or Mobile Number">
+        <input type="text" formControlName="mobile_fax" class="form-control" placeholder="Fax Or Mobile Number">
 
       </div>
 
@@ -118,7 +118,7 @@
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="inputCity" >City<span class="lblError">*</span></label>
-      <input type="text" appAlphabets formControlName="city" value={{city}} [readonly]="isReadonly" class="form-control" placeholder="City">
+      <input type="text" formControlName="city" value={{city}} [readonly]="isReadonly" class="form-control" placeholder="City">
       <p class="lblError" *ngIf="signupForm.get('city').hasError('required') && !signupForm.get('city').pristine">City is Required!...</p>
     </div>
 
@@ -161,12 +161,12 @@
 
       <div class="form-group col-md-4">
         <label for="inputZip">Zip</label>
-        <input type="text" appNumbersOnly value={{zip}} formControlName="zip" [readonly]="isReadonly" class="form-control" placeholder="Enter zip code">
+        <input type="text" value={{zip}} formControlName="zip" [readonly]="isReadonly" class="form-control" placeholder="Enter zip code">
         <p class="lblError" *ngIf="signupForm.get('zip').hasError('pattern') && !signupForm.get('zip').pristine">Invalid zip code!...</p>
       </div>
       <div class="form-group col-md-4">
         <label for="inputMobile"> Phone No 1</label>
-        <input type="text" appNumbersOnly value={{phone1}} formControlName="phone1"[readonly]="isReadonly" class="form-control" placeholder="Phone Number 1">
+        <input type="text" value={{phone1}} formControlName="phone1"[readonly]="isReadonly" class="form-control" placeholder="Phone Number 1">
         <p class="lblError" *ngIf="signupForm.get('phone1').hasError('pattern') && !signupForm.get('phone1').pristine">Invalid Mobile Number!...</p>
       </div>
     </div>
@@ -175,13 +175,13 @@
 
     <div class="form-group col-md-4">
       <label for="inputMobile"> Phone No 2</label>
-      <input type="text" appNumbersOnly value={{2}} formControlName="phone2"[readonly]="isReadonly"class="form-control" placeholder="Phone Number 2">
+      <input type="text"  value={{2}} formControlName="phone2"[readonly]="isReadonly"class="form-control" placeholder="Phone Number 2">
       <p class="lblError" *ngIf="signupForm.get('phone2').hasError('pattern') && !signupForm.get('phone2').pristine">Invalid Mobile Number!...</p>
     </div>
 
     <div class="form-group col-md-4">
       <label for="inputMobile">Fax/Mobile No</label>
-      <input type="text" appNumbersOnly value={{mobile_fax}} formControlName="mobile_fax" [readonly]="isReadonly" class="form-control" placeholder="Fax Or Mobile Number">
+      <input type="text" value={{mobile_fax}} formControlName="mobile_fax" [readonly]="isReadonly" class="form-control" placeholder="Fax Or Mobile Number">
     </div>
 
     <div class="form-group col-md-4">

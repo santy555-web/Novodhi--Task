@@ -33,7 +33,7 @@ import { AnimationComponent } from './animation/animation.component';
 import { LoginpagereactiveComponent } from './loginpagereactive/loginpagereactive.component';
 import { RegisterRectiveComponent } from './register-rective/register-rective.component';
 import { FormTaskComponent } from './form-task/form-task.component';
-import { AddresstaskComponent } from './addresstask/addresstask.component';
+
 import { PersonaldetailComponent } from './personaldetail/personaldetail.component';
 import { BankdetailComponent } from './bankdetail/bankdetail.component';
 import { QualificationComponent } from './qualification/qualification.component';
@@ -51,6 +51,8 @@ import { UseraddComponent } from './usedetail/useradd/useradd.component';
 import { TaskaddComponent } from './usedetail/taskadd/taskadd.component';
 import { ProductaddComponent } from './usedetail/productadd/productadd.component';
 import { TrialComponent } from './trial/trial.component';
+import { ShowdataComponent } from './animation/showdata/showdata.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,6 @@ import { TrialComponent } from './trial/trial.component';
     LoginpagereactiveComponent,
     RegisterRectiveComponent,
     FormTaskComponent,
-    AddresstaskComponent,
     PersonaldetailComponent,
     BankdetailComponent,
     QualificationComponent,
@@ -95,6 +96,8 @@ import { TrialComponent } from './trial/trial.component';
     TaskaddComponent,
     ProductaddComponent,
     TrialComponent,
+    ShowdataComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -103,7 +106,7 @@ import { TrialComponent } from './trial/trial.component';
     DragDropModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

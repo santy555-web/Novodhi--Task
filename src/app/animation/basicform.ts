@@ -1,6 +1,7 @@
 export class BasicForm
 {
   public constructor(
+    public id :number,
     public basicinfo_employee_number :number,
     public basicinfo_employee_title : string,
     public basicinfo_employee_name : string,
@@ -44,29 +45,14 @@ export class BasicForm
 
 }
 
-export class personalDetails
-{
-  public constructor(
-){}
-
-}
-
-
-
-export class BankDetails
-{
-  public constructor(
-
-
-  ){}
-
-}
 
 
 
 export class employment
 {
   public constructor(
+    public id :number,
+    public eid :number,
     public employment_fromDate: string,
     public employment_toDate: string,
     public employment_company: string,
@@ -83,6 +69,7 @@ export class employment
  export class paddress
  {
    public constructor(
+    public id :number,
     public addressDetails_address: string,
     public addressDetails_city: string,
     public addressDetails_state: string,
@@ -104,7 +91,8 @@ export class employment
     public addressDetails_phone11: string,
     public addressDetails_phone21: string,
     public addressDetails_mobile_fax1: string,
-    public addressDetails_personal_email1: string
+    public addressDetails_personal_email1: string,
+
 
     ){}
 
@@ -116,6 +104,8 @@ export class employment
   export class quali
  {
    public constructor(
+    public id :number,
+    public qid :number,
     public qualification_qualification: string,
     public qualification_institute: string,
     public qualification_passing_year: string,
@@ -132,6 +122,8 @@ export class employment
   export class skill
  {
    public constructor(
+    public id :number,
+    public skid :number,
     public skill_category: string,
     public skill: string,
     public skill_level: string,
