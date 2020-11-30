@@ -21,20 +21,21 @@ export class UsedetailComponent implements OnInit {
  user_Form:FormGroup;
  Task_Form:FormGroup;
  ProductForm:FormGroup;
-  constructor(private data:UseraddService,
+  constructor(private _data:UseraddService,
     private routeract:ActivatedRoute) { }
 
   ngOnInit(): void {
 
-    this.data.getAllTask().subscribe((data)=>{
-    this.arrtodos=data;
-    });
+    // this.data.getAllTask().subscribe((data)=>{
+    // this.arrtodos=data;
+    // });
+    this.arrtodos = this.routeract.snapshot.data["xyz"];
 
-    this.data.getAllProduct().subscribe((data: Product[]) => {
+    this._data.getAllProduct().subscribe((data: Product[]) => {
       this.arrproduct = data;
     });
 
-    this.data.getAllEmployee().subscribe((data: Employee[]) => {
+    this._data.getAllEmployee().subscribe((data: Employee[]) => {
       this.arremployee = data;
     });
 
@@ -74,7 +75,7 @@ export class UsedetailComponent implements OnInit {
 
   deleteTask(item:Todo)
   {
-    this.data.deleteTask(item.Id).subscribe((x:any)=>
+    this._data.deleteTask(item.Id).subscribe((x:any)=>
       {
         this.arrtodos.splice(this.arrtodos.indexOf(item), 1);
       });
@@ -82,7 +83,7 @@ export class UsedetailComponent implements OnInit {
 
   EditTaskPopUp()
   {
-     this.data.editTask(this.Task_Form.value).subscribe((x:any) =>
+     this._data.editTask(this.Task_Form.value).subscribe((x:any) =>
      {
        alert("Task Edited Successfully!...");
      });
@@ -90,7 +91,7 @@ export class UsedetailComponent implements OnInit {
 
   EditTask(item: Todo){
     this.flag1=true;
-    this.data.getTaskById(item.Id).subscribe((x:Todo[]) => {
+    this._data.getTaskById(item.Id).subscribe((x:Todo[]) => {
     this.Task_Form.patchValue({
       Id:x[0].Id,
       Title:x[0].Title,
@@ -128,7 +129,7 @@ export class UsedetailComponent implements OnInit {
 
   deleteUser(item:Employee)
   {
-    this.data.deleteEmployee(item.user_name).subscribe((x:any)=>
+    this._data.deleteEmployee(item.user_name).subscribe((x:any)=>
       {
         this.arremployee.splice(this.arremployee.indexOf(item), 1);
       }
@@ -162,7 +163,7 @@ export class UsedetailComponent implements OnInit {
 
   EditUserPopUp()
   {
-    this.data.editEmployee(this.user_Form.value).subscribe((x:Employee[]) => {
+    this._data.editEmployee(this.user_Form.value).subscribe((x:Employee[]) => {
       alert("User Details Edited Successfully!...");
         });
 
@@ -171,7 +172,7 @@ export class UsedetailComponent implements OnInit {
   editUser(item: Employee)
   {
         this.flag2=true;
-        this.data.getEmployeeById(item.user_name).subscribe((x:Employee[]) => {
+        this._data.getEmployeeById(item.user_name).subscribe((x:Employee[]) => {
         this.user_Form.patchValue({
         user_email:x[0].user_email,
         user_name:x[0].user_name,
@@ -193,7 +194,7 @@ export class UsedetailComponent implements OnInit {
 
  deleteProduct(item:Product)
  {
-   this.data.deleteProduct(item.pro_id).subscribe((x:any)=>
+   this._data.deleteProduct(item.pro_id).subscribe((x:any)=>
      {
        this.arrproduct.splice(this.arrproduct.indexOf(item), 1);
      }
@@ -213,7 +214,7 @@ export class UsedetailComponent implements OnInit {
 
   EditProductPopUp()
   {
-    this.data.editProduct(this.ProductForm.value).subscribe((x:any) => {
+    this._data.editProduct(this.ProductForm.value).subscribe((x:any) => {
       alert("Product Details Edited Successfully!...");
         });
 
@@ -222,7 +223,7 @@ export class UsedetailComponent implements OnInit {
   editProductdetail(item: Product)
   {
         this.flag3=true;
-        this.data.getProductById(item.pro_id).subscribe((x:Product[]) => {
+        this._data.getProductById(item.pro_id).subscribe((x:Product[]) => {
         this.ProductForm.patchValue({
         pro_id:x[0].pro_id,
         pro_name:x[0].pro_name,

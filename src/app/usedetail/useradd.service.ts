@@ -20,21 +20,21 @@ export class UseraddService {
     }
 
     addTask(items:Todo) {
-      let head = new HttpHeaders().set('Content-type','application/json');
+
       let body=JSON.stringify(items);
-      return this.data.post(this.url, body, {headers:head}  );
+      return this.data.post(this.url, body  );
     }
 
     deleteTask(id)
     {
-      let head = new HttpHeaders().set('Content-type','application/json');
-      return this.data.delete(this.url+id, {headers:head} );
+
+      return this.data.delete(this.url+id );
     }
 
     editTask(items:Todo){
-      let head = new HttpHeaders().set('Content-type','application/json');
+
       let body =JSON.stringify(items);
-      return this.data.put(this.url+items.Id,body, {headers:head} );
+      return this.data.put(this.url+items.Id,body);
     }
 
 
@@ -48,21 +48,21 @@ export class UseraddService {
       }
 
       addProduct(items:Product) {
-        let head = new HttpHeaders().set('Content-type','application/json');
+
         let body=JSON.stringify(items);
-        return this.data.post(this.url1, body, {headers:head}  );
+        return this.data.post(this.url1, body);
       }
 
       deleteProduct(id)
       {
-        let head = new HttpHeaders().set('Content-type','application/json');
-        return this.data.delete(this.url1+id, {headers:head} );
+
+        return this.data.delete(this.url1+id);
       }
 
       editProduct(items:Product){
-        let head = new HttpHeaders().set('Content-type','application/json');
+
         let body =JSON.stringify(items);
-        return this.data.put(this.url1+items.pro_id,body, {headers:head} );
+        return this.data.put(this.url1+items.pro_id,body);
       }
 
 
@@ -76,21 +76,21 @@ export class UseraddService {
         }
 
         addEmployee(items:Employee) {
-          let head = new HttpHeaders().set('Content-type','application/json');
+
           let body=JSON.stringify(items);
-          return this.data.post(this.url2, body, {headers:head}  );
+          return this.data.post(this.url2, body);
         }
 
         deleteEmployee(id)
         {
-          let head = new HttpHeaders().set('Content-type','application/json');
-          return this.data.delete(this.url2+id, {headers:head} );
+
+          return this.data.delete(this.url2+id);
         }
 
         editEmployee(items:Employee){
-          let head = new HttpHeaders().set('Content-type','application/json');
+
           let body =JSON.stringify(items);
-          return this.data.put(this.url2+items.user_name,body, {headers:head} );
+          return this.data.put(this.url2+items.user_name,body);
 
         }
 

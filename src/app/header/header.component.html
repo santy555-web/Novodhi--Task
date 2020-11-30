@@ -41,7 +41,8 @@
                                 <li><a class="dropdown-item" routerLink="/todos">Crud Operation</a></li>
                                 <li><a class="dropdown-item" routerLink="/demo">Calculator</a></li>
                                 <li><a class="dropdown-item" routerLink="/registerpage">Registration page</a></li>
-                                <li><a class="dropdown-item" routerLink="/reactiveform">Reative Form</a></li>
+                                <li><a class="dropdown-item" routerLink="/usedetail">user detail</a></li>
+                                <li><a class="dropdown-item" routerLink="/angularmaterail">Angular Material</a></li>
                               </ul>
                             </li>
                             <li><a class="dropdown-item" routerLink="/registerreactive">Registration Form</a></li>
@@ -64,8 +65,9 @@
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a routerLink="/login">Login</a></li>
-                                    <li><a routerLink="/register">Sign Up</a></li>
+                                    <li><a *ngIf="!isLoggedIn" (click)="onLogin()">Login</a></li>
+                                    <li><a *ngIf="isLoggedIn" (click)="onLogout()">Logout</a></li>
+                                    <li><a>Sign Up</a></li>
                                 </ul>
                             </li>
                         </ul>

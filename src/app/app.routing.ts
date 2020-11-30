@@ -32,11 +32,13 @@ import { TrialComponent } from "./trial/trial.component";
 import { ShowdataComponent} from "./animation/showdata/showdata.component"
 import { ReactiveFromComponent } from "./reactive-from/reactive-from.component";
 import { LoginReactiveComponent } from "./login-reactive/login-reactive.component";
-import { Component } from '@angular/core';
 import { AnimationComponent } from "./animation/animation.component";
 import { EmploymentComponent } from './employment/employment.component';
 import { SkillsetComponent } from './skillset/skillset.component';
-import { EditdataComponent } from "./animation/editdata/editdata.component";
+import { UserguardService } from "./userguard.service";
+import { UserresolverService } from "./usedetail/userresolver.service";
+import { EditgaurdService } from "./editgaurd.service";
+import { AngularmaterialdemoComponent } from "./angularmaterialdemo/angularmaterialdemo.component";
 
 const arr : Routes=[
 
@@ -58,8 +60,8 @@ const arr : Routes=[
 {path:'registerreactive',component:RegisterRectiveComponent},
 {path:'tomo',component: TomoComponent},
 {path:'taskadd',component: TaskaddComponent},
-{path:'useradd',component: UseraddComponent},
-{path:'usedetail',component: UsedetailComponent},
+{path:'useradd',canDeactivate:[EditgaurdService],component: UseraddComponent},
+{path:'usedetail',canActivate:[UserguardService], resolve:{xyz:UserresolverService}, component: UsedetailComponent},
 {path:'reactiveform',component: ReactiveFromComponent},
 {path:'qualification',component: QualificationComponent},
 {path:'skillset',component: SkillsetComponent},
@@ -71,13 +73,14 @@ const arr : Routes=[
 {path:'trail/:id',component: TrialComponent},
 {path:'animation',component:AnimationComponent},
 {path:'showdata',component:ShowdataComponent },
-{path:'editdata/:id',component:EditdataComponent },
 {path:'registerpage',component:LoginpagereactiveComponent},
 {path:'reactive', component:LoginreactiveapprochComponent},
 {path :'pagenotfound',component: PagenotfoundComponent},
 {path :'qualificationdetails',component: QualificationdetailsComponent },
+{path:'angularmaterail',component:AngularmaterialdemoComponent},
 {
   path:'addresstask',
+  canLoad:[UserguardService],
   loadChildren: () =>
   import('./addresstask/addresstask.module').then((x)=>x.AddressModule),
 },

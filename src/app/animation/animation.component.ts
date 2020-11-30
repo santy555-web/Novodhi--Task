@@ -3,6 +3,8 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { AnimationService } from "./animation.service";
 import { quali,skill,employment, BasicForm, paddress } from './basicform';
+import { EMPTY } from 'rxjs';
+import { tap, distinctUntilChanged, switchMap, startWith } from 'rxjs/operators';
 @Component({
   selector: 'app-animation',
   templateUrl: './animation.component.html',
@@ -160,8 +162,8 @@ export class AnimationComponent implements OnInit {
             addressDetails_phone2: new FormControl(null, [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$") ]),
             addressDetails_mobile_fax: new FormControl(),
             addressDetails_personal_email: new FormControl(null,[Validators.email]),
-            addressDetails_same_address: new FormControl(),
 
+            addressDetails_same_address: new FormControl(),
             addressDetails_address1: new FormControl(null, [Validators.required]),
             addressDetails_city1: new FormControl(),
             addressDetails_state1: new FormControl(""),
@@ -239,7 +241,7 @@ export class AnimationComponent implements OnInit {
     {
       this.basicinfo.push(this.BasicinfoFrom.value);
       alert("Data Added successfully!....");
-      //console.log('Basic Information', JSON.stringify(this.BasicinfoFrom.value));
+      console.log('Basic Information', JSON.stringify(this.BasicinfoFrom.value));
     });
  }
 
@@ -379,19 +381,45 @@ addressDetails_OnNextClick()
 
 //update the values for same address details
 updateaddress(val:boolean){
-if(val){
-        this.addressDetails_address1 = this.addressDetailsFrom.get('addressDetails_address').value;
-        this.addressDetails_city1 = this.addressDetailsFrom.get('addressDetails_city').value;
-        this.addressDetails_state1 = this.addressDetailsFrom.get('addressDetails_state').value;
-        this.addressDetails_country1 = this.addressDetailsFrom.get('addressDetails_country').value;
-        this.addressDetails_district1 = this.addressDetailsFrom.get('addressDetails_district').value;
-        this.addressDetails_zip1 = this.addressDetailsFrom.get('addressDetails_zip').value;
-        this.addressDetails_phone21 = this.addressDetailsFrom.get('addressDetails_phone2').value;
-        this.addressDetails_phone11 = this.addressDetailsFrom.get('addressDetails_phone1').value;
-        this.addressDetails_mobile_fax1 = this.addressDetailsFrom.get('addressDetails_mobile_fax').value;
-        this.addressDetails_personal_email1 = this.addressDetailsFrom.get('addressDetails_personal_email').value;
-      }
-   else{
+if(val && this.addressDetailsFrom.get('addressDetails_same_address').value == true){
+  this.addressDetailsFrom.patchValue({
+   addressDetails_address1:[this.addressDetailsFrom.get('addressDetails_address').value],
+   addressDetails_city1:[this.addressDetailsFrom.get('addressDetails_city').value],
+   addressDetails_state1:[this.addressDetailsFrom.get('addressDetails_state').value],
+   addressDetails_country1:[this.addressDetailsFrom.get('addressDetails_country').value],
+   addressDetails_district1:[this.addressDetailsFrom.get('addressDetails_district').value],
+   addressDetails_zip1:[this.addressDetailsFrom.get('addressDetails_zip').value],
+   addressDetails_phone11:[this.addressDetailsFrom.get('addressDetails_phone1').value],
+   addressDetails_phone21:[this.addressDetailsFrom.get('addressDetails_phone2').value],
+   addressDetails_mobile_fax1:[this.addressDetailsFrom.get('addressDetails_mobile_fax').value],
+   addressDetails_personal_email1:[this.addressDetailsFrom.get('addressDetails_personal_email').value],
+ });
+
+  //       this.addressDetails_address1= this.addressDetailsFrom.get('addressDetails_address').value;
+  //       this.addressDetails_city1 = this.addressDetailsFrom.get('addressDetails_city').value;
+  //       this.addressDetails_state1 = this.addressDetailsFrom.get('addressDetails_state').value;
+  //       this.addressDetails_country1 = this.addressDetailsFrom.get('addressDetails_country').value;
+  //       this.addressDetails_district1 = this.addressDetailsFrom.get('addressDetails_district').value;
+  //       this.addressDetails_zip1 = this.addressDetailsFrom.get('addressDetails_zip').value;
+  //       this.addressDetails_phone21 = this.addressDetailsFrom.get('addressDetails_phone2').value;
+  //       this.addressDetails_phone11 = this.addressDetailsFrom.get('addressDetails_phone1').value;
+  //       this.addressDetails_mobile_fax1 = this.addressDetailsFrom.get('addressDetails_mobile_fax').value;
+  //       this.addressDetails_personal_email1 = this.addressDetailsFrom.get('addressDetails_personal_email').value;
+  //     }
+  //  else{
+  //       this.addressDetails_address1 = null;
+  //       this.addressDetails_city1 = null;
+  //       this.addressDetails_state1 = null;
+  //       this.addressDetails_country1 = null;
+  //       this.addressDetails_district1 = null;
+  //       this.addressDetails_zip1 = null;
+  //       this.addressDetails_phone21 = null;
+  //       this.addressDetails_phone11 = null;
+  //       this.addressDetails_mobile_fax1 = null;
+  //       this.addressDetails_personal_email1 = null;
+  //       }
+}
+else{
         this.addressDetails_address1 = null;
         this.addressDetails_city1 = null;
         this.addressDetails_state1 = null;
@@ -403,11 +431,10 @@ if(val){
         this.addressDetails_mobile_fax1 = null;
         this.addressDetails_personal_email1 = null;
         }
+
 }
 
 
-
-    //this is for group of array in oninit method
   qualification_Group()
   {
       return this.ang.group
@@ -722,8 +749,9 @@ skill_onAddDetail(): void {
          {
           // console.log("success");
            this.skillDetails.push(this.skillDetailsFrom.get('skillset_details').value);
-           this.counter2++;
+
          });
+         this.counter2++;
        //  this.res3=this.skillDetailsFrom.get('skillset_details').get([this.counter2]).value;
         // console.log('Skill Set Data',this.counter2,this.res3);
      }

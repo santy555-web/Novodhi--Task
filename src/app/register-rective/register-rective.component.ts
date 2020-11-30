@@ -16,8 +16,8 @@ export class RegisterRectiveComponent implements OnInit {
   ngOnInit(): void {
 
     this.signupForm = new FormGroup({
-      name:new FormControl(null,[Validators.required ]),
-      email: new FormControl(null,[Validators.required, Validators.email ]),
+      name:new FormControl(null,[Validators.required]),
+      gmail: new FormControl(null,[Validators.required,Validators.email]),
 
       passGroup: new FormGroup({
       pass: new FormControl(null,[Validators.required]),
